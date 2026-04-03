@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#0d0d0d">
+<title>Calculadora de Margem de Lucro</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --verde:#00C896;
+    --vermelho:#FF4D4D;
+    --amarelo:#FFB800;
+    --fundo:#0d0d0d;
+    --card:#1a1a1a;
+    --card2:#242424;
+    --borda:#2e2e2e;
+    --texto:#f0f0f0;
+    --muted:#888;
+  }
+  body{background:var(--fundo);color:var(--texto);font-family:'Inter',sans-serif;min-height:100vh;padding:0;overflow-x:hidden}
+  
+  .topo{background:linear-gradient(135deg,#00C896 0%,#00a87a 100%);padding:32px 20px 40px;text-align:center;position:relative;overflow:hidden}
+  .topo::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.06)}
+  .topo::after{content:'';position:absolute;bottom:-60px;left:-30px;width:220px;height:220px;border-radius:50%;background:rgba(0,0,0,0.08)}
+  .badge{display:inline-block;background:rgba(0,0,0,0.2);color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px}
+  .topo h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#fff;line-height:1.2;position:relative;z-index:1}
+  .topo p{font-size:14px;color:rgba(255,255,255,0.85);margin-top:8px;position:relative;z-index:1}
+
+  .container{padding:20px 16px 40px;max-width:480px;margin:0 auto}
+
+  .secao-titulo{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin:28px 0 12px}
+
+  .card{background:var(--card);border:1px solid var(--borda);border-radius:16px;padding:20px;margin-bottom:12px}
+
+  label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:500}
+  
+  .input-wrap{position:relative;display:flex;align-items:center}
+  .input-prefix{position:absolute;left:14px;font-size:15px;color:var(--muted);font-weight:500;pointer-events:none}
+  .input-suffix{position:absolute;right:14px;font-size:15px;color:var(--muted);font-weight:500;pointer-events:none}
+  
+  input[type=number]{
+    width:100%;background:var(--card2);border:1.5px solid var(--borda);border-radius:12px;
+    padding:14px 14px 14px 36px;font-size:17px;color:var(--texto);font-family:'Inter',sans-serif;font-weight:500;
+    -webkit-appearance:none;appearance:none;outline:none;transition:border-color 0.2s
+  }
+  input[type=number]:focus{border-color:var(--verde)}
+  input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+  input.suffix-input{padding:14px 36px 14px 14px}
+  input.no-prefix{padding:14px}
+
+  .linha-dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+  .btn-calcular{
+    width:100%;background:var(--verde);color:#000;font-family:'Syne',sans-serif;font-size:17px;font-weight:700;
+    border:none;border-radius:14px;padding:18px;cursor:pointer;margin-top:8px;transition:transform 0.15s,opacity 0.15s;
+    letter-spacing:0.3px
+  }
+  .btn-calcular:active{transform:scale(0.97);opacity:0.9}
+
+  .resultado{display:none;margin-top:8px}
+  
+  .resultado-hero{background:var(--card);border:1px solid var(--borda);border-radius:16px;padding:24px;text-align:center;margin-bottom:12px}
+  .resultado-hero .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+  .resultado-hero .valor-grande{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;line-height:1}
+  .resultado-hero .subtexto{font-size:13px;color:var(--muted);margin-top:8px}
+
+  .grid-metricas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+  .metrica{background:var(--card);border:1px solid var(--borda);border-radius:14px;padding:16px}
+  .metrica .m-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px}
+  .metrica .m-valor{font-family:'Syne',sans-serif;font-size:22px;font-weight:700}
+
+  .diagnostico{border-radius:16px;padding:20px;margin-bottom:12px;border:1.5px solid}
+  .diagnostico .diag-icon{font-size:28px;margin-bottom:10px}
+  .diagnostico .diag-titulo{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px}
+  .diagnostico .diag-texto{font-size:14px;line-height:1.6;opacity:0.9}
+  
+  .diag-perigo{background:rgba(255,77,77,0.08);border-color:rgba(255,77,77,0.3);color:#FF6B6B}
+  .diag-atencao{background:rgba(255,184,0,0.08);border-color:rgba(255,184,0,0.3);color:#FFB800}
+  .diag-bom{background:rgba(0,200,150,0.06);border-color:rgba(0,200,150,0.25);color:#00C896}
+  .diag-excelente{background:rgba(0,200,150,0.1);border-color:rgba(0,200,150,0.4);color:#00E6AC}
+
+  .lista-acoes{background:var(--card);border:1px solid var(--borda);border-radius:16px;padding:20px;margin-bottom:12px}
+  .lista-acoes h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:14px;color:var(--texto)}
+  .acao-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--borda)}
+  .acao-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+  .acao-num{min-width:26px;height:26px;border-radius:50%;background:rgba(0,200,150,0.15);color:var(--verde);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .acao-texto{font-size:14px;line-height:1.5;color:var(--texto)}
+
+  .cta-box{background:linear-gradient(135deg,#1a2a22,#152018);border:1px solid rgba(0,200,150,0.25);border-radius:16px;padding:22px;text-align:center;margin-bottom:12px}
+  .cta-box p{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:16px}
+  .cta-box strong{display:block;font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:6px}
+  .btn-cta{display:block;background:var(--verde);color:#000;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;padding:15px;border-radius:12px;text-decoration:none;transition:opacity 0.15s}
+  .btn-cta:active{opacity:0.85}
+
+  .btn-refazer{width:100%;background:transparent;border:1.5px solid var(--borda);color:var(--muted);font-family:'Inter',sans-serif;font-size:14px;font-weight:500;border-radius:12px;padding:14px;cursor:pointer;margin-top:4px;transition:border-color 0.2s,color 0.2s}
+  .btn-refazer:active{border-color:var(--verde);color:var(--verde)}
+
+  .rodape{text-align:center;padding:20px;color:var(--muted);font-size:12px}
+
+  .verde{color:var(--verde)}
+  .vermelho{color:var(--vermelho)}
+  .amarelo{color:var(--amarelo)}
+</style>
+</head>
+<body>
+
+<div class="topo">
+  <div class="badge">Ferramenta Gratuita</div>
+  <h1>Calculadora de<br>Margem de Lucro</h1>
+  <p>Descubra se o seu negócio está realmente lucrando</p>
+</div>
+
+<div class="container">
+
+  <div id="formulario">
+    <p class="secao-titulo">Dados do produto ou serviço</p>
+    
+    <div class="card">
+      <label>Preço de venda (R$)</label>
+      <div class="input-wrap">
+        <span class="input-prefix">R$</span>
+        <input type="number" id="preco" placeholder="0,00" inputmode="decimal" min="0">
+      </div>
+    </div>
+
+    <div class="card">
+      <label>Custo do produto / serviço (R$)</label>
+      <div class="input-wrap">
+        <span class="input-prefix">R$</span>
+        <input type="number" id="custo" placeholder="0,00" inputmode="decimal" min="0">
+      </div>
+    </div>
+
+    <p class="secao-titulo">Despesas e impostos</p>
+
+    <div class="card">
+      <div class="linha-dupla">
+        <div>
+          <label>Impostos (%)</label>
+          <div class="input-wrap">
+            <input class="suffix-input" type="number" id="imposto" placeholder="0" inputmode="decimal" min="0" max="100">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+        <div>
+          <label>Comissão (%)</label>
+          <div class="input-wrap">
+            <input class="suffix-input" type="number" id="comissao" placeholder="0" inputmode="decimal" min="0" max="100">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="linha-dupla">
+        <div>
+          <label>Frete / entrega (R$)</label>
+          <div class="input-wrap">
+            <span class="input-prefix">R$</span>
+            <input type="number" id="frete" placeholder="0" inputmode="decimal" min="0">
+          </div>
+        </div>
+        <div>
+          <label>Outras despesas (R$)</label>
+          <div class="input-wrap">
+            <span class="input-prefix">R$</span>
+            <input type="number" id="outras" placeholder="0" inputmode="decimal" min="0">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-calcular" onclick="calcular()">Calcular minha margem →</button>
+  </div>
+
+  <div class="resultado" id="resultado">
+
+    <div class="resultado-hero">
+      <div class="label">Margem de lucro líquida</div>
+      <div class="valor-grande" id="margem-display">0%</div>
+      <div class="subtexto" id="lucro-por-unidade"></div>
+    </div>
+
+    <div class="grid-metricas">
+      <div class="metrica">
+        <div class="m-label">Receita bruta</div>
+        <div class="m-valor verde" id="m-preco"></div>
+      </div>
+      <div class="metrica">
+        <div class="m-label">Total de custos</div>
+        <div class="m-valor vermelho" id="m-custos"></div>
+      </div>
+      <div class="metrica">
+        <div class="m-label">Lucro líquido</div>
+        <div class="m-valor" id="m-lucro"></div>
+      </div>
+      <div class="metrica">
+        <div class="m-label">Markup</div>
+        <div class="m-valor" id="m-markup"></div>
+      </div>
+    </div>
+
+    <div class="diagnostico" id="diagnostico-box">
+      <div class="diag-icon" id="diag-icon"></div>
+      <div class="diag-titulo" id="diag-titulo"></div>
+      <div class="diag-texto" id="diag-texto"></div>
+    </div>
+
+    <div class="lista-acoes" id="acoes-box">
+      <h3>O que fazer agora</h3>
+      <div id="acoes-lista"></div>
+    </div>
+
+    <div class="cta-box">
+      <strong>Quer ter essa clareza em todo o seu negócio?</strong>
+      <p>Compartilha essa calculadora com quem precisa saber se está realmente lucrando.</p>
+      <a href="https://wa.me/?text=Calculei%20minha%20margem%20de%20lucro%20com%20essa%20ferramenta%20gratuita!%20Experimenta%20você%20também." class="btn-cta" onclick="compartilhar(event)">Compartilhar ferramenta</a>
+    </div>
+
+    <button class="btn-refazer" onclick="refazer()">← Refazer o cálculo</button>
+  </div>
+
+</div>
+
+<div class="rodape">Ferramenta gratuita · Use à vontade</div>
+
+<script>
+function fmt(v){return'R$ '+v.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
+function pct(v){return v.toFixed(1).replace('.',',')+'%'}
+
+function calcular(){
+  var preco=parseFloat(document.getElementById('preco').value)||0;
+  var custo=parseFloat(document.getElementById('custo').value)||0;
+  var imposto=parseFloat(document.getElementById('imposto').value)||0;
+  var comissao=parseFloat(document.getElementById('comissao').value)||0;
+  var frete=parseFloat(document.getElementById('frete').value)||0;
+  var outras=parseFloat(document.getElementById('outras').value)||0;
+
+  if(preco<=0){alert('Informe o preço de venda.');return;}
+  if(custo<=0){alert('Informe o custo do produto.');return;}
+
+  var valorImposto=preco*(imposto/100);
+  var valorComissao=preco*(comissao/100);
+  var totalCustos=custo+valorImposto+valorComissao+frete+outras;
+  var lucro=preco-totalCustos;
+  var margem=(lucro/preco)*100;
+  var markup=custo>0?((preco-custo)/custo)*100:0;
+
+  var corMargem=margem<0?'vermelho':margem<10?'amarelo':'verde';
+  document.getElementById('margem-display').innerHTML='<span class="'+corMargem+'">'+pct(margem)+'</span>';
+  document.getElementById('lucro-por-unidade').textContent='Você lucra '+fmt(lucro)+' por unidade vendida';
+  document.getElementById('m-preco').textContent=fmt(preco);
+  document.getElementById('m-custos').textContent=fmt(totalCustos);
+  
+  var lucroEl=document.getElementById('m-lucro');
+  lucroEl.textContent=fmt(lucro);
+  lucroEl.className='m-valor '+(lucro>=0?'verde':'vermelho');
+  
+  document.getElementById('m-markup').textContent=pct(markup);
+
+  var box=document.getElementById('diagnostico-box');
+  var icon=document.getElementById('diag-icon');
+  var titulo=document.getElementById('diag-titulo');
+  var texto=document.getElementById('diag-texto');
+  var acoes=document.getElementById('acoes-lista');
+
+  box.className='diagnostico';
+  var itens=[];
+
+  if(margem<0){
+    box.classList.add('diag-perigo');
+    icon.textContent='🚨';
+    titulo.textContent='Você está no prejuízo';
+    texto.textContent='Cada venda que você faz está te custando dinheiro. Isso é crítico e precisa ser resolvido agora. O problema pode estar no preço muito baixo, nos custos altos, ou nos dois.';
+    itens=['Pare de vender nesse preço imediatamente até ajustar','Some TODOS os seus custos reais antes de precificar','Use a fórmula: Preço = Custo ÷ (1 − Margem desejada)','Negocie redução de custo com fornecedores'];
+  } else if(margem<10){
+    box.classList.add('diag-atencao');
+    icon.textContent='⚠️';
+    titulo.textContent='Margem perigosamente baixa';
+    texto.textContent='Sua margem está abaixo de 10%. Qualquer custo imprevisto — frete, devolução, imposto extra — já te coloca no prejuízo. Negócios saudáveis operam com no mínimo 20% de margem.';
+    itens=['Calcule o preço mínimo viável com 20% de margem','Identifique qual custo está mais pesado e ataque ele','Teste um aumento de preço de 15% e veja a aceitação','Elimine despesas que não geram retorno direto'];
+  } else if(margem<25){
+    box.classList.add('diag-bom');
+    icon.textContent='✅';
+    titulo.textContent='Margem razoável — dá pra melhorar';
+    texto.textContent='Você está lucrando, o que já é ótimo. Mas uma margem entre 10% e 25% ainda é vulnerável. A meta é chegar acima de 30% para ter reserva, reinvestir e crescer com segurança.';
+    itens=['Aumente o ticket médio com upsell e combos','Reduza custo por volume — negocie com fornecedores','Revise impostos: talvez o Simples Nacional não seja o melhor','Automatize processos para reduzir custo operacional'];
+  } else {
+    box.classList.add('diag-excelente');
+    icon.textContent='🚀';
+    titulo.textContent='Margem excelente!';
+    texto.textContent='Parabéns! Você está acima de 25% de margem. Isso significa negócio saudável com espaço para crescer, investir em marketing e construir reserva. Agora é escalar com inteligência.';
+    itens=['Invista em tráfego pago — sua margem comporta','Expanda o portfólio para produtos com margem similar','Construa reserva de 3 meses de custo fixo','Documente seu processo de precificação e replique'];
+  }
+
+  acoes.innerHTML=itens.map(function(t,i){
+    return '<div class="acao-item"><div class="acao-num">'+(i+1)+'</div><div class="acao-texto">'+t+'</div></div>';
+  }).join('');
+
+  document.getElementById('formulario').style.display='none';
+  document.getElementById('resultado').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function refazer(){
+  document.getElementById('formulario').style.display='block';
+  document.getElementById('resultado').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function compartilhar(e){
+  if(navigator.share){
+    e.preventDefault();
+    navigator.share({
+      title:'Calculadora de Margem de Lucro',
+      text:'Calculei minha margem de lucro com essa ferramenta gratuita. Experimenta você também!',
+      url:window.location.href
+    }).catch(function(){});
+  }
+}
+</script>
+</body>
+</html>
