@@ -9,7 +9,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{min-height:100vh;}
 body{background:#F5F2EC;color:#2A2318;font-family:"Montserrat",sans-serif;padding:48px 24px 80px;}
-body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(196,154,26,0.04),transparent 55%),radial-gradient(ellipse at 80% 10%,rgba(196,154,26,0.03),transparent 50%);pointer-events:none;z-index:0;}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%, rgba(196,154,26,0.06), transparent 60%);pointer-events:none;z-index:0;}
 #diag-root{position:relative;z-index:1;max-width:620px;margin:0 auto;}
 </style>
 </head>
@@ -18,12 +18,12 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 
 <!-- CABEÇALHO -->
 <div style="text-align:center;margin-bottom:36px;">
-  <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.4em;color:#C49A1A;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:14px;">
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.4em;color:#7A5800;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:14px;">
     <span style="flex:1;max-width:50px;height:1px;background:linear-gradient(90deg,transparent,#7A5800);display:block;"></span>
     CÓDIGO B
     <span style="flex:1;max-width:50px;height:1px;background:linear-gradient(90deg,#7A5800,transparent);display:block;"></span>
   </div>
-  <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(30px,7vw,50px);font-weight:700;line-height:1.05;color:#2A2318;">Diagnóstico Financeiro<br><em style="font-style:italic;color:#C49A1A;">Gratuito</em></h1>
+  <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(30px,7vw,50px);font-weight:700;line-height:1.05;color:#2A2318;">Diagnóstico Financeiro<br><em style="font-style:italic;color:#7A5800;">Gratuito</em></h1>
   <p style="font-size:13px;color:#888;line-height:1.7;margin-top:14px;">Responda em menos de 3 minutos.<br>Receba seu diagnóstico personalizado.</p>
   <div style="width:40px;height:2px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);margin:16px auto 0;"></div>
 </div>
@@ -31,7 +31,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 <!-- BARRA PROGRESSO -->
 <div style="margin-bottom:28px;">
   <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-    <span style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.25em;color:#C49A1A;">DIAGNÓSTICO CÓDIGO B</span>
+    <span style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.25em;color:#7A5800;">DIAGNÓSTICO CÓDIGO B</span>
     <span id="dprog-txt" style="font-size:12px;color:#888;">Etapa 1 de 3</span>
   </div>
   <div style="height:3px;background:#222;">
@@ -42,7 +42,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 <!-- ETAPA 1 — DADOS -->
 <div id="detapa-0" style="background:#111;border:1px solid rgba(196,154,26,0.18);padding:32px 28px;position:relative;margin-bottom:14px;">
   <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);opacity:0.5;"></div>
-  <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#C49A1A;margin-bottom:12px;">ETAPA 1 DE 3 — SEUS DADOS</div>
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#7A5800;margin-bottom:12px;">ETAPA 1 DE 3 — SEUS DADOS</div>
   <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#2A2318;margin-bottom:6px;">Vamos começar com algumas informações básicas.</div>
   <p style="font-size:13px;color:#888;line-height:1.7;margin-bottom:24px;">Vamos usar essas informações para personalizar o diagnóstico para o seu negócio.</p>
   <div style="margin-bottom:16px;">
@@ -53,7 +53,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
   <div style="margin-bottom:16px;">
     <label style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#888;text-transform:uppercase;display:block;margin-bottom:6px;">WhatsApp com DDD *</label>
     <div style="display:flex;background:#181818;border:1px solid rgba(196,154,26,0.18);">
-      <span style="padding:0 14px;font-size:13px;color:#C49A1A;font-weight:600;border-right:1px solid rgba(196,154,26,0.18);height:48px;display:flex;align-items:center;flex-shrink:0;">+55</span>
+      <span style="padding:0 14px;font-size:13px;color:#7A5800;font-weight:600;border-right:1px solid rgba(196,154,26,0.18);height:48px;display:flex;align-items:center;flex-shrink:0;">+55</span>
       <input type="tel" id="d-wp" placeholder="(00) 00000-0000" oninput="dCheckP1()"
         style="flex:1;background:transparent;border:none;color:#2A2318;font-family:'Montserrat',sans-serif;font-size:15px;padding:0 16px;height:48px;outline:none;min-width:0;">
     </div>
@@ -71,7 +71,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 <div id="detapa-1" style="display:none;margin-bottom:14px;">
   <div style="background:#111;border:1px solid rgba(196,154,26,0.18);padding:32px 28px;position:relative;">
     <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);opacity:0.4;"></div>
-    <div id="dq-num" style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#C49A1A;margin-bottom:12px;">PERGUNTA 1 DE 6</div>
+    <div id="dq-num" style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#7A5800;margin-bottom:12px;">PERGUNTA 1 DE 6</div>
     <div id="dq-texto" style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,26px);font-weight:600;line-height:1.3;color:#2A2318;margin-bottom:8px;"></div>
     <div id="dq-sub" style="font-size:13px;color:#888;line-height:1.6;margin-bottom:22px;"></div>
     <div id="dq-opts" style="display:flex;flex-direction:column;gap:9px;"></div>
@@ -88,13 +88,13 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 <div id="detapa-res" style="display:none;">
   <div style="background:#111;border:1px solid rgba(196,154,26,0.18);padding:36px 28px;text-align:center;margin-bottom:14px;position:relative;">
     <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);"></div>
-    <div id="dres-nome" style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#C49A1A;margin-bottom:14px;"></div>
+    <div id="dres-nome" style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#7A5800;margin-bottom:14px;"></div>
     <div id="dres-icone" style="font-size:48px;margin-bottom:14px;"></div>
-    <div id="dres-titulo" style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,5vw,32px);font-weight:700;line-height:1.1;color:#C49A1A;margin-bottom:12px;"></div>
+    <div id="dres-titulo" style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,5vw,32px);font-weight:700;line-height:1.1;color:#7A5800;margin-bottom:12px;"></div>
     <p id="dres-desc" style="font-size:14px;color:#888;line-height:1.75;max-width:460px;margin:0 auto;"></p>
   </div>
   <div style="background:#111;border:1px solid rgba(196,154,26,0.18);padding:24px 28px;margin-bottom:14px;">
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#C49A1A;margin-bottom:16px;">O QUE SUAS RESPOSTAS REVELAM</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#7A5800;margin-bottom:16px;">O QUE SUAS RESPOSTAS REVELAM</div>
     <div id="dres-analise"></div>
   </div>
   <div style="background:#111;border:1px solid rgba(196,154,26,0.45);padding:32px 28px;text-align:center;position:relative;">
