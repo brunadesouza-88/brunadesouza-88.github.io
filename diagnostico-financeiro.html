@@ -8,7 +8,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{min-height:100vh;}
-body{background:#080808;color:#EEE;font-family:"Montserrat",sans-serif;padding:48px 24px 80px;}
+body{background:#F5F2EC;color:#2A2318;font-family:"Montserrat",sans-serif;padding:48px 24px 80px;}
 body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(196,154,26,0.04),transparent 55%),radial-gradient(ellipse at 80% 10%,rgba(196,154,26,0.03),transparent 50%);pointer-events:none;z-index:0;}
 #diag-root{position:relative;z-index:1;max-width:620px;margin:0 auto;}
 </style>
@@ -23,7 +23,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
     CÓDIGO B
     <span style="flex:1;max-width:50px;height:1px;background:linear-gradient(90deg,#7A5800,transparent);display:block;"></span>
   </div>
-  <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(30px,7vw,50px);font-weight:700;line-height:1.05;color:#EEE;">Diagnóstico Financeiro<br><em style="font-style:italic;color:#C49A1A;">Gratuito</em></h1>
+  <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(30px,7vw,50px);font-weight:700;line-height:1.05;color:#2A2318;">Diagnóstico Financeiro<br><em style="font-style:italic;color:#C49A1A;">Gratuito</em></h1>
   <p style="font-size:13px;color:#888;line-height:1.7;margin-top:14px;">Responda em menos de 3 minutos.<br>Receba seu diagnóstico personalizado.</p>
   <div style="width:40px;height:2px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);margin:16px auto 0;"></div>
 </div>
@@ -43,28 +43,28 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 <div id="detapa-0" style="background:#111;border:1px solid rgba(196,154,26,0.18);padding:32px 28px;position:relative;margin-bottom:14px;">
   <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);opacity:0.5;"></div>
   <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#C49A1A;margin-bottom:12px;">ETAPA 1 DE 3 — SEUS DADOS</div>
-  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#EEE;margin-bottom:6px;">Vamos começar com algumas informações básicas.</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#2A2318;margin-bottom:6px;">Vamos começar com algumas informações básicas.</div>
   <p style="font-size:13px;color:#888;line-height:1.7;margin-bottom:24px;">Vamos usar essas informações para personalizar o diagnóstico para o seu negócio.</p>
   <div style="margin-bottom:16px;">
     <label style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#888;text-transform:uppercase;display:block;margin-bottom:6px;">Nome completo *</label>
     <input type="text" id="d-nome" placeholder="Seu nome completo" oninput="dCheckP1()"
-      style="width:100%;background:#181818;border:1px solid rgba(196,154,26,0.18);color:#EEE;font-family:'Montserrat',sans-serif;font-size:15px;padding:14px 16px;outline:none;-webkit-appearance:none;">
+      style="width:100%;background:#181818;border:1px solid rgba(196,154,26,0.18);color:#2A2318;font-family:'Montserrat',sans-serif;font-size:15px;padding:14px 16px;outline:none;-webkit-appearance:none;">
   </div>
   <div style="margin-bottom:16px;">
     <label style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#888;text-transform:uppercase;display:block;margin-bottom:6px;">WhatsApp com DDD *</label>
     <div style="display:flex;background:#181818;border:1px solid rgba(196,154,26,0.18);">
       <span style="padding:0 14px;font-size:13px;color:#C49A1A;font-weight:600;border-right:1px solid rgba(196,154,26,0.18);height:48px;display:flex;align-items:center;flex-shrink:0;">+55</span>
       <input type="tel" id="d-wp" placeholder="(00) 00000-0000" oninput="dCheckP1()"
-        style="flex:1;background:transparent;border:none;color:#EEE;font-family:'Montserrat',sans-serif;font-size:15px;padding:0 16px;height:48px;outline:none;min-width:0;">
+        style="flex:1;background:transparent;border:none;color:#2A2318;font-family:'Montserrat',sans-serif;font-size:15px;padding:0 16px;height:48px;outline:none;min-width:0;">
     </div>
   </div>
   <div style="margin-bottom:24px;">
     <label style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#888;text-transform:uppercase;display:block;margin-bottom:6px;">E-mail</label>
     <input type="email" id="d-email" placeholder="seu@email.com"
-      style="width:100%;background:#181818;border:1px solid rgba(196,154,26,0.18);color:#EEE;font-family:'Montserrat',sans-serif;font-size:15px;padding:14px 16px;outline:none;-webkit-appearance:none;">
+      style="width:100%;background:#181818;border:1px solid rgba(196,154,26,0.18);color:#2A2318;font-family:'Montserrat',sans-serif;font-size:15px;padding:14px 16px;outline:none;-webkit-appearance:none;">
   </div>
   <button id="d-btn-p1" onclick="dIrPara()" disabled
-    style="width:100%;padding:16px;background:#C49A1A;border:none;color:#000;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.2em;cursor:default;opacity:0.35;transition:all 0.2s;-webkit-appearance:none;">PRÓXIMO →</button>
+    style="width:100%;padding:16px;background:#C49A1A;border:none;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.2em;cursor:default;opacity:0.35;transition:all 0.2s;-webkit-appearance:none;">PRÓXIMO →</button>
 </div>
 
 <!-- ETAPA 2 — PERGUNTAS -->
@@ -72,14 +72,14 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
   <div style="background:#111;border:1px solid rgba(196,154,26,0.18);padding:32px 28px;position:relative;">
     <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);opacity:0.4;"></div>
     <div id="dq-num" style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#C49A1A;margin-bottom:12px;">PERGUNTA 1 DE 6</div>
-    <div id="dq-texto" style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,26px);font-weight:600;line-height:1.3;color:#EEE;margin-bottom:8px;"></div>
+    <div id="dq-texto" style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,26px);font-weight:600;line-height:1.3;color:#2A2318;margin-bottom:8px;"></div>
     <div id="dq-sub" style="font-size:13px;color:#888;line-height:1.6;margin-bottom:22px;"></div>
     <div id="dq-opts" style="display:flex;flex-direction:column;gap:9px;"></div>
     <div style="display:flex;gap:12px;margin-top:22px;">
       <button id="d-btn-back" onclick="dVoltar()"
         style="display:none;padding:16px 18px;background:transparent;border:1px solid rgba(196,154,26,0.18);color:#888;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:0.12em;cursor:pointer;-webkit-appearance:none;">← VOLTAR</button>
       <button id="d-btn-next" onclick="dAvancar()" disabled
-        style="flex:1;padding:16px;background:#C49A1A;border:none;color:#000;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.2em;cursor:default;opacity:0.35;transition:all 0.2s;-webkit-appearance:none;">PRÓXIMA →</button>
+        style="flex:1;padding:16px;background:#C49A1A;border:none;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.2em;cursor:default;opacity:0.35;transition:all 0.2s;-webkit-appearance:none;">PRÓXIMA →</button>
     </div>
   </div>
 </div>
@@ -100,10 +100,10 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
   <div style="background:#111;border:1px solid rgba(196,154,26,0.45);padding:32px 28px;text-align:center;position:relative;">
     <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);"></div>
     <div style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:#888;margin-bottom:12px;">— Bruna Castro | Código B | 20+ anos no mercado financeiro</div>
-    <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,28px);font-weight:700;line-height:1.2;margin-bottom:10px;color:#EEE;">Obrigada por responder!</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,28px);font-weight:700;line-height:1.2;margin-bottom:10px;color:#2A2318;">Obrigada por responder!</div>
     <p style="font-size:13px;color:#888;line-height:1.7;margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto;">Seu diagnóstico foi recebido. Em breve entrarei em contato pelo WhatsApp para apresentar os resultados e conversar sobre como posso te ajudar a transformar as finanças do seu negócio.</p>
     <a id="dres-wa" href="#" target="_blank"
-      style="display:inline-block;background:#C49A1A;color:#000;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.2em;padding:16px 40px;text-decoration:none;margin-bottom:12px;">FALAR COM BRUNA NO WHATSAPP ◆</a><br>
+      style="display:inline-block;background:#C49A1A;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.2em;padding:16px 40px;text-decoration:none;margin-bottom:12px;">FALAR COM BRUNA NO WHATSAPP ◆</a><br>
     <button onclick="dReiniciar()"
       style="width:100%;padding:12px;background:transparent;border:1px solid rgba(196,154,26,0.18);color:#888;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;margin-top:12px;-webkit-appearance:none;">Refazer o diagnóstico</button>
   </div>

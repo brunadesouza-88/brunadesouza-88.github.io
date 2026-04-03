@@ -3,49 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="theme-color" content="#0d0d0d">
+<meta name="theme-color" content="#F5F2EC">
 <title>Calculadora de Margem de Lucro</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
-    --verde:#00C896;
+    --verde:#C49A1A;
     --vermelho:#FF4D4D;
     --amarelo:#FFB800;
-    --fundo:#0d0d0d;
-    --card:#1a1a1a;
-    --card2:#242424;
-    --borda:#2e2e2e;
+    --fundo:#F5F2EC;
+    --card:#F8F5F0;
+    --card2:#EDEAE3;
+    --borda:#DDD8CE;
     --texto:#f0f0f0;
     --muted:#888;
   }
-  body{background:var(--fundo);color:var(--texto);font-family:'Inter',sans-serif;min-height:100vh;padding:0;overflow-x:hidden}
+  body{background:#F5F2EC;color:#2A2318;font-family:'Inter',sans-serif;min-height:100vh;padding:0;overflow-x:hidden}
   
-  .topo{background:linear-gradient(135deg,#00C896 0%,#00a87a 100%);padding:32px 20px 40px;text-align:center;position:relative;overflow:hidden}
+  .topo{background:linear-gradient(135deg,#C49A1A 0%,#B08A14 100%);padding:32px 20px 40px;text-align:center;position:relative;overflow:hidden}
   .topo::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.06)}
   .topo::after{content:'';position:absolute;bottom:-60px;left:-30px;width:220px;height:220px;border-radius:50%;background:rgba(0,0,0,0.08)}
-  .badge{display:inline-block;background:rgba(0,0,0,0.2);color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px}
-  .topo h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#fff;line-height:1.2;position:relative;z-index:1}
+  .badge{display:inline-block;background:rgba(0,0,0,0.2);color:#2A2318;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px}
+  .topo h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#2A2318;line-height:1.2;position:relative;z-index:1}
   .topo p{font-size:14px;color:rgba(255,255,255,0.85);margin-top:8px;position:relative;z-index:1}
 
   .container{padding:20px 16px 40px;max-width:480px;margin:0 auto}
 
-  .secao-titulo{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin:28px 0 12px}
+  .secao-titulo{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#6B6055;text-transform:uppercase;letter-spacing:1.2px;margin:28px 0 12px}
 
-  .card{background:var(--card);border:1px solid var(--borda);border-radius:16px;padding:20px;margin-bottom:12px}
+  .card{background:#F8F5F0;border:1px solid #DDD8CE;border-radius:16px;padding:20px;margin-bottom:12px}
 
-  label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:500}
+  label{display:block;font-size:13px;color:#6B6055;margin-bottom:6px;font-weight:500}
   
   .input-wrap{position:relative;display:flex;align-items:center}
-  .input-prefix{position:absolute;left:14px;font-size:15px;color:var(--muted);font-weight:500;pointer-events:none}
-  .input-suffix{position:absolute;right:14px;font-size:15px;color:var(--muted);font-weight:500;pointer-events:none}
+  .input-prefix{position:absolute;left:14px;font-size:15px;color:#6B6055;font-weight:500;pointer-events:none}
+  .input-suffix{position:absolute;right:14px;font-size:15px;color:#6B6055;font-weight:500;pointer-events:none}
   
   input[type=number]{
-    width:100%;background:var(--card2);border:1.5px solid var(--borda);border-radius:12px;
-    padding:14px 14px 14px 36px;font-size:17px;color:var(--texto);font-family:'Inter',sans-serif;font-weight:500;
+    width:100%;background:#EDEAE3;border:1.5px solid #DDD8CE;border-radius:12px;
+    padding:14px 14px 14px 36px;font-size:17px;color:#2A2318;font-family:'Inter',sans-serif;font-weight:500;
     -webkit-appearance:none;appearance:none;outline:none;transition:border-color 0.2s
   }
-  input[type=number]:focus{border-color:var(--verde)}
+  input[type=number]:focus{border-color:#C49A1A}
   input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
   input.suffix-input{padding:14px 36px 14px 14px}
   input.no-prefix{padding:14px}
@@ -53,7 +53,7 @@
   .linha-dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
   .btn-calcular{
-    width:100%;background:var(--verde);color:#000;font-family:'Syne',sans-serif;font-size:17px;font-weight:700;
+    width:100%;background:#C49A1A;color:#fff;font-family:'Syne',sans-serif;font-size:17px;font-weight:700;
     border:none;border-radius:14px;padding:18px;cursor:pointer;margin-top:8px;transition:transform 0.15s,opacity 0.15s;
     letter-spacing:0.3px
   }
@@ -61,14 +61,14 @@
 
   .resultado{display:none;margin-top:8px}
   
-  .resultado-hero{background:var(--card);border:1px solid var(--borda);border-radius:16px;padding:24px;text-align:center;margin-bottom:12px}
-  .resultado-hero .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+  .resultado-hero{background:#F8F5F0;border:1px solid #DDD8CE;border-radius:16px;padding:24px;text-align:center;margin-bottom:12px}
+  .resultado-hero .label{font-size:12px;color:#6B6055;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
   .resultado-hero .valor-grande{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;line-height:1}
-  .resultado-hero .subtexto{font-size:13px;color:var(--muted);margin-top:8px}
+  .resultado-hero .subtexto{font-size:13px;color:#6B6055;margin-top:8px}
 
   .grid-metricas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-  .metrica{background:var(--card);border:1px solid var(--borda);border-radius:14px;padding:16px}
-  .metrica .m-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px}
+  .metrica{background:#F8F5F0;border:1px solid #DDD8CE;border-radius:14px;padding:16px}
+  .metrica .m-label{font-size:11px;color:#6B6055;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px}
   .metrica .m-valor{font-family:'Syne',sans-serif;font-size:22px;font-weight:700}
 
   .diagnostico{border-radius:16px;padding:20px;margin-bottom:12px;border:1.5px solid}
@@ -78,28 +78,28 @@
   
   .diag-perigo{background:rgba(255,77,77,0.08);border-color:rgba(255,77,77,0.3);color:#FF6B6B}
   .diag-atencao{background:rgba(255,184,0,0.08);border-color:rgba(255,184,0,0.3);color:#FFB800}
-  .diag-bom{background:rgba(0,200,150,0.06);border-color:rgba(0,200,150,0.25);color:#00C896}
+  .diag-bom{background:rgba(0,200,150,0.06);border-color:rgba(0,200,150,0.25);color:#C49A1A}
   .diag-excelente{background:rgba(0,200,150,0.1);border-color:rgba(0,200,150,0.4);color:#00E6AC}
 
-  .lista-acoes{background:var(--card);border:1px solid var(--borda);border-radius:16px;padding:20px;margin-bottom:12px}
-  .lista-acoes h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:14px;color:var(--texto)}
-  .acao-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--borda)}
+  .lista-acoes{background:#F8F5F0;border:1px solid #DDD8CE;border-radius:16px;padding:20px;margin-bottom:12px}
+  .lista-acoes h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:14px;color:#2A2318}
+  .acao-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #DDD8CE}
   .acao-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
-  .acao-num{min-width:26px;height:26px;border-radius:50%;background:rgba(0,200,150,0.15);color:var(--verde);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
-  .acao-texto{font-size:14px;line-height:1.5;color:var(--texto)}
+  .acao-num{min-width:26px;height:26px;border-radius:50%;background:rgba(0,200,150,0.15);color:#C49A1A;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .acao-texto{font-size:14px;line-height:1.5;color:#2A2318}
 
-  .cta-box{background:linear-gradient(135deg,#1a2a22,#152018);border:1px solid rgba(0,200,150,0.25);border-radius:16px;padding:22px;text-align:center;margin-bottom:12px}
+  .cta-box{background:linear-gradient(135deg,#F5F2EC,#F5F2EC);border:1px solid rgba(0,200,150,0.25);border-radius:16px;padding:22px;text-align:center;margin-bottom:12px}
   .cta-box p{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:16px}
-  .cta-box strong{display:block;font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:6px}
-  .btn-cta{display:block;background:var(--verde);color:#000;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;padding:15px;border-radius:12px;text-decoration:none;transition:opacity 0.15s}
+  .cta-box strong{display:block;font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#2A2318;margin-bottom:6px}
+  .btn-cta{display:block;background:#C49A1A;color:#fff;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;padding:15px;border-radius:12px;text-decoration:none;transition:opacity 0.15s}
   .btn-cta:active{opacity:0.85}
 
-  .btn-refazer{width:100%;background:transparent;border:1.5px solid var(--borda);color:var(--muted);font-family:'Inter',sans-serif;font-size:14px;font-weight:500;border-radius:12px;padding:14px;cursor:pointer;margin-top:4px;transition:border-color 0.2s,color 0.2s}
-  .btn-refazer:active{border-color:var(--verde);color:var(--verde)}
+  .btn-refazer{width:100%;background:transparent;border:1.5px solid #DDD8CE;color:#6B6055;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;border-radius:12px;padding:14px;cursor:pointer;margin-top:4px;transition:border-color 0.2s,color 0.2s}
+  .btn-refazer:active{border-color:#C49A1A;color:#C49A1A}
 
-  .rodape{text-align:center;padding:20px;color:var(--muted);font-size:12px}
+  .rodape{text-align:center;padding:20px;color:#6B6055;font-size:12px}
 
-  .verde{color:var(--verde)}
+  .verde{color:#C49A1A}
   .vermelho{color:var(--vermelho)}
   .amarelo{color:var(--amarelo)}
 </style>
