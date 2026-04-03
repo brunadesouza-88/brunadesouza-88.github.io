@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#F5F2EC">
-<title>Bruna Castro — Ferramentas Gratuitas</title>
+<title>Bruna Castro — Código B</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,16 +32,15 @@
     align-items: center;
     padding: 52px 20px 64px;
   }
-
   .avatar {
-    width: 88px;
-    height: 88px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
     margin-bottom: 20px;
     box-shadow: 0 4px 20px rgba(196,154,26,0.25);
-    border: 2px solid rgba(196,154,26,0.4);
+    border: 2.5px solid rgba(196,154,26,0.5);
   }
   h1 {
     font-family: 'Cormorant Garamond', serif;
@@ -69,26 +68,14 @@
     line-height: 1.7;
     margin-bottom: 44px;
   }
-
-  .secao-titulo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 13px;
-    letter-spacing: 2.5px;
-    color: var(--subtle);
-    margin-bottom: 14px;
-    align-self: flex-start;
-    max-width: 440px;
-    width: 100%;
-  }
   .links {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 100%;
     max-width: 440px;
-    margin-bottom: 36px;
+    margin-bottom: 12px;
   }
-
   .link-card {
     display: flex;
     align-items: center;
@@ -110,15 +97,15 @@
     background: linear-gradient(135deg, #fffbf2, var(--bg-card));
   }
   .link-icon {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 10px;
     background: linear-gradient(135deg, rgba(196,154,26,0.12), rgba(196,154,26,0.06));
     border: 1px solid rgba(196,154,26,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 22px;
     flex-shrink: 0;
   }
   .link-info { flex: 1; }
@@ -138,7 +125,13 @@
     color: var(--gold);
     flex-shrink: 0;
   }
-
+  .divider {
+    width: 100%;
+    max-width: 440px;
+    height: 1px;
+    background: var(--border);
+    margin: 28px 0;
+  }
   .em-breve {
     opacity: 0.45;
     pointer-events: none;
@@ -151,29 +144,15 @@
     border-radius: 20px;
     padding: 2px 8px;
     font-weight: 600;
-    letter-spacing: 0.3px;
     margin-left: 6px;
   }
-
-  .divider {
-    width: 100%;
-    max-width: 440px;
-    height: 1px;
-    background: var(--border);
-    margin: 4px 0 32px;
-  }
-
   .footer {
     font-size: 11px;
     color: var(--subtle);
     text-align: center;
-    margin-top: 12px;
+    margin-top: 32px;
   }
-  .footer a {
-    color: var(--gold);
-    text-decoration: none;
-    font-weight: 600;
-  }
+  .footer a { color: var(--gold); text-decoration: none; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -183,70 +162,50 @@
 <div class="handle">@brunadesouzabs</div>
 <p class="bio">Mentora financeira de empresários.<br>21 anos de banco. Agora do seu lado.</p>
 
-<div class="secao-titulo">✦ Mentoria</div>
 <div class="links">
+
   <a href="mentoria.html" class="link-card link-destaque">
     <div class="link-icon">🏆</div>
     <div class="link-info">
       <div class="link-titulo">Mentoria Financeira — Código B</div>
-      <div class="link-desc">Organize as finanças, reduza impostos e aumente o lucro do seu negócio.</div>
+      <div class="link-desc">Organize as finanças, reduza impostos e aumente o lucro.</div>
     </div>
     <div class="link-arrow">›</div>
   </a>
-</div>
-
-<div class="secao-titulo">✦ Ferramentas gratuitas para aplicar hoje no seu negócio</div>
-<div class="links">
 
   <a href="diagnostico-financeiro.html" class="link-card">
     <div class="link-icon">🔍</div>
     <div class="link-info">
       <div class="link-titulo">Diagnóstico Financeiro Gratuito</div>
-      <div class="link-desc">Identifique os gargalos financeiros do seu negócio.</div>
+      <div class="link-desc">Descubra agora onde o dinheiro está saindo do seu negócio.</div>
     </div>
     <div class="link-arrow">›</div>
   </a>
 
-  <a href="calculadora-margem.html" class="link-card">
-    <div class="link-icon">📊</div>
+  <a href="ferramentas.html" class="link-card">
+    <div class="link-icon">🛠️</div>
     <div class="link-info">
-      <div class="link-titulo">Calculadora de Margem de Lucro</div>
-      <div class="link-desc">Descubra se você está realmente lucrando — ou só faturando.</div>
+      <div class="link-titulo">Ferramentas Gratuitas</div>
+      <div class="link-desc">Calculadoras e guias para aplicar hoje no seu negócio.</div>
     </div>
     <div class="link-arrow">›</div>
   </a>
 
-  <a href="perguntas-contador.html" class="link-card">
-    <div class="link-icon">🧾</div>
-    <div class="link-info">
-      <div class="link-titulo">7 Perguntas pro Contador</div>
-      <div class="link-desc">Saiba se o seu contador está realmente trabalhando por você.</div>
-    </div>
-    <div class="link-arrow">›</div>
-  </a>
+</div>
 
-  <a href="calculadora-imposto.html" class="link-card">
-    <div class="link-icon">💸</div>
-    <div class="link-info">
-      <div class="link-titulo">Você Está Pagando Imposto a Mais?</div>
-      <div class="link-desc">Descubra se está no regime tributário certo para o seu negócio.</div>
-    </div>
-    <div class="link-arrow">›</div>
-  </a>
+<div class="divider"></div>
+
+<div class="links">
 
   <div class="link-card em-breve">
-    <div class="link-icon">💰</div>
+    <div class="link-icon">▶️</div>
     <div class="link-info">
-      <div class="link-titulo">Calculadora de Precificação <span class="badge-breve">Em breve</span></div>
-      <div class="link-desc">Precifique certo e pare de deixar dinheiro na mesa.</div>
+      <div class="link-titulo">YouTube / Podcast <span class="badge-breve">Em breve</span></div>
+      <div class="link-desc">Conversas sobre dinheiro, negócio e liberdade financeira.</div>
     </div>
     <div class="link-arrow">›</div>
   </div>
 
-</div>
-
-<div class="secao-titulo">✦ Me encontre</div>
-<div class="links">
   <a href="https://instagram.com/brunadesouzabs" class="link-card" target="_blank">
     <div class="link-icon">📸</div>
     <div class="link-info">
@@ -255,6 +214,7 @@
     </div>
     <div class="link-arrow">›</div>
   </a>
+
   <a href="https://wa.me/5533991467788" class="link-card" target="_blank">
     <div class="link-icon">💬</div>
     <div class="link-info">
@@ -263,6 +223,7 @@
     </div>
     <div class="link-arrow">›</div>
   </a>
+
 </div>
 
 <div class="footer">

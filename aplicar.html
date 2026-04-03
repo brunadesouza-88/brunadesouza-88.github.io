@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F5F2EC">
+<title>Aplicar para a Mentoria Código B</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F5F2EC; --bg-card: #F8F5F0; --bg-panel: #EDEAE3;
+    --border: #DDD8CE; --text: #2A2318; --muted: #6B6055; --subtle: #8A7D6E;
+    --gold: #C49A1A; --gold-dark: #7A5800; --gold-light: #D4A820;
+    --gold-grad: linear-gradient(90deg, #7A5800 0%, #C49A1A 30%, #D4A820 50%, #C49A1A 70%, #7A5800 100%);
+    --gold-text: linear-gradient(135deg, #8B6914 0%, #C49A1A 40%, #D4A820 60%, #9A7820 80%, #7A5800 100%);
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px 64px; }
+  .back { align-self: flex-start; max-width: 480px; width: 100%; margin-bottom: 28px; }
+  .back a { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; font-weight: 500; }
+  .back a:hover { color: var(--gold); }
+  .topo { text-align: center; margin-bottom: 36px; max-width: 480px; }
+  .badge { display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 2px; color: var(--gold-dark); background: rgba(196,154,26,0.1); border: 1px solid rgba(196,154,26,0.3); border-radius: 20px; padding: 4px 14px; margin-bottom: 16px; }
+  .topo h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.2; }
+  .topo p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .form-wrap { width: 100%; max-width: 480px; }
+  .campo { margin-bottom: 18px; }
+  label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  input, select, textarea { width: 100%; background: var(--bg-card); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 16px; font-size: 15px; color: var(--text); font-family: 'Montserrat', sans-serif; outline: none; transition: border-color 0.2s; -webkit-appearance: none; appearance: none; }
+  input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+  textarea { resize: none; line-height: 1.6; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6055' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 44px; cursor: pointer; }
+  .divider { width: 100%; height: 1px; background: var(--border); margin: 28px 0; }
+  .aviso { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+  .aviso strong { color: var(--text); }
+  .btn-aplicar { width: 100%; background: var(--gold-grad); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1.5px; border: none; border-radius: 14px; padding: 18px; cursor: pointer; transition: opacity 0.15s, transform 0.15s; }
+  .btn-aplicar:active { opacity: 0.9; transform: scale(0.98); }
+  .footer { font-size: 11px; color: var(--subtle); text-align: center; margin-top: 40px; }
+  .footer a { color: var(--gold); text-decoration: none; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="back"><a href="index.html">← Voltar</a></div>
+
+<div class="topo">
+  <div class="badge">Mentoria Código B</div>
+  <h1>Aplique para trabalhar com Bruna Castro</h1>
+  <p>Preencha com atenção. Cada pergunta importa — é com base nas suas respostas que avaliamos se a mentoria faz sentido para o seu momento de negócio.</p>
+</div>
+
+<div class="form-wrap">
+
+  <div class="campo">
+    <label>Seu nome completo</label>
+    <input type="text" id="nome" placeholder="Como prefere ser chamada(o)?" maxlength="80">
+  </div>
+
+  <div class="campo">
+    <label>WhatsApp (com DDD)</label>
+    <input type="tel" id="whatsapp" placeholder="(33) 99999-9999" maxlength="20">
+  </div>
+
+  <div class="campo">
+    <label>Nome da sua empresa</label>
+    <input type="text" id="empresa" placeholder="Razão social ou nome fantasia" maxlength="80">
+  </div>
+
+  <div class="campo">
+    <label>Seu cargo / função</label>
+    <input type="text" id="cargo" placeholder="Ex: Sócio, Diretor, Proprietário..." maxlength="60">
+  </div>
+
+  <div class="campo">
+    <label>Faturamento mensal aproximado</label>
+    <select id="faturamento">
+      <option value="" disabled selected>Selecione uma faixa</option>
+      <option value="Até R$ 30 mil">Até R$ 30 mil</option>
+      <option value="R$ 30 mil a R$ 80 mil">R$ 30 mil a R$ 80 mil</option>
+      <option value="R$ 80 mil a R$ 200 mil">R$ 80 mil a R$ 200 mil</option>
+      <option value="R$ 200 mil a R$ 500 mil">R$ 200 mil a R$ 500 mil</option>
+      <option value="Acima de R$ 500 mil">Acima de R$ 500 mil</option>
+    </select>
+  </div>
+
+  <div class="campo">
+    <label>Qual é o maior desafio financeiro do seu negócio hoje?</label>
+    <textarea id="desafio" rows="4" placeholder="Seja específico. Quanto mais detalhado, melhor."></textarea>
+  </div>
+
+  <div class="campo">
+    <label>Como você acredita que a mentoria pode te ajudar?</label>
+    <textarea id="expectativa" rows="4" placeholder="O que você espera transformar no seu negócio?"></textarea>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="aviso">
+    <strong>O que acontece depois:</strong> Bruna vai analisar sua aplicação e, se fizer sentido, entrar em contato pelo WhatsApp para uma conversa sem compromisso. Vagas limitadas.
+  </div>
+
+  <button class="btn-aplicar" onclick="enviar()">Quero aplicar para a Mentoria Código B</button>
+
+</div>
+
+<div class="footer">
+  © 2026 Bruna Castro · <a href="https://instagram.com/brunadesouzabs">@brunadesouzabs</a>
+</div>
+
+<script>
+function enviar() {
+  const nome = document.getElementById('nome').value.trim();
+  const whatsapp = document.getElementById('whatsapp').value.trim();
+  const empresa = document.getElementById('empresa').value.trim();
+  const cargo = document.getElementById('cargo').value.trim();
+  const faturamento = document.getElementById('faturamento').value;
+  const desafio = document.getElementById('desafio').value.trim();
+  const expectativa = document.getElementById('expectativa').value.trim();
+
+  if (!nome || !whatsapp || !empresa || !faturamento || !desafio || !expectativa) {
+    alert('Por favor, preencha todos os campos antes de enviar.');
+    return;
+  }
+
+  const msg = `Olá, Bruna! Estou aplicando para a Mentoria Código B. 🙋
+
+*Nome:* ${nome}
+*Empresa:* ${empresa}
+*Cargo:* ${cargo}
+*Faturamento mensal:* ${faturamento}
+
+*Maior desafio financeiro:*
+${desafio}
+
+*Como a mentoria pode me ajudar:*
+${expectativa}`;
+
+  const url = `https://wa.me/5533991467788?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>

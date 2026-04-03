@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F5F2EC">
+<title>Ferramentas Gratuitas — Bruna Castro</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F5F2EC; --bg-card: #F8F5F0; --border: #DDD8CE;
+    --text: #2A2318; --muted: #6B6055; --subtle: #8A7D6E;
+    --gold: #C49A1A; --gold-dark: #7A5800; --gold-light: #D4A820;
+    --gold-text: linear-gradient(135deg, #8B6914 0%, #C49A1A 40%, #D4A820 60%, #9A7820 80%, #7A5800 100%);
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px 64px; }
+  .back { align-self: flex-start; max-width: 440px; width: 100%; margin-bottom: 28px; }
+  .back a { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; font-weight: 500; }
+  .back a:hover { color: var(--gold); }
+  .topo { text-align: center; margin-bottom: 36px; }
+  .topo h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .topo p { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 300px; margin: 0 auto; }
+  .links { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 440px; }
+  .link-card { display: flex; align-items: center; gap: 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; text-decoration: none; color: var(--text); transition: border-color 0.2s, box-shadow 0.2s; }
+  .link-card:hover { border-color: var(--gold); box-shadow: 0 2px 16px rgba(196,154,26,0.12); }
+  .link-icon { width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, rgba(196,154,26,0.12), rgba(196,154,26,0.06)); border: 1px solid rgba(196,154,26,0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .link-info { flex: 1; }
+  .link-titulo { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .link-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .link-arrow { font-size: 20px; color: var(--gold); flex-shrink: 0; }
+  .em-breve { opacity: 0.45; pointer-events: none; }
+  .badge-breve { font-size: 10px; color: var(--gold-dark); background: rgba(196,154,26,0.1); border: 1px solid rgba(196,154,26,0.25); border-radius: 20px; padding: 2px 8px; font-weight: 600; margin-left: 6px; }
+  .footer { font-size: 11px; color: var(--subtle); text-align: center; margin-top: 40px; }
+  .footer a { color: var(--gold); text-decoration: none; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="back"><a href="index.html">← Voltar</a></div>
+
+<div class="topo">
+  <h1>Ferramentas Gratuitas</h1>
+  <p>Para aplicar hoje no seu negócio — sem precisar de contador ou MBA.</p>
+</div>
+
+<div class="links">
+
+  <a href="diagnostico-financeiro.html" class="link-card">
+    <div class="link-icon">🔍</div>
+    <div class="link-info">
+      <div class="link-titulo">Diagnóstico Financeiro</div>
+      <div class="link-desc">Identifique os gargalos que estão travando o lucro do seu negócio.</div>
+    </div>
+    <div class="link-arrow">›</div>
+  </a>
+
+  <a href="calculadora-margem.html" class="link-card">
+    <div class="link-icon">📊</div>
+    <div class="link-info">
+      <div class="link-titulo">Calculadora de Margem de Lucro</div>
+      <div class="link-desc">Descubra se você está realmente lucrando — ou só faturando.</div>
+    </div>
+    <div class="link-arrow">›</div>
+  </a>
+
+  <a href="perguntas-contador.html" class="link-card">
+    <div class="link-icon">🧾</div>
+    <div class="link-info">
+      <div class="link-titulo">7 Perguntas pro Contador</div>
+      <div class="link-desc">Saiba se o seu contador está realmente trabalhando por você.</div>
+    </div>
+    <div class="link-arrow">›</div>
+  </a>
+
+  <a href="calculadora-imposto.html" class="link-card">
+    <div class="link-icon">💸</div>
+    <div class="link-info">
+      <div class="link-titulo">Você Está Pagando Imposto a Mais?</div>
+      <div class="link-desc">Descubra se está no regime tributário certo para o seu negócio.</div>
+    </div>
+    <div class="link-arrow">›</div>
+  </a>
+
+  <div class="link-card em-breve">
+    <div class="link-icon">💰</div>
+    <div class="link-info">
+      <div class="link-titulo">Calculadora de Precificação <span class="badge-breve">Em breve</span></div>
+      <div class="link-desc">Precifique certo e pare de deixar dinheiro na mesa.</div>
+    </div>
+    <div class="link-arrow">›</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  © 2026 Bruna Castro · <a href="https://instagram.com/brunadesouzabs">@brunadesouzabs</a>
+</div>
+
+</body>
+</html>
