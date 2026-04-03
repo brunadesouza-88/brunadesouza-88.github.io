@@ -37,16 +37,11 @@
     width: 88px;
     height: 88px;
     border-radius: 50%;
-    background: var(--gold-grad);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 38px;
-    font-weight: 700;
-    color: #fff;
+    object-fit: cover;
+    object-position: center top;
     margin-bottom: 20px;
     box-shadow: 0 4px 20px rgba(196,154,26,0.25);
+    border: 2px solid rgba(196,154,26,0.4);
   }
   h1 {
     font-family: 'Cormorant Garamond', serif;
@@ -183,7 +178,7 @@
 </head>
 <body>
 
-<div class="avatar">B</div>
+<img class="avatar" src="avatar.jpg" alt="Bruna Castro">
 <h1>Bruna Castro</h1>
 <div class="handle">@brunadesouzabs</div>
 <p class="bio">Mentora financeira de empresários.<br>21 anos de banco. Agora do seu lado.</p>
@@ -200,23 +195,23 @@
   </a>
 </div>
 
-<div class="secao-titulo">✦ Ferramentas Gratuitas</div>
+<div class="secao-titulo">✦ Ferramentas gratuitas para aplicar hoje no seu negócio</div>
 <div class="links">
-
-  <a href="calculadora-margem.html" class="link-card">
-    <div class="link-icon">📊</div>
-    <div class="link-info">
-      <div class="link-titulo">Calculadora de Margem de Lucro</div>
-      <div class="link-desc">Descubra se você está realmente lucrando — ou só faturando.</div>
-    </div>
-    <div class="link-arrow">›</div>
-  </a>
 
   <a href="diagnostico-financeiro.html" class="link-card">
     <div class="link-icon">🔍</div>
     <div class="link-info">
       <div class="link-titulo">Diagnóstico Financeiro Gratuito</div>
       <div class="link-desc">Identifique os gargalos financeiros do seu negócio.</div>
+    </div>
+    <div class="link-arrow">›</div>
+  </a>
+
+  <a href="calculadora-margem.html" class="link-card">
+    <div class="link-icon">📊</div>
+    <div class="link-info">
+      <div class="link-titulo">Calculadora de Margem de Lucro</div>
+      <div class="link-desc">Descubra se você está realmente lucrando — ou só faturando.</div>
     </div>
     <div class="link-arrow">›</div>
   </a>
