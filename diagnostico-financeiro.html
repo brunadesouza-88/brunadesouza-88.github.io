@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Financeiro Gratuito — Código B</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100vh;}
+body{background:#080808;color:#EEE;font-family:"Montserrat",sans-serif;padding:48px 24px 80px;}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(196,154,26,0.04),transparent 55%),radial-gradient(ellipse at 80% 10%,rgba(196,154,26,0.03),transparent 50%);pointer-events:none;z-index:0;}
+#diag-root{position:relative;z-index:1;max-width:620px;margin:0 auto;}
+</style>
+</head>
+<body>
+<div id="diag-root">
+
+<!-- CABEÇALHO -->
+<div style="text-align:center;margin-bottom:36px;">
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.4em;color:#C49A1A;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:14px;">
+    <span style="flex:1;max-width:50px;height:1px;background:linear-gradient(90deg,transparent,#7A5800);display:block;"></span>
+    CÓDIGO B
+    <span style="flex:1;max-width:50px;height:1px;background:linear-gradient(90deg,#7A5800,transparent);display:block;"></span>
+  </div>
+  <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(30px,7vw,50px);font-weight:700;line-height:1.05;color:#EEE;">Diagnóstico Financeiro<br><em style="font-style:italic;color:#C49A1A;">Gratuito</em></h1>
+  <p style="font-size:13px;color:#888;line-height:1.7;margin-top:14px;">Responda em menos de 3 minutos.<br>Receba seu diagnóstico personalizado.</p>
+  <div style="width:40px;height:2px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);margin:16px auto 0;"></div>
+</div>
+
+<!-- BARRA PROGRESSO -->
+<div style="margin-bottom:28px;">
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+    <span style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.25em;color:#C49A1A;">DIAGNÓSTICO CÓDIGO B</span>
+    <span id="dprog-txt" style="font-size:12px;color:#888;">Etapa 1 de 3</span>
+  </div>
+  <div style="height:3px;background:#222;">
+    <div id="dprog-bar" style="height:3px;background:linear-gradient(90deg,#7A5800,#C49A1A);width:0%;transition:width 0.5s;"></div>
+  </div>
+</div>
+
+<!-- ETAPA 1 — DADOS -->
+<div id="detapa-0" style="background:#111;border:1px solid rgba(196,154,26,0.18);padding:32px 28px;position:relative;margin-bottom:14px;">
+  <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);opacity:0.5;"></div>
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#C49A1A;margin-bottom:12px;">ETAPA 1 DE 3 — SEUS DADOS</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#EEE;margin-bottom:6px;">Vamos começar com algumas informações básicas.</div>
+  <p style="font-size:13px;color:#888;line-height:1.7;margin-bottom:24px;">Vamos usar essas informações para personalizar o diagnóstico para o seu negócio.</p>
+  <div style="margin-bottom:16px;">
+    <label style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#888;text-transform:uppercase;display:block;margin-bottom:6px;">Nome completo *</label>
+    <input type="text" id="d-nome" placeholder="Seu nome completo" oninput="dCheckP1()"
+      style="width:100%;background:#181818;border:1px solid rgba(196,154,26,0.18);color:#EEE;font-family:'Montserrat',sans-serif;font-size:15px;padding:14px 16px;outline:none;-webkit-appearance:none;">
+  </div>
+  <div style="margin-bottom:16px;">
+    <label style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#888;text-transform:uppercase;display:block;margin-bottom:6px;">WhatsApp com DDD *</label>
+    <div style="display:flex;background:#181818;border:1px solid rgba(196,154,26,0.18);">
+      <span style="padding:0 14px;font-size:13px;color:#C49A1A;font-weight:600;border-right:1px solid rgba(196,154,26,0.18);height:48px;display:flex;align-items:center;flex-shrink:0;">+55</span>
+      <input type="tel" id="d-wp" placeholder="(00) 00000-0000" oninput="dCheckP1()"
+        style="flex:1;background:transparent;border:none;color:#EEE;font-family:'Montserrat',sans-serif;font-size:15px;padding:0 16px;height:48px;outline:none;min-width:0;">
+    </div>
+  </div>
+  <div style="margin-bottom:24px;">
+    <label style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#888;text-transform:uppercase;display:block;margin-bottom:6px;">E-mail</label>
+    <input type="email" id="d-email" placeholder="seu@email.com"
+      style="width:100%;background:#181818;border:1px solid rgba(196,154,26,0.18);color:#EEE;font-family:'Montserrat',sans-serif;font-size:15px;padding:14px 16px;outline:none;-webkit-appearance:none;">
+  </div>
+  <button id="d-btn-p1" onclick="dIrPara()" disabled
+    style="width:100%;padding:16px;background:#C49A1A;border:none;color:#000;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.2em;cursor:default;opacity:0.35;transition:all 0.2s;-webkit-appearance:none;">PRÓXIMO →</button>
+</div>
+
+<!-- ETAPA 2 — PERGUNTAS -->
+<div id="detapa-1" style="display:none;margin-bottom:14px;">
+  <div style="background:#111;border:1px solid rgba(196,154,26,0.18);padding:32px 28px;position:relative;">
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);opacity:0.4;"></div>
+    <div id="dq-num" style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#C49A1A;margin-bottom:12px;">PERGUNTA 1 DE 6</div>
+    <div id="dq-texto" style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,26px);font-weight:600;line-height:1.3;color:#EEE;margin-bottom:8px;"></div>
+    <div id="dq-sub" style="font-size:13px;color:#888;line-height:1.6;margin-bottom:22px;"></div>
+    <div id="dq-opts" style="display:flex;flex-direction:column;gap:9px;"></div>
+    <div style="display:flex;gap:12px;margin-top:22px;">
+      <button id="d-btn-back" onclick="dVoltar()"
+        style="display:none;padding:16px 18px;background:transparent;border:1px solid rgba(196,154,26,0.18);color:#888;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:0.12em;cursor:pointer;-webkit-appearance:none;">← VOLTAR</button>
+      <button id="d-btn-next" onclick="dAvancar()" disabled
+        style="flex:1;padding:16px;background:#C49A1A;border:none;color:#000;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.2em;cursor:default;opacity:0.35;transition:all 0.2s;-webkit-appearance:none;">PRÓXIMA →</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTADO -->
+<div id="detapa-res" style="display:none;">
+  <div style="background:#111;border:1px solid rgba(196,154,26,0.18);padding:36px 28px;text-align:center;margin-bottom:14px;position:relative;">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);"></div>
+    <div id="dres-nome" style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#C49A1A;margin-bottom:14px;"></div>
+    <div id="dres-icone" style="font-size:48px;margin-bottom:14px;"></div>
+    <div id="dres-titulo" style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,5vw,32px);font-weight:700;line-height:1.1;color:#C49A1A;margin-bottom:12px;"></div>
+    <p id="dres-desc" style="font-size:14px;color:#888;line-height:1.75;max-width:460px;margin:0 auto;"></p>
+  </div>
+  <div style="background:#111;border:1px solid rgba(196,154,26,0.18);padding:24px 28px;margin-bottom:14px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:#C49A1A;margin-bottom:16px;">O QUE SUAS RESPOSTAS REVELAM</div>
+    <div id="dres-analise"></div>
+  </div>
+  <div style="background:#111;border:1px solid rgba(196,154,26,0.45);padding:32px 28px;text-align:center;position:relative;">
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C49A1A,transparent);"></div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:#888;margin-bottom:12px;">— Bruna Castro | Código B | 20+ anos no mercado financeiro</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,28px);font-weight:700;line-height:1.2;margin-bottom:10px;color:#EEE;">Obrigada por responder!</div>
+    <p style="font-size:13px;color:#888;line-height:1.7;margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto;">Seu diagnóstico foi recebido. Em breve entrarei em contato pelo WhatsApp para apresentar os resultados e conversar sobre como posso te ajudar a transformar as finanças do seu negócio.</p>
+    <a id="dres-wa" href="#" target="_blank"
+      style="display:inline-block;background:#C49A1A;color:#000;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.2em;padding:16px 40px;text-decoration:none;margin-bottom:12px;">FALAR COM BRUNA NO WHATSAPP ◆</a><br>
+    <button onclick="dReiniciar()"
+      style="width:100%;padding:12px;background:transparent;border:1px solid rgba(196,154,26,0.18);color:#888;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;margin-top:12px;-webkit-appearance:none;">Refazer o diagnóstico</button>
+  </div>
+</div>
+
+</div>
+<script>
+var dPerguntas = [
+  {q:"Qual o faturamento mensal da sua empresa?", s:"Valor médio dos últimos 3 meses.",
+   opts:[{l:"A",t:"Até R$ 50 mil",p:1},{l:"B",t:"De R$ 50 mil a R$ 150 mil",p:2},{l:"C",t:"De R$ 150 mil a R$ 500 mil",p:3},{l:"D",t:"Acima de R$ 500 mil",p:4}]},
+  {q:"Qual é sua retirada mensal como dono?", s:"Seu pró-labore — o valor que você retira da empresa todo mês.",
+   opts:[{l:"A",t:"Retiro um valor fixo todo mês",p:3},{l:"B",t:"Retiro quando sobra",p:1},{l:"C",t:"Não retiro nada",p:0},{l:"D",t:"Não sei quanto retiro",p:0}]},
+  {q:"Quantos funcionários tem na sua empresa?", s:"Incluindo você, sócios e contratados fixos.",
+   opts:[{l:"A",t:"Nenhum (trabalho sozinho)",p:1},{l:"B",t:"1 a 5",p:2},{l:"C",t:"6 a 20",p:3},{l:"D",t:"Mais de 20",p:4}]},
+  {q:"Como está o pagamento das contas da empresa?", s:"A situação real — sem filtro.",
+   opts:[{l:"A",t:"Pago tudo em dia sem dificuldade",p:3},{l:"B",t:"Às vezes atraso alguma conta",p:2},{l:"C",t:"Frequentemente estou no limite",p:1},{l:"D",t:"Tenho dívidas em atraso",p:0}]},
+  {q:"Como está sua relação com impostos e contador?", s:"O que acontece na prática, não na teoria.",
+   opts:[{l:"A",t:"Pago impostos todo mês e converso com meu contador regularmente",p:3},{l:"B",t:"Pago impostos mas não converso com contador",p:2},{l:"C",t:"Não sei se estou pagando o imposto correto",p:1},{l:"D",t:"Estou com impostos em atraso",p:0}]},
+  {q:"Qual é o seu maior problema financeiro hoje?", s:"Escolha o que mais te tira o sono.",
+   opts:[{l:"A",t:"Não consigo ver lucro mesmo faturando bem",p:0},{l:"B",t:"Meu fluxo de caixa é um caos",p:0},{l:"C",t:"Pago muito imposto e não sei como reduzir",p:0},{l:"D",t:"Não sei quanto custa minha empresa por dentro",p:0},{l:"E",t:"Misturo as finanças pessoais com as da empresa",p:0},{l:"F",t:"Tenho todos esses problemas",p:0}]},
+];
+var dAtual = 0;
+var dRespostas = new Array(6).fill(null);
+
+function dCheckP1() {
+  var nome = document.getElementById('d-nome').value.trim();
+  var wp = document.getElementById('d-wp').value.trim();
+  var btn = document.getElementById('d-btn-p1');
+  var ok = nome.length > 2 && wp.length > 7;
+  btn.disabled = !ok;
+  btn.style.opacity = ok ? '1' : '0.35';
+  btn.style.cursor = ok ? 'pointer' : 'default';
+}
+
+function dIrPara() {
+  document.getElementById('detapa-0').style.display = 'none';
+  document.getElementById('detapa-1').style.display = 'block';
+  document.getElementById('dprog-bar').style.width = '33%';
+  document.getElementById('dprog-txt').textContent = 'Pergunta 1 de 6';
+  dRenderQ(0);
+  document.getElementById('detapa-1').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function dRenderQ(i) {
+  var p = dPerguntas[i];
+  document.getElementById('dq-num').textContent = 'PERGUNTA ' + (i+1) + ' DE 6';
+  document.getElementById('dq-texto').textContent = p.q;
+  document.getElementById('dq-sub').textContent = p.s;
+  var opts = document.getElementById('dq-opts');
+  opts.innerHTML = '';
+  p.opts.forEach(function(o, j) {
+    var div = document.createElement('div');
+    div.id = 'dopt-' + i + '-' + j;
+    div.style.cssText = 'display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#181818;border:1px solid rgba(196,154,26,0.18);cursor:pointer;transition:all 0.2s;';
+    div.innerHTML = '<span style="font-family:Bebas Neue,sans-serif;font-size:14px;color:#7A5800;flex-shrink:0;margin-top:1px;">' + o.l + '</span><span style="font-size:14px;line-height:1.5;color:#888;">' + o.t + '</span>';
+    div.onclick = function() { dSelecionar(i, j); };
+    opts.appendChild(div);
+    if (dRespostas[i] === j) {
+      div.style.borderColor = '#C49A1A';
+      div.style.background = 'rgba(196,154,26,0.06)';
+    }
+  });
+  var btnBack = document.getElementById('d-btn-back');
+  btnBack.style.display = i > 0 ? 'block' : 'none';
+  var btnNext = document.getElementById('d-btn-next');
+  btnNext.textContent = i === 5 ? 'VER MEU DIAGNÓSTICO →' : 'PRÓXIMA →';
+  var sel = dRespostas[i] !== null;
+  btnNext.disabled = !sel;
+  btnNext.style.opacity = sel ? '1' : '0.35';
+  btnNext.style.cursor = sel ? 'pointer' : 'default';
+}
+
+function dSelecionar(qi, j) {
+  dRespostas[qi] = j;
+  var opts = document.getElementById('dq-opts').children;
+  for (var k = 0; k < opts.length; k++) {
+    opts[k].style.borderColor = k === j ? '#C49A1A' : 'rgba(196,154,26,0.18)';
+    opts[k].style.background = k === j ? 'rgba(196,154,26,0.06)' : '#181818';
+    var letter = opts[k].querySelector('span');
+    if (letter) letter.style.color = k === j ? '#C49A1A' : '#7A5800';
+  }
+  var btnNext = document.getElementById('d-btn-next');
+  btnNext.disabled = false;
+  btnNext.style.opacity = '1';
+  btnNext.style.cursor = 'pointer';
+}
+
+function dAvancar() {
+  if (dRespostas[dAtual] === null) return;
+  if (dAtual < 5) {
+    dAtual++;
+    var pct = 33 + (dAtual / 5) * 33;
+    document.getElementById('dprog-bar').style.width = pct + '%';
+    document.getElementById('dprog-txt').textContent = 'Pergunta ' + (dAtual+1) + ' de 6';
+    dRenderQ(dAtual);
+  } else {
+    dMostrarResultado();
+  }
+}
+
+function dVoltar() {
+  if (dAtual > 0) { dAtual--; dRenderQ(dAtual); }
+}
+
+function dMostrarResultado() {
+  var nome = document.getElementById('d-nome').value.trim().split(' ')[0];
+  var wp = document.getElementById('d-wp').value.trim().replace(/\D/g, '');
+  var fat = dRespostas[0];
+  var prolabore = dRespostas[1];
+  var contas = dRespostas[3];
+  var impostos = dRespostas[4];
+  var problema = dRespostas[5];
+  var score = 0;
+  if (fat !== null) score += dPerguntas[0].opts[fat].p;
+  if (prolabore !== null) score += dPerguntas[1].opts[prolabore].p;
+  if (contas !== null) score += dPerguntas[3].opts[contas].p;
+  if (impostos !== null) score += dPerguntas[4].opts[impostos].p;
+  var icone, titulo, desc;
+  if (score >= 10) { icone='🔍'; titulo=nome+', você tem base — e pode ir muito mais longe.'; desc='Seu negócio tem estrutura razoável mas existem pontos críticos que estão limitando o crescimento. Uma análise detalhada vai mostrar onde o dinheiro está sendo perdido.'; }
+  else if (score >= 6) { icone='⚠️'; titulo=nome+', seu negócio precisa de atenção agora.'; desc='Há sinais claros de que o financeiro está trabalhando contra você. Sem estrutura, quanto mais o negócio crescer, mais o problema vai aumentar.'; }
+  else { icone='🚨'; titulo=nome+', existe um problema financeiro que precisa de ação imediata.'; desc='Seu diagnóstico mostra pontos críticos que estão corroendo o negócio silenciosamente. Com o diagnóstico certo, os resultados aparecem rápido.'; }
+  var fats = ['Até R$50k','R$50k a R$150k','R$150k a R$500k','Acima de R$500k'];
+  var problemas = ['lucro invisível mesmo faturando bem','fluxo de caixa desorganizado','excesso de imposto','custos ocultos não mapeados','mistura entre finanças pessoais e empresariais','múltiplos problemas financeiros'];
+  var msg = encodeURIComponent('Olá Bruna! Fiz o Diagnóstico Financeiro do Código B.\n\n📊 Meu perfil:\n• Faturamento: ' + (fats[fat]||'') + '\n• Maior problema: ' + (problema!==null?problemas[problema]:'') + '\n\nQuero entender o próximo passo para o meu negócio.');
+  document.getElementById('dres-wa').href = 'https://wa.me/5533991467788?text=' + msg;
+  document.getElementById('dres-nome').textContent = 'DIAGNÓSTICO DE ' + nome.toUpperCase();
+  document.getElementById('dres-icone').textContent = icone;
+  document.getElementById('dres-titulo').textContent = titulo;
+  document.getElementById('dres-desc').textContent = desc;
+  var itens = [];
+  if (prolabore === 0) itens.push({c:'#3DAA6A',t:'<strong>Pró-labore fixo:</strong> Você já se trata como dono. Agora é calibrar o valor ideal para o seu regime tributário.'});
+  else if (prolabore === 1) itens.push({c:'#E8B84B',t:'<strong>Retirada variável:</strong> Sem pró-labore fixo, você não sabe quanto ganha — e o negócio não sabe qual é o seu custo real.'});
+  else itens.push({c:'#C44040',t:'<strong>Sem retirada definida:</strong> Você é custo invisível da empresa. O lucro que parece real provavelmente não é.'});
+  if (contas === 0) itens.push({c:'#3DAA6A',t:'<strong>Contas em dia:</strong> Fluxo de caixa positivo. O próximo passo é transformar esse controle em crescimento estratégico.'});
+  else if (contas === 1) itens.push({c:'#E8B84B',t:'<strong>Atrasos pontuais:</strong> Sinal de fluxo de caixa irregular. Pequenos atrasos hoje podem virar crise amanhã.'});
+  else itens.push({c:'#C44040',t:'<strong>Dificuldade financeira:</strong> Contas no limite ou em atraso indicam um vazamento no financeiro que precisa ser encontrado.'});
+  if (impostos === 0) itens.push({c:'#3DAA6A',t:'<strong>Relação saudável com contador:</strong> Você tem a base. Agora é fazer o planejamento tributário trabalhar a seu favor.'});
+  else if (impostos === 1) itens.push({c:'#E8B84B',t:'<strong>Paga mas não conversa:</strong> Seu contador pode estar só cumprindo obrigações — não planejando para você.'});
+  else itens.push({c:'#C44040',t:'<strong>Impostos em aberto ou sem clareza:</strong> Um dos pontos que mais corrói o resultado. Tem solução — mas precisa de atenção agora.'});
+  document.getElementById('dres-analise').innerHTML = itens.map(function(a){
+    return '<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);"><div style="width:8px;height:8px;border-radius:50%;background:'+a.c+';flex-shrink:0;margin-top:5px;"></div><div style="font-size:13px;color:#888;line-height:1.6;">'+a.t+'</div></div>';
+  }).join('');
+  document.getElementById('detapa-1').style.display = 'none';
+  document.getElementById('detapa-res').style.display = 'block';
+  document.getElementById('dprog-bar').style.width = '100%';
+  document.getElementById('dprog-txt').textContent = 'Diagnóstico concluído';
+  setTimeout(function(){ document.getElementById('detapa-res').scrollIntoView({behavior:'smooth',block:'start'}); }, 100);
+}
+
+function dReiniciar() {
+  dRespostas = new Array(6).fill(null);
+  dAtual = 0;
+  document.getElementById('d-nome').value = '';
+  document.getElementById('d-wp').value = '';
+  document.getElementById('d-email').value = '';
+  document.getElementById('d-btn-p1').disabled = true;
+  document.getElementById('d-btn-p1').style.opacity = '0.35';
+  document.getElementById('detapa-res').style.display = 'none';
+  document.getElementById('detapa-1').style.display = 'none';
+  document.getElementById('detapa-0').style.display = 'block';
+  document.getElementById('dprog-bar').style.width = '0%';
+  document.getElementById('dprog-txt').textContent = 'Etapa 1 de 3';
+  window.scrollTo({top: document.getElementById('diagnostico').offsetTop, behavior:'smooth'});
+}
+</script>
+</body>
+</html>

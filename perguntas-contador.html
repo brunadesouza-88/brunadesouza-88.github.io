@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 Perguntas pro Contador — Código B</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C49A1A;--gold-light:#E8C547;--gold-dim:#7A5800;--gold-glow:rgba(196,154,26,0.1);--black:#080808;--surface:#111111;--surface2:#181818;--border:rgba(196,154,26,0.18);--border-strong:rgba(196,154,26,0.45);--text:#EEEEEE;--text-dim:#888888;--text-muted:#444444;--green:#3DAA6A;--red:#C44040;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--text);font-family:"Montserrat",sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(196,154,26,0.04),transparent 55%);pointer-events:none;z-index:0;}
+.wrapper{position:relative;z-index:1;max-width:660px;margin:0 auto;padding:48px 24px 80px;}
+.header{text-align:center;margin-bottom:48px;animation:fadeDown 0.7s ease both;}
+.brand{font-family:"Bebas Neue",sans-serif;font-size:12px;letter-spacing:0.4em;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:14px;}
+.brand::before,.brand::after{content:"";flex:1;max-width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim));}
+.brand::after{background:linear-gradient(90deg,var(--gold-dim),transparent);}
+.title{font-family:"Cormorant Garamond",serif;font-size:clamp(28px,6vw,46px);font-weight:700;line-height:1.05;}
+.title em{font-style:italic;color:var(--gold);}
+.subtitle{font-size:13px;color:var(--text-dim);line-height:1.7;margin-top:14px;}
+.gold-rule{width:40px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:16px auto 0;}
+.intro-card{background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:24px 28px;margin-bottom:20px;position:relative;overflow:hidden;animation:fadeUp 0.5s ease both;}
+.intro-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.5;}
+.intro-card p{font-size:14px;color:var(--text-dim);line-height:1.8;}
+.intro-card p strong{color:var(--text);}
+.pergunta-card{background:var(--surface);border:1px solid var(--border);border-radius:2px;margin-bottom:12px;overflow:hidden;transition:border-color 0.3s;}
+.pergunta-card.respondida{border-color:rgba(61,170,106,0.35);}
+.pergunta-card.nao-respondida{border-color:rgba(196,64,64,0.3);}
+.pergunta-header{display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:pointer;user-select:none;}
+.p-num{font-family:"Bebas Neue",sans-serif;font-size:26px;color:var(--gold-dim);flex-shrink:0;width:30px;line-height:1;}
+.p-texto{flex:1;}
+.p-titulo{font-family:"Cormorant Garamond",serif;font-size:17px;font-weight:600;line-height:1.3;color:var(--text);margin-bottom:2px;}
+.p-subtitulo{font-size:11px;color:var(--text-dim);font-style:italic;}
+.p-status{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;transition:all 0.3s;}
+.p-status.ok{background:rgba(61,170,106,0.15);border-color:var(--green);color:var(--green);}
+.p-status.nao{background:rgba(196,64,64,0.1);border-color:var(--red);color:var(--red);}
+.pergunta-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.pergunta-body.open{max-height:500px;}
+.pergunta-content{padding:0 22px 22px;}
+.p-explicacao{font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:12px;}
+.p-revela{font-size:12px;color:rgba(196,154,26,0.65);font-style:italic;margin-bottom:16px;}
+.resposta-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-resp{padding:10px 18px;border-radius:1px;font-family:"Bebas Neue",sans-serif;font-size:12px;letter-spacing:0.12em;cursor:pointer;transition:all 0.2s;border:1px solid;}
+.btn-sim{background:rgba(61,170,106,0.08);border-color:rgba(61,170,106,0.3);color:var(--green);}
+.btn-sim:hover,.btn-sim.ativo{background:rgba(61,170,106,0.18);border-color:var(--green);}
+.btn-nao{background:rgba(196,64,64,0.06);border-color:rgba(196,64,64,0.25);color:var(--red);}
+.btn-nao:hover,.btn-nao.ativo{background:rgba(196,64,64,0.15);border-color:var(--red);}
+.p-feedback{margin-top:12px;padding:12px 14px;border-radius:1px;font-size:13px;line-height:1.6;display:none;}
+.p-feedback.show{display:block;}
+.p-feedback.ok{background:rgba(61,170,106,0.06);border-left:3px solid var(--green);color:var(--text-dim);}
+.p-feedback.alerta{background:rgba(196,64,64,0.06);border-left:3px solid var(--red);color:var(--text-dim);}
+.p-feedback strong{color:var(--text);}
+.resultado-wrap{background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:26px 28px;margin-top:20px;display:none;}
+.resultado-wrap.show{display:block;animation:fadeUp 0.5s ease both;}
+.res-titulo{font-family:"Bebas Neue",sans-serif;font-size:11px;letter-spacing:0.3em;color:var(--gold);margin-bottom:16px;}
+.placar{display:flex;gap:16px;margin-bottom:18px;}
+.placar-item{flex:1;text-align:center;padding:14px;background:var(--surface2);border-radius:1px;border:1px solid var(--border);}
+.placar-num{font-family:"Bebas Neue",sans-serif;font-size:34px;line-height:1;}
+.placar-item.ok .placar-num{color:var(--green);}
+.placar-item.alerta .placar-num{color:var(--red);}
+.placar-label{font-size:10px;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;}
+.res-texto{font-size:14px;color:var(--text-dim);line-height:1.8;}
+.res-texto strong{color:var(--text);}
+.cta-final{background:var(--surface);border:1px solid var(--border-strong);border-radius:2px;padding:32px 28px;text-align:center;margin-top:18px;position:relative;overflow:hidden;}
+.cta-final::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.cta-assin{font-family:"Cormorant Garamond",serif;font-size:13px;font-style:italic;color:var(--text-dim);margin-bottom:12px;}
+.cta-titulo{font-family:"Cormorant Garamond",serif;font-size:clamp(20px,4vw,28px);font-weight:700;line-height:1.2;margin-bottom:10px;}
+.cta-desc{font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto;}
+.cta-palavra{display:inline-block;background:var(--gold-glow);border:1px solid var(--gold);padding:13px 32px;font-family:"Bebas Neue",sans-serif;font-size:19px;letter-spacing:0.25em;color:var(--gold);margin-bottom:10px;}
+.cta-instrucao{font-size:11px;color:var(--text-muted);font-style:italic;}
+.footer{text-align:center;padding:40px 0 0;font-size:11px;color:var(--text-muted);}
+.footer .cb{font-family:"Bebas Neue",sans-serif;font-size:14px;color:var(--gold-dim);letter-spacing:0.3em;display:block;margin-bottom:4px;}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:520px){.wrapper{padding:32px 16px 60px;}.pergunta-header{padding:14px 16px;}.pergunta-content,.resultado-wrap,.cta-final,.intro-card{padding:16px;}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<div class="header">
+  <div class="brand">CÓDIGO B</div>
+  <h1 class="title">7 Perguntas para<br><em>fazer ao seu contador</em></h1>
+  <p class="subtitle">Leve esse guia para a próxima reunião.<br>Marque o que ele respondeu — e veja o que isso revela sobre seu negócio.</p>
+  <div class="gold-rule"></div>
+</div>
+<div class="intro-card">
+  <p>Em <strong>20+ anos no mercado financeiro</strong>, vi empresários pagarem o contador todo mês sem saber o que estavam comprando. Não é culpa do contador — é que ninguém ensinou o empresário <strong>o que perguntar</strong>.<br><br>Para cada pergunta abaixo, marque se seu contador respondeu bem ou não.</p>
+</div>
+<div id="perguntas-lista"></div>
+<div class="resultado-wrap" id="resultado">
+  <div class="res-titulo">SEU DIAGNÓSTICO DO CONTADOR</div>
+  <div class="placar">
+    <div class="placar-item ok"><div class="placar-num" id="placar-sim">0</div><div class="placar-label">Respondeu bem</div></div>
+    <div class="placar-item alerta"><div class="placar-num" id="placar-nao">0</div><div class="placar-label">Não soube responder</div></div>
+  </div>
+  <div class="res-texto" id="res-texto"></div>
+</div>
+<div class="cta-final">
+  <div class="cta-assin">— Bruna Souza | Código B | 20+ anos no mercado financeiro</div>
+  <div class="cta-titulo">Você merece um contador<br><em style="color:var(--gold)">que trabalha por você</em></div>
+  <p class="cta-desc">Se seu contador travou em 2 ou mais perguntas — você tem informação nova para agir. Comenta CONTADOR no Instagram e eu te mando o próximo passo no DM.</p>
+  <div class="cta-palavra">CONTADOR</div>
+  <div class="cta-instrucao">Comente no Instagram @brunadesouzabs</div>
+</div>
+<div class="footer"><span class="cb">CÓDIGO B</span>Mentoria Financeira Empresarial</div>
+</div>
+<script>
+const perguntas=[
+  {titulo:"Qual regime tributário minha empresa está enquadrada — e por que esse é o melhor para mim hoje?",sub:"Simples, Lucro Presumido ou Lucro Real",explicacao:"Todo contador deve saber não só qual regime você está, mas o POR QUÊ. Se ele não souber justificar, você pode estar pagando mais imposto do que deveria.",revela:"Revela se o contador tem planejamento tributário real ou só cumpre obrigações.",sim:"Ótimo. Seu contador conhece seu regime e sabe justificar. Isso é o mínimo esperado.",nao:"Atenção. Se ele não sabe justificar o regime, existe uma chance real de que você não está no melhor enquadramento."},
+  {titulo:"Você já fez uma simulação comparando o que eu pagaria no Simples, Lucro Presumido e Lucro Real?",sub:"Com os números reais do meu negócio",explicacao:"Planejamento tributário real significa comparar os 3 regimes com seus números específicos. Muitos contadores nunca fazem isso.",revela:"Revela se existe planejamento ativo ou só cumprimento passivo de obrigações.",sim:"Excelente. Você tem planejamento tributário real. Isso pode representar R$1.500 a R$6.000/mês a menos em imposto.",nao:"Sinal de alerta. Sem essa simulação, você está no regime por inércia — não por estratégia."},
+  {titulo:"Quais despesas posso deduzir que talvez não esteja deduzindo hoje?",sub:"Dentro da lei, sem esquemas",explicacao:"Um contador consultivo proativamente identifica deduções — não espera você perguntar.",revela:"Revela se o contador otimiza ou só registra o que você manda.",sim:"Muito bem. Seu contador está trabalhando a seu favor, não só cumprindo tabela.",nao:"Oportunidade perdida. Cada despesa não deduzida é dinheiro indo para o imposto em vez de ficar no seu bolso."},
+  {titulo:"Me explica em linguagem simples o que o balancete do último mês diz sobre a saúde da empresa.",sub:"Sem termos técnicos, de forma que eu entenda",explicacao:"Um contador que não consegue traduzir o balancete é operacional — não consultivo. Você paga para entender, não só para ter documentos.",revela:"Revela se o contador é parceiro estratégico ou gerador de documentos.",sim:"Ótimo. Você tem um contador que comunica bem. Isso é mais raro do que parece.",nao:"Problema sério. Se você não entende o balancete, está gerindo o negócio às cegas — mesmo tendo pago pelo serviço."},
+  {titulo:"Se meu faturamento crescer 30% este ano, o que muda no meu enquadramento tributário?",sub:"E o que devo fazer antes que isso aconteça?",explicacao:"Crescimento sem planejamento pode aumentar o imposto de forma desproporcional. Um bom contador pensa à frente.",revela:"Revela se o contador tem visão estratégica ou só olha para o passado.",sim:"Excelente. Seu contador pensa no futuro do negócio, não só no passado.",nao:"Risco real. Crescer sem planejamento tributário pode fazer seu imposto saltar de forma inesperada."},
+  {titulo:"Estou misturando alguma despesa pessoal com empresarial sem perceber?",sub:"Algo que possa gerar problema fiscal ou distorcer meu resultado",explicacao:"Misturar finanças pessoais e empresariais distorce o lucro real e gera risco fiscal.",revela:"Revela se o contador monitora ativamente ou só registra o que você manda.",sim:"Muito bem. Seu contador está cuidando da saúde financeira com atenção.",nao:"Atenção imediata. Mistura de PF/PJ é a causa número 1 de lucro distorcido."},
+  {titulo:"Qual é o próximo passo para reduzir minha carga tributária dentro da lei?",sub:"Uma ação concreta que posso tomar agora",explicacao:"Essa pergunta separa contador operacional de consultivo. Sem resposta imediata e específica — você não tem planejamento tributário.",revela:"Revela se o contador é reativo ou proativo.",sim:"Ótimo. Você tem um parceiro estratégico, não só um serviço de conformidade fiscal.",nao:"Hora de conversar. Você está pagando por conformidade quando poderia ter planejamento. A diferença pode ser de milhares por mês."},
+];
+const estados=new Array(perguntas.length).fill(null);
+function renderPerguntas(){
+  const lista=document.getElementById("perguntas-lista");lista.innerHTML="";
+  perguntas.forEach((p,i)=>{
+    const div=document.createElement("div");div.className="pergunta-card";div.id="pcard-"+i;
+    div.innerHTML=`<div class="pergunta-header" onclick="togglePergunta(${i})"><div class="p-num">${String(i+1).padStart(2,"0")}</div><div class="p-texto"><div class="p-titulo">${p.titulo}</div><div class="p-subtitulo">${p.sub}</div></div><div class="p-status" id="pstatus-${i}">—</div></div><div class="pergunta-body" id="pbody-${i}"><div class="pergunta-content"><p class="p-explicacao">${p.explicacao}</p><p class="p-revela">→ ${p.revela}</p><div class="resposta-btns"><button class="btn-resp btn-sim" id="btn-sim-${i}" onclick="responder(${i},'sim')">✓ RESPONDEU BEM</button><button class="btn-resp btn-nao" id="btn-nao-${i}" onclick="responder(${i},'nao')">✗ NÃO SOUBE RESPONDER</button></div><div class="p-feedback" id="pfeedback-${i}"></div></div></div>`;
+    lista.appendChild(div);
+  });
+}
+function togglePergunta(i){document.getElementById("pbody-"+i).classList.toggle("open");}
+function responder(i,resp){
+  estados[i]=resp;const p=perguntas[i];
+  const card=document.getElementById("pcard-"+i);
+  const status=document.getElementById("pstatus-"+i);
+  const feedback=document.getElementById("pfeedback-"+i);
+  document.getElementById("btn-sim-"+i).classList.toggle("ativo",resp==="sim");
+  document.getElementById("btn-nao-"+i).classList.toggle("ativo",resp==="nao");
+  if(resp==="sim"){card.className="pergunta-card respondida";status.className="p-status ok";status.textContent="✓";feedback.className="p-feedback ok show";feedback.innerHTML="<strong>Bem respondida.</strong> "+p.sim;}
+  else{card.className="pergunta-card nao-respondida";status.className="p-status nao";status.textContent="✗";feedback.className="p-feedback alerta show";feedback.innerHTML="<strong>Atenção.</strong> "+p.nao;}
+  atualizarResultado();
+}
+function atualizarResultado(){
+  const respondidas=estados.filter(e=>e!==null).length;if(respondidas===0)return;
+  const sim=estados.filter(e=>e==="sim").length;const nao=estados.filter(e=>e==="nao").length;
+  document.getElementById("placar-sim").textContent=sim;document.getElementById("placar-nao").textContent=nao;
+  let texto="";
+  if(respondidas<7){texto=`Você respondeu <strong>${respondidas} de 7 perguntas</strong>. Continue para ter o diagnóstico completo.`;}
+  else if(nao===0){texto="<strong>Parabéns — você tem um contador consultivo de verdade.</strong> Isso é raro e valioso. O próximo passo é usar esse alinhamento para planejamento tributário proativo.";}
+  else if(nao<=2){texto=`<strong>Seu contador tem base — mas há pontos a melhorar.</strong> ${nao} resposta${nao>1?"s":""} sem clareza é sinal de que existe espaço para otimização. Leve essas perguntas de volta a ele.`;}
+  else if(nao<=4){texto=`<strong>Atenção: seu contador está mais para operacional do que consultivo.</strong> Com ${nao} perguntas sem resposta, você pode estar pagando mais imposto do que deveria.`;}
+  else{texto=`<strong>Sinal de alerta: você está gerindo o negócio às cegas.</strong> Com ${nao} perguntas sem resposta, seu contador cumpre obrigações — mas não trabalha para você. A diferença no resultado pode ser de milhares por mês.`;}
+  document.getElementById("res-texto").innerHTML=texto;
+  const res=document.getElementById("resultado");res.classList.add("show");
+  if(respondidas===7){setTimeout(()=>res.scrollIntoView({behavior:"smooth",block:"start"}),100);}
+}
+renderPerguntas();
+</script>
+</body>
+</html>

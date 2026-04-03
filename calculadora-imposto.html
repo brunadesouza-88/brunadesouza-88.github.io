@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Você Está Pagando Imposto a Mais? — Código B</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C49A1A;--gold-dim:#7A5800;--gold-glow:rgba(196,154,26,0.1);--black:#080808;--surface:#111111;--surface2:#181818;--surface3:#222222;--border:rgba(196,154,26,0.18);--border-strong:rgba(196,154,26,0.45);--text:#EEEEEE;--text-dim:#888888;--text-muted:#444444;--green:#3DAA6A;--red:#C44040;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--text);font-family:"Montserrat",sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 15% 80%,rgba(196,154,26,0.05),transparent 50%);pointer-events:none;z-index:0;}
+.wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:48px 24px 80px;}
+.header{text-align:center;margin-bottom:44px;}
+.brand{font-family:"Bebas Neue",sans-serif;font-size:12px;letter-spacing:0.4em;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:14px;}
+.brand::before,.brand::after{content:"";flex:1;max-width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim));}
+.brand::after{background:linear-gradient(90deg,var(--gold-dim),transparent);}
+.title{font-family:"Cormorant Garamond",serif;font-size:clamp(28px,6vw,46px);font-weight:700;line-height:1.05;}
+.title em{font-style:italic;color:var(--gold);}
+.sub{font-size:13px;color:var(--text-dim);line-height:1.7;margin-top:12px;}
+.rule{width:40px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:14px auto 0;}
+.regimes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;}
+.rg{background:var(--surface);border:1px solid var(--border);padding:14px 12px;text-align:center;}
+.rg-nome{font-family:"Bebas Neue",sans-serif;font-size:12px;letter-spacing:0.12em;color:var(--gold);margin-bottom:6px;}
+.rg-desc{font-size:11px;color:var(--text-dim);line-height:1.5;}
+.prog{margin-bottom:24px;}
+.prog-bg{height:3px;background:var(--surface3);}
+.prog-bar{height:3px;background:linear-gradient(90deg,var(--gold-dim),var(--gold));transition:width 0.5s;width:0%;}
+.prog-txt{font-size:11px;color:var(--text-dim);margin-top:5px;text-align:right;}
+.step{background:var(--surface);border:1px solid var(--border);padding:28px 24px;margin-bottom:12px;display:none;position:relative;overflow:hidden;}
+.step::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.4;}
+.step.on{display:block;animation:si 0.35s ease both;}
+.sn{font-family:"Bebas Neue",sans-serif;font-size:11px;letter-spacing:0.3em;color:var(--gold);margin-bottom:12px;}
+.sq{font-family:"Cormorant Garamond",serif;font-size:clamp(19px,4vw,25px);font-weight:600;line-height:1.3;margin-bottom:8px;}
+.sd{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:20px;}
+.sbtns{display:flex;gap:10px;}
+.sbtn{flex:1;padding:14px;font-family:"Bebas Neue",sans-serif;font-size:14px;letter-spacing:0.15em;cursor:pointer;transition:all 0.2s;border:1px solid;border-radius:1px;}
+.ss{background:rgba(61,170,106,0.08);border-color:rgba(61,170,106,0.3);color:var(--green);}
+.ss:hover{background:rgba(61,170,106,0.18);border-color:var(--green);}
+.sn2{background:rgba(196,64,64,0.06);border-color:rgba(196,64,64,0.25);color:var(--red);}
+.sn2:hover{background:rgba(196,64,64,0.15);border-color:var(--red);}
+.res{display:none;}
+.res-hero{background:var(--surface);border:1px solid var(--border);padding:32px 24px;text-align:center;margin-bottom:14px;position:relative;overflow:hidden;}
+.res-hero::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;}
+.res-hero.alert::before{background:linear-gradient(90deg,transparent,var(--red),transparent);}
+.res-hero.ok::before{background:linear-gradient(90deg,transparent,var(--green),transparent);}
+.rbadge{display:inline-block;font-family:"Bebas Neue",sans-serif;font-size:11px;letter-spacing:0.3em;padding:6px 14px;margin-bottom:14px;}
+.alert .rbadge{background:rgba(196,64,64,0.08);color:var(--red);border:1px solid rgba(196,64,64,0.3);}
+.ok .rbadge{background:rgba(61,170,106,0.08);color:var(--green);border:1px solid rgba(61,170,106,0.3);}
+.ricone{font-size:44px;display:block;margin-bottom:12px;}
+.rtitulo{font-family:"Cormorant Garamond",serif;font-size:clamp(20px,4vw,30px);font-weight:700;line-height:1.1;margin-bottom:10px;}
+.alert .rtitulo{color:var(--red);} .ok .rtitulo{color:var(--green);}
+.rdesc{font-size:13px;color:var(--text-dim);line-height:1.7;max-width:440px;margin:0 auto;}
+.passos{background:var(--surface);border:1px solid var(--border);padding:22px 24px;margin-bottom:14px;}
+.ptitulo{font-family:"Bebas Neue",sans-serif;font-size:11px;letter-spacing:0.3em;color:var(--gold);margin-bottom:14px;}
+.passo{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.passo:last-child{border-bottom:none;}
+.pn{font-family:"Bebas Neue",sans-serif;font-size:18px;color:var(--gold-dim);flex-shrink:0;width:22px;}
+.pt{font-size:13px;color:var(--text-dim);line-height:1.6;}
+.pt strong{color:var(--text);}
+.cta{background:var(--surface);border:1px solid var(--border-strong);padding:30px 24px;text-align:center;position:relative;overflow:hidden;}
+.cta::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.ca{font-family:"Cormorant Garamond",serif;font-size:13px;font-style:italic;color:var(--text-dim);margin-bottom:12px;}
+.ct{font-family:"Cormorant Garamond",serif;font-size:clamp(20px,4vw,28px);font-weight:700;line-height:1.2;margin-bottom:10px;}
+.cd{font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:18px;max-width:380px;margin-left:auto;margin-right:auto;}
+.cw{display:inline-block;background:var(--gold-glow);border:1px solid var(--gold);padding:12px 30px;font-family:"Bebas Neue",sans-serif;font-size:18px;letter-spacing:0.25em;color:var(--gold);margin-bottom:8px;}
+.ci{font-size:11px;color:var(--text-muted);font-style:italic;}
+.br{width:100%;padding:12px;background:transparent;border:1px solid var(--border);color:var(--text-dim);font-family:"Montserrat",sans-serif;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;margin-top:12px;transition:all 0.2s;}
+.br:hover{border-color:var(--border-strong);color:var(--text);}
+.footer{text-align:center;padding:36px 0 0;font-size:11px;color:var(--text-muted);}
+.footer .cb{font-family:"Bebas Neue",sans-serif;font-size:13px;color:var(--gold-dim);letter-spacing:0.3em;display:block;margin-bottom:4px;}
+@keyframes si{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
+@media(max-width:520px){.wrap{padding:32px 16px 60px;}.regimes{grid-template-columns:1fr;}.step,.passos,.cta{padding:20px 16px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="header">
+  <div class="brand">CÓDIGO B</div>
+  <h1 class="title">Você está pagando<br><em>imposto a mais?</em></h1>
+  <p class="sub">4 perguntas · 2 minutos · Descubra agora<br>Sem sonegar. Sem esquema. Só planejamento.</p>
+  <div class="rule"></div>
+</div>
+<div class="regimes">
+  <div class="rg"><div class="rg-nome">Simples Nacional</div><div class="rg-desc">Uma guia, tudo junto. Fácil — mas nem sempre o mais barato.</div></div>
+  <div class="rg"><div class="rg-nome">Lucro Presumido</div><div class="rg-desc">O governo presume quanto você lucrou e tributa sobre isso.</div></div>
+  <div class="rg"><div class="rg-nome">Lucro Real</div><div class="rg-desc">Você prova o lucro real e paga só sobre ele. Pode ser muito menor.</div></div>
+</div>
+<div class="prog"><div class="prog-bg"><div class="prog-bar" id="pb"></div></div><div class="prog-txt" id="pt2">Pergunta 1 de 4</div></div>
+<div id="steps">
+  <div class="step on" id="s0"><div class="sn">PERGUNTA 1 DE 4</div><div class="sq">Seu faturamento anual passou de R$360.000 nos últimos 12 meses?</div><div class="sd">Esse é o limite do Simples Nacional para muitas atividades. Acima disso, outros regimes podem ser mais vantajosos.</div><div class="sbtns"><button class="sbtn ss" onclick="resp(0,'s')">SIM</button><button class="sbtn sn2" onclick="resp(0,'n')">NÃO</button></div></div>
+  <div class="step" id="s1"><div class="sn">PERGUNTA 2 DE 4</div><div class="sq">Sua margem de lucro real é menor que 8% do faturamento?</div><div class="sd">Para cada R$100 que você fatura, sobram menos de R$8 de lucro depois de pagar tudo.</div><div class="sbtns"><button class="sbtn ss" onclick="resp(1,'s')">SIM</button><button class="sbtn sn2" onclick="resp(1,'n')">NÃO</button></div></div>
+  <div class="step" id="s2"><div class="sn">PERGUNTA 3 DE 4</div><div class="sq">Você tem despesas altas e dedutíveis todo mês?</div><div class="sd">Aluguel, salários, equipamentos, prestadores. Quanto maior o custo operacional, mais o Lucro Real pode ser vantajoso.</div><div class="sbtns"><button class="sbtn ss" onclick="resp(2,'s')">SIM</button><button class="sbtn sn2" onclick="resp(2,'n')">NÃO</button></div></div>
+  <div class="step" id="s3"><div class="sn">PERGUNTA 4 DE 4</div><div class="sq">Seu contador já te apresentou uma simulação comparando os 3 regimes no último ano?</div><div class="sd">Com os seus números reais — não uma explicação genérica.</div><div class="sbtns"><button class="sbtn ss" onclick="resp(3,'s')">SIM</button><button class="sbtn sn2" onclick="resp(3,'n')">NÃO</button></div></div>
+</div>
+<div class="res" id="res">
+  <div class="res-hero" id="rh"><div class="rbadge" id="rb"></div><span class="ricone" id="ri"></span><div class="rtitulo" id="rt"></div><p class="rdesc" id="rd"></p></div>
+  <div class="passos"><div class="ptitulo">O QUE FAZER AGORA</div><div id="pl"></div></div>
+  <div class="cta">
+    <div class="ca">— Bruna Souza | Código B | 20+ anos no mercado financeiro</div>
+    <div class="ct">Você merece pagar<br><em style="color:var(--gold)">só o que é justo</em></div>
+    <p class="cd">Em 20+ anos de banco vi empresários economizarem mais em uma análise tributária do que em um ano de corte de custos. Comenta IMPOSTO no Instagram e eu te mando o próximo passo no DM.</p>
+    <div class="cw">IMPOSTO</div><br>
+    <div class="ci">Comente no Instagram @brunadesouzabs</div>
+    <button class="br" onclick="rei()">Refazer o diagnóstico</button>
+  </div>
+</div>
+<div class="footer"><span class="cb">CÓDIGO B</span>Mentoria Financeira Empresarial</div>
+</div>
+<script>
+var rs=[],cur=0;
+function resp(i,v){rs[i]=v;document.getElementById("s"+i).classList.remove("on");if(i<3){cur=i+1;document.getElementById("s"+cur).classList.add("on");var p=((cur)/4*100);document.getElementById("pb").style.width=p+"%";document.getElementById("pt2").textContent="Pergunta "+(cur+1)+" de 4";document.getElementById("s"+cur).scrollIntoView({behavior:"smooth",block:"center"});}else{document.getElementById("pb").style.width="100%";document.getElementById("pt2").textContent="Diagnóstico concluído";show();}}
+function show(){var sim=rs.filter(function(r){return r==="s";}).length;var rh=document.getElementById("rh");var rb=document.getElementById("rb");var ri=document.getElementById("ri");var rt=document.getElementById("rt");var rd=document.getElementById("rd");var pl=document.getElementById("pl");if(sim>=2){rh.className="res-hero alert";rb.textContent="ATENÇÃO — VALE INVESTIGAR";ri.textContent="⚠️";rt.textContent="Existe uma chance real de que você está pagando imposto a mais.";rd.textContent="Com "+sim+" resposta"+(sim>1?"s":"")+" de alerta, a suspeita é suficiente para investigar. Uma análise tributária pode revelar de R$1.500 a R$6.000/mês de economia.";pl.innerHTML='<div class="passo"><div class="pn">1</div><div class="pt"><strong>Junte seu faturamento dos últimos 12 meses.</strong></div></div><div class="passo"><div class="pn">2</div><div class="pt"><strong>Liste seus 5 maiores custos mensais</strong> — fixos e variáveis.</div></div><div class="passo"><div class="pn">3</div><div class="pt"><strong>Peça ao contador uma simulação</strong> comparando os 3 regimes com seus números reais.</div></div><div class="passo"><div class="pn">4</div><div class="pt"><strong>Se ele não fizer</strong> — você tem informação nova para agir. É aqui que entra o Código B.</div></div>';}else{rh.className="res-hero ok";rb.textContent="SINAL POSITIVO";ri.textContent="✅";rt.textContent="Seu perfil não mostra sinais imediatos de alerta.";rd.textContent="Isso não significa que não existe oportunidade — mas os indicadores mais óbvios não estão acesos. Continue monitorando.";pl.innerHTML='<div class="passo"><div class="pn">1</div><div class="pt"><strong>Continue monitorando o faturamento</strong> — se crescer, revise o enquadramento.</div></div><div class="passo"><div class="pn">2</div><div class="pt"><strong>Peça ao contador uma simulação anual</strong> dos 3 regimes mesmo que pareça desnecessário.</div></div><div class="passo"><div class="pn">3</div><div class="pt"><strong>Foque no lucro real</strong> — regime certo + margem controlada = empresa saudável.</div></div>';}
+document.getElementById("steps").style.display="none";var res=document.getElementById("res");res.style.display="block";setTimeout(function(){res.scrollIntoView({behavior:"smooth",block:"start"});},100);}
+function rei(){rs=[];cur=0;for(var i=0;i<4;i++){document.getElementById("s"+i).className="step"+(i===0?" on":"");}document.getElementById("pb").style.width="0%";document.getElementById("pt2").textContent="Pergunta 1 de 4";document.getElementById("steps").style.display="block";document.getElementById("res").style.display="none";window.scrollTo({top:0,behavior:"smooth"});}
+</script>
+</body>
+</html>
