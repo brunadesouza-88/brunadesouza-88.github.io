@@ -3,143 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0d0d0d">
+<meta name="theme-color" content="#F5F2EC">
 <title>Bruna Castro — Ferramentas Gratuitas</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:        #F5F2EC;
+    --bg-card:   #F8F5F0;
+    --bg-panel:  #EDEAE3;
+    --border:    #DDD8CE;
+    --text:      #2A2318;
+    --muted:     #6B6055;
+    --subtle:    #8A7D6E;
+    --gold:      #C49A1A;
+    --gold-dark: #7A5800;
+    --gold-light:#D4A820;
+    --gold-grad: linear-gradient(90deg, #7A5800 0%, #C49A1A 30%, #D4A820 50%, #C49A1A 70%, #7A5800 100%);
+    --gold-text: linear-gradient(135deg, #8B6914 0%, #C49A1A 40%, #D4A820 60%, #9A7820 80%, #7A5800 100%);
+  }
   body {
-    background: #0d0d0d;
-    color: #f0f0f0;
-    font-family: 'Noto Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 48px 20px 60px;
+    padding: 52px 20px 64px;
   }
+
   .avatar {
-    width: 90px;
-    height: 90px;
+    width: 88px;
+    height: 88px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #c9a96e, #8b6914);
+    background: var(--gold-grad);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
+    font-size: 38px;
     font-weight: 700;
-    color: #0d0d0d;
+    color: #fff;
     margin-bottom: 20px;
-    border: 2px solid #c9a96e;
+    box-shadow: 0 4px 20px rgba(196,154,26,0.25);
   }
   h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 700;
-    color: #f0f0f0;
+    color: var(--text);
     text-align: center;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .handle {
-    font-size: 14px;
-    color: #c9a96e;
-    margin-bottom: 8px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.5px;
+    background: var(--gold-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
   }
   .bio {
-    font-size: 14px;
-    color: #888;
+    font-size: 13px;
+    color: var(--muted);
     text-align: center;
     max-width: 300px;
-    line-height: 1.6;
-    margin-bottom: 40px;
+    line-height: 1.7;
+    margin-bottom: 44px;
   }
+
   .secao-titulo {
-    font-size: 11px;
-    color: #555;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-    margin-bottom: 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    color: var(--subtle);
+    margin-bottom: 14px;
     align-self: flex-start;
-    max-width: 420px;
+    max-width: 440px;
     width: 100%;
   }
   .links {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
-    max-width: 420px;
-    margin-bottom: 40px;
+    max-width: 440px;
+    margin-bottom: 36px;
   }
+
   .link-card {
     display: flex;
     align-items: center;
     gap: 16px;
-    background: #1a1a1a;
-    border: 1px solid #2e2e2e;
-    border-radius: 16px;
-    padding: 18px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
     text-decoration: none;
-    color: #f0f0f0;
-    transition: border-color 0.2s, background 0.2s;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
   .link-card:hover {
-    border-color: #c9a96e;
-    background: #1f1f1f;
+    border-color: var(--gold);
+    box-shadow: 0 2px 16px rgba(196,154,26,0.12);
+  }
+  .link-destaque {
+    border-color: rgba(196,154,26,0.4);
+    background: linear-gradient(135deg, #fffbf2, var(--bg-card));
   }
   .link-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #c9a96e22, #c9a96e11);
-    border: 1px solid #c9a96e44;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(196,154,26,0.12), rgba(196,154,26,0.06));
+    border: 1px solid rgba(196,154,26,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 20px;
     flex-shrink: 0;
   }
   .link-info { flex: 1; }
   .link-titulo {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
+    color: var(--text);
     margin-bottom: 3px;
   }
   .link-desc {
     font-size: 12px;
-    color: #888;
+    color: var(--muted);
     line-height: 1.4;
   }
   .link-arrow {
-    color: #444;
-    font-size: 18px;
+    font-size: 20px;
+    color: var(--gold);
+    flex-shrink: 0;
   }
+
   .em-breve {
-    opacity: 0.4;
+    opacity: 0.45;
     pointer-events: none;
   }
   .badge-breve {
     font-size: 10px;
-    color: #c9a96e;
-    background: #c9a96e18;
-    border: 1px solid #c9a96e33;
+    color: var(--gold-dark);
+    background: rgba(196,154,26,0.1);
+    border: 1px solid rgba(196,154,26,0.25);
     border-radius: 20px;
     padding: 2px 8px;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    margin-left: 6px;
   }
+
+  .divider {
+    width: 100%;
+    max-width: 440px;
+    height: 1px;
+    background: var(--border);
+    margin: 4px 0 32px;
+  }
+
   .footer {
-    font-size: 12px;
-    color: #444;
+    font-size: 11px;
+    color: var(--subtle);
     text-align: center;
-    margin-top: 20px;
+    margin-top: 12px;
   }
-  .footer a { color: #c9a96e; text-decoration: none; }
+  .footer a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+  }
 </style>
 </head>
 <body>
@@ -147,23 +186,21 @@
 <div class="avatar">B</div>
 <h1>Bruna Castro</h1>
 <div class="handle">@brunadesouzabs</div>
-<p class="bio">Mentora financeira de empresários. 21 anos de banco. Agora do seu lado.</p>
+<p class="bio">Mentora financeira de empresários.<br>21 anos de banco. Agora do seu lado.</p>
 
-<div class="secao-titulo">✨ Mentoria</div>
-
+<div class="secao-titulo">✦ Mentoria</div>
 <div class="links">
-  <a href="mentoria.html" class="link-card" style="border-color:#c9a96e44; background: linear-gradient(135deg, #c9a96e0a, #1a1a1a);">
-    <div class="link-icon" style="font-size:26px;">🏆</div>
+  <a href="mentoria.html" class="link-card link-destaque">
+    <div class="link-icon">🏆</div>
     <div class="link-info">
       <div class="link-titulo">Mentoria Financeira — Código B</div>
       <div class="link-desc">Organize as finanças, reduza impostos e aumente o lucro do seu negócio.</div>
     </div>
-    <div class="link-arrow" style="color:#c9a96e;">›</div>
+    <div class="link-arrow">›</div>
   </a>
 </div>
 
-<div class="secao-titulo">🎁 Ferramentas Gratuitas</div>
-
+<div class="secao-titulo">✦ Ferramentas Gratuitas</div>
 <div class="links">
 
   <a href="calculadora-margem.html" class="link-card">
@@ -213,8 +250,7 @@
 
 </div>
 
-<div class="secao-titulo">📲 Me encontre</div>
-
+<div class="secao-titulo">✦ Me encontre</div>
 <div class="links">
   <a href="https://instagram.com/brunadesouzabs" class="link-card" target="_blank">
     <div class="link-icon">📸</div>
