@@ -248,7 +248,10 @@
       </section>
 
       <section class="form-card" id="formulario">
-        <form name="caminho-do-dinheiro" method="POST" action="/obrigado.html" data-netlify="true" netlify netlify-honeypot="bot-field" id="caminhoForm">
+        <form name="caminho-do-dinheiro" method="POST" action="https://formspree.io/f/mpqozapp" id="caminhoForm">
+          <input type="hidden" name="_subject" value="Nova resposta — O Caminho do Dinheiro" />
+          <input type="hidden" name="origem" value="brunadesouza.com.br/caminho-do-dinheiro.html" />
+          <input type="hidden" name="form-name" value="caminho-do-dinheiro" />
           <div class="section">
             <div class="field">
               <label for="nome">1. Nome completo <span class="req">*</span></label>
@@ -416,7 +419,7 @@
     const checkboxError = document.getElementById('checkboxError');
 
     
-    form.addEventListener('submit', function (event) {
+    form.addEventListener('submit', async function (event) {
       event.preventDefault();
       const selectedExpectativas = form.querySelectorAll('input[name="expectativas[]"]:checked').length;
       if (!selectedExpectativas) {
@@ -426,7 +429,28 @@
         first.closest('fieldset').scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
-      location.href = 'https://wa.me/5533991467788?text=Quero%20saber%20mais%20sobre%20a%20mentoria%20financeira.';
+
+      const button = form.querySelector('button[type="submit"]');
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Enviando...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (!response.ok) throw new Error('Falha no envio');
+
+        location.href = 'https://wa.me/5533991467788?text=Quero%20saber%20mais%20sobre%20a%20mentoria%20financeira.';
+      } catch (error) {
+        checkboxError.textContent = 'Não consegui enviar agora. Confira sua conexão e tente novamente.';
+        checkboxError.classList.add('show');
+        button.disabled = false;
+        button.textContent = originalText;
+      }
     });
 
     form.addEventListener('change', function (event) {
