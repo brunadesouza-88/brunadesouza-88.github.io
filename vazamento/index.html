@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sete perguntas sobre caixa, estoque, compra, margem e imposto. No fim você recebe o extrato dos seus vazamentos: quais são, qual é o pior e o que fazer primeiro. Leva 2 minutos, sem cadastro.">
+<meta name="theme-color" content="#0D0C0B">
+<link rel="canonical" href="https://brunadesouza.com.br/vazamento/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Bruna Souza · Código B">
+<meta property="og:url" content="https://brunadesouza.com.br/vazamento/">
+<meta property="og:title" content="Por onde o dinheiro da sua empresa está vazando">
+<meta property="og:description" content="Sete perguntas sobre caixa, estoque, compra, margem e imposto. Resultado na hora, sem cadastro.">
+<meta property="og:image" content="https://brunadesouza.com.br/bruna-link-bio-foto.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Por onde o dinheiro da sua empresa está vazando">
+<meta name="twitter:description" content="Sete perguntas sobre caixa, estoque, compra, margem e imposto. Resultado na hora, sem cadastro.">
+<meta name="twitter:image" content="https://brunadesouza.com.br/bruna-link-bio-foto.jpg">
+<title>Onde Seu Dinheiro Está Vazando</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --ground:#0D0C0B;
+    --surface:#161512;
+    --surface-2:#1E1C18;
+    --rule:#2E2A23;
+    --rule-soft:#232019;
+    --ink:#EFE9DC;
+    --ink-2:#B5AC9B;
+    --ink-3:#7E7566;
+    --gold:#C9A24A;
+    --gold-dim:#8A6F2E;
+    --alert:#C0533F;
+    --warn:#C9A24A;
+    --ok:#7E9B63;
+    --display:"Bebas Neue","Haettenschweiler","Arial Narrow",sans-serif;
+    --body:"Montserrat","Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--body);font-size:15px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:28px 20px 72px;}
+
+  /* ---------- header ---------- */
+  .masthead{border-bottom:1px solid var(--rule);padding-bottom:18px;margin-bottom:26px;}
+  .eyebrow{
+    font-family:var(--mono);font-size:10.5px;font-weight:500;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+    display:flex;justify-content:space-between;gap:16px;
+  }
+  .eyebrow span:last-child{color:var(--ink-3)}
+  h1{
+    font-family:var(--display);font-weight:400;
+    font-size:clamp(38px,10vw,60px);line-height:.92;letter-spacing:.01em;
+    margin:14px 0 10px;text-wrap:balance;
+  }
+  h1 em{font-style:normal;color:var(--gold)}
+  .dek{color:var(--ink-2);max-width:52ch;margin:0;font-size:14.5px}
+  .byline{display:flex;align-items:center;gap:13px;margin-top:18px}
+  .byline img{
+    width:52px;height:52px;border-radius:50%;object-fit:cover;flex:0 0 auto;
+    border:1px solid var(--gold-dim);filter:saturate(.9);
+  }
+  .byline p{margin:0;font-size:12.5px;line-height:1.45;color:var(--ink-3)}
+  .byline b{color:var(--ink-2);font-weight:600}
+
+  /* ---------- ledger ---------- */
+  .ledger{
+    background:var(--surface);border:1px solid var(--rule);
+    padding:18px 16px 14px;margin:26px 0;
+  }
+  .ledger-head{
+    font-family:var(--mono);font-size:10px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-3);
+    display:flex;justify-content:space-between;
+    border-bottom:1px solid var(--rule);padding-bottom:9px;margin-bottom:4px;
+  }
+  .row{
+    display:flex;align-items:baseline;gap:10px;
+    padding:9px 0;border-bottom:1px solid var(--rule-soft);
+    font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;
+  }
+  .row:last-child{border-bottom:0}
+  .row .num{color:var(--ink-3);flex:0 0 auto}
+  .row .name{color:var(--ink-2);letter-spacing:.06em;text-transform:uppercase;flex:0 0 auto}
+  .row .fill{flex:1 1 auto;border-bottom:1px dotted var(--rule);transform:translateY(-3px)}
+  .row .verdict{flex:0 0 auto;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .row.done .name{color:var(--ink)}
+  .v-alert{color:var(--alert)!important}
+  .v-warn{color:var(--warn)!important}
+  .v-ok{color:var(--ok)!important}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-block;width:100%;text-align:center;cursor:pointer;
+    font-family:var(--body);font-weight:700;font-size:14px;letter-spacing:.03em;
+    background:var(--gold);color:#141209;border:1px solid var(--gold);
+    padding:15px 20px;text-decoration:none;transition:background .15s,color .15s;
+  }
+  .btn:hover{background:#DDB65C;border-color:#DDB65C}
+  .btn-ghost{background:transparent;color:var(--ink-2);border-color:var(--rule);font-weight:600}
+  .btn-ghost:hover{background:var(--surface-2);color:var(--ink);border-color:var(--rule)}
+  .note{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.04em;margin-top:12px;text-align:center}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+  /* ---------- question ---------- */
+  .qhead{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-3);margin-bottom:16px;
+  }
+  .qhead b{color:var(--gold);font-weight:500}
+  .bar{height:2px;background:var(--rule);margin-bottom:24px}
+  .bar i{display:block;height:2px;background:var(--gold);transition:width .3s ease}
+  .qtext{
+    font-family:var(--body);font-weight:600;font-size:20px;line-height:1.35;
+    margin:0 0 6px;text-wrap:balance;
+  }
+  .qsub{color:var(--ink-3);font-size:13px;margin:0 0 22px}
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{
+    display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;cursor:pointer;
+    background:var(--surface);border:1px solid var(--rule);color:var(--ink);
+    font-family:var(--body);font-size:14.5px;line-height:1.45;padding:15px 16px;
+    transition:border-color .15s,background .15s;
+  }
+  .opt:hover{border-color:var(--gold-dim);background:var(--surface-2)}
+  .opt .key{
+    font-family:var(--mono);font-size:11px;color:var(--gold);
+    border:1px solid var(--gold-dim);padding:1px 6px;flex:0 0 auto;margin-top:2px;
+  }
+  .back{
+    display:inline-block;margin-top:20px;background:none;border:0;cursor:pointer;
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3);padding:6px 0;
+  }
+  .back:hover{color:var(--ink-2)}
+
+  /* ---------- result ---------- */
+  .verdictbox{border:1px solid var(--rule);border-top:3px solid var(--gold);padding:22px 18px;background:var(--surface)}
+  .score{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+  .band{font-family:var(--display);font-size:clamp(30px,8vw,42px);line-height:1;margin:8px 0 10px;letter-spacing:.01em}
+  .verdictbox p{margin:0;color:var(--ink-2);font-size:14.5px;max-width:50ch}
+
+  .findings{margin:26px 0 0;display:flex;flex-direction:column;gap:0}
+  .finding{border-top:1px solid var(--rule);padding:16px 0 15px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+  .finding:last-child{border-bottom:1px solid var(--rule)}
+  .finding .tag{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    border:1px solid currentColor;padding:2px 6px;align-self:start;margin-top:2px;
+  }
+  .finding h3{
+    grid-column:2;margin:0;font-family:var(--mono);font-size:12px;font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink);
+  }
+  .finding p{grid-column:2;margin:5px 0 0;color:var(--ink-2);font-size:14px;line-height:1.55}
+
+  .flag{border-left:2px solid var(--gold);background:var(--surface);padding:15px 16px;margin:24px 0 0}
+  .flag h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 7px}
+  .flag p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+  .flag a{color:var(--ink-3)}
+
+  .cta{margin-top:30px;border:1px solid var(--rule);padding:22px 18px;background:var(--surface)}
+  .cta h3{font-family:var(--display);font-size:26px;line-height:1.05;margin:0 0 8px;letter-spacing:.01em}
+  .cta p{margin:0 0 18px;color:var(--ink-2);font-size:14px;max-width:46ch}
+
+  .sig{
+    margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  }
+  .sig span:last-child{color:var(--gold-dim)}
+  [hidden]{display:none!important}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow"><span>Código B · Diagnóstico</span><span>7 perguntas</span></div>
+    <h1>Por onde o dinheiro da sua empresa está <em>vazando</em></h1>
+    <p class="dek">Sete perguntas sobre caixa, estoque, compra, margem e imposto. No fim você recebe o extrato dos seus vazamentos — quais são, qual é o pior e o que fazer primeiro.</p>
+    <div class="byline">
+      <img id="avatar" src="/bruna-link-bio-foto.jpg" alt="Bruna Souza" onerror="this.remove()">
+      <p>São as sete perguntas que eu faço na primeira reunião com um cliente.<br><b>Bruna Souza</b> · 20 anos em banco, hoje mentora de negócios</p>
+    </div>
+  </header>
+
+  <!-- ============ TELA 1: ABERTURA ============ -->
+  <section id="intro">
+    <div class="ledger">
+      <div class="ledger-head"><span>Extrato de vazamentos</span><span>Status</span></div>
+      <div id="ledger-rows"></div>
+    </div>
+    <button class="btn" id="start">Começar o diagnóstico</button>
+    <p class="note">Leva 2 minutos · sem cadastro · sem e-mail · resultado na hora</p>
+  </section>
+
+  <!-- ============ TELA 2: PERGUNTAS ============ -->
+  <section id="quiz" hidden>
+    <div class="qhead"><span>Pergunta <b id="qn">1</b> de 7</span><span id="qcat">PF × PJ</span></div>
+    <div class="bar"><i id="qbar" style="width:14%"></i></div>
+    <h2 class="qtext" id="qtext"></h2>
+    <p class="qsub" id="qsub"></p>
+    <div class="opts" id="opts"></div>
+    <button class="back" id="back" hidden>← Voltar</button>
+  </section>
+
+  <!-- ============ TELA 3: RESULTADO ============ -->
+  <section id="result" hidden aria-live="polite">
+    <div class="verdictbox">
+      <div class="score" id="scoreline"></div>
+      <div class="band" id="band"></div>
+      <p id="bandtext"></p>
+    </div>
+
+    <div class="findings" id="findings"></div>
+
+    <div class="flag" id="taxflag" hidden>
+      <h4>Prazo correndo agora</h4>
+      <p>Até <strong>30/09/2026</strong>, toda empresa do Simples Nacional precisa decidir se vai recolher o IBS e a CBS dentro da guia única ou por fora dela, valendo a partir de 2027. Você não sai do Simples em nenhuma das duas. Se o seu cliente é outra empresa, essa escolha muda o seu preço na prática — e é uma decisão comercial, não técnica. Quem não decidir em setembro fica na guia única no primeiro semestre de 2027 e só tem nova janela em março de 2027, valendo a partir de julho. <a href="https://www8.receita.fazenda.gov.br/simplesnacional/noticias/NoticiaCompleta.aspx?id=c739e03c-8482-473f-8e82-f38ec3b13637" target="_blank" rel="noopener">Regra na Receita Federal</a>.</p>
+    </div>
+
+    <div class="cta">
+      <h3>Quer que eu olhe o seu número?</h3>
+      <p>Me manda o resultado no WhatsApp. Eu te devolvo o primeiro passo pro seu maior vazamento — de graça, sem call, sem enrolação.</p>
+      <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Mandar meu resultado pra Bruna</a>
+      <p class="note">Vai abrir o WhatsApp com o seu resultado já escrito.</p>
+    </div>
+
+    <button class="btn btn-ghost" id="again" style="margin-top:14px">Refazer o diagnóstico</button>
+  </section>
+
+  <div class="sig">
+    <span>Bruna Souza · Mentora de Negócios · Código B</span>
+    <span>O segredo está no movimento</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var WA = "5533991467788";
+
+  var Q = [
+    { cat:"PF × PJ", label:"PF × PJ",
+      q:"No mês passado, alguma conta pessoal sua foi paga pela conta da empresa?",
+      sub:"Mercado, farmácia, escola, combustível, parcela do carro.",
+      opts:[
+        {t:"Nenhuma. As contas são separadas.", s:0},
+        {t:"Uma ou outra escapou.", s:1},
+        {t:"Direto. É tudo a mesma conta.", s:2}
+      ],
+      d:[ "Contas separadas. É a base de todo o resto.",
+          "Ainda escapa conta pessoal pela empresa. Cada uma some do custo e infla o lucro que você acha que tem.",
+          "Empresa e bolso são a mesma conta. Você não sabe se a empresa dá lucro — você só sabe se sobrou dinheiro." ] },
+
+    { cat:"Pró-labore", label:"Pró-labore",
+      q:"Existe um valor fixo que sai da empresa pra você todo mês?",
+      sub:"O seu pró-labore, não a retirada do dono quando dá.",
+      opts:[
+        {t:"Sim, valor fixo e sempre igual.", s:0},
+        {t:"Tenho um valor, mas mexo quando aperta.", s:1},
+        {t:"Tiro conforme a necessidade do mês.", s:2}
+      ],
+      d:[ "Pró-labore fixo. O seu custo está dentro da conta.",
+          "Você mexe no próprio pró-labore quando aperta. Nessas horas a empresa está te emprestando dinheiro e ninguém registra.",
+          "Você tira conforme a necessidade. Ou seja: o custo mais importante da empresa — você — não aparece em lugar nenhum." ] },
+
+    { cat:"Caixa", label:"Caixa",
+      q:"Agora, sem abrir nada: você sabe quanto tem na conta da empresa e quanto vence essa semana?",
+      sub:"Os dois números, de cabeça.",
+      opts:[
+        {t:"Sei os dois.", s:0},
+        {t:"Sei o saldo. O que vence, não.", s:1},
+        {t:"Não sei nenhum dos dois.", s:2}
+      ],
+      d:[ "Você sabe saldo e vencimento. Consegue decidir compra sem chutar.",
+          "Saldo você sabe; vencimento não. Saldo bom na segunda não significa nada se a folha cai na quinta.",
+          "Você não sabe nem o saldo nem o que vence. Toda compra desta semana vai ser decidida no escuro." ] },
+
+    { cat:"Estoque", label:"Estoque",
+      q:"Quantos meses de venda você tem parados em estoque hoje?",
+      sub:"Se vende R$ 20 mil por mês e tem R$ 60 mil em mercadoria, são 3 meses.",
+      opts:[
+        {t:"Até 1 mês.", s:0},
+        {t:"Entre 1 e 3 meses.", s:1},
+        {t:"Mais de 3 meses — ou eu não sei dizer.", s:2}
+      ],
+      d:[ "Estoque girando. O dinheiro está em movimento.",
+          "Entre 1 e 3 meses parados. Dá pra apertar sem perder venda nenhuma.",
+          "Mais de 3 meses parados, ou você não sabe. É dinheiro seu dormindo na prateleira enquanto falta caixa pro mês." ] },
+
+    { cat:"Compra", label:"Compra",
+      q:"Como você decide o que comprar do fornecedor?",
+      sub:"O critério real, não o ideal.",
+      opts:[
+        {t:"Por relatório de giro: o que vende, quanto vende.", s:0},
+        {t:"Pelo que eu sinto que está faltando.", s:1},
+        {t:"Pela oferta e pela condição que o vendedor traz.", s:2}
+      ],
+      d:[ "Compra baseada em giro. É assim que se faz.",
+          "Você compra pelo que sente que está faltando. Sentir acerta os campeões e erra a cauda — e a cauda é exatamente onde o dinheiro empoça.",
+          "Você compra pela oferta do vendedor. O vendedor é remunerado pelo que ele vende, não pelo que você gira." ] },
+
+    { cat:"Margem", label:"Margem",
+      q:"Você sabe quanto sobra de cada venda depois de tudo?",
+      sub:"Depois de aluguel, folha, taxa da maquininha, imposto e o seu pró-labore.",
+      opts:[
+        {t:"Sei, por produto ou por serviço.", s:0},
+        {t:"Sei no geral, no fim do mês.", s:1},
+        {t:"Não sei. Olho preço menos custo da mercadoria.", s:2}
+      ],
+      d:[ "Você sabe a margem por item. Dá pra mexer no mix com segurança.",
+          "Você sabe no geral, não por item. A média esconde: o campeão paga o prejuízo do resto e parece que está tudo bem.",
+          "Você olha preço menos custo da mercadoria. Existe uma chance real do seu produto mais vendido ser o que dá prejuízo." ] },
+
+    { cat:"Imposto", label:"Imposto",
+      q:"Nos últimos 12 meses, alguém sentou com você para revisar o que a sua empresa paga de imposto?",
+      sub:"Revisar o enquadramento e os números — não só entregar a guia.",
+      opts:[
+        {t:"Sim, revisamos e eu entendi o porquê.", s:0},
+        {t:"Meu contador cuida. A gente nunca conversou sobre isso.", s:1},
+        {t:"Não. Eu pago o que vem.", s:2}
+      ],
+      d:[ "Revisado nos últimos 12 meses. Bom.",
+          "Seu contador cuida e vocês nunca conversaram. Contador executa o que você decide; se você não decide, ele mantém o que está.",
+          "Você paga o que vem. Enquadramento errado é o vazamento mais silencioso que existe: sai todo mês na guia e ninguém questiona." ] }
+  ];
+
+  var answers = new Array(Q.length).fill(null);
+  var idx = 0;
+
+  var $ = function(id){ return document.getElementById(id); };
+  var intro=$("intro"), quiz=$("quiz"), result=$("result");
+
+  /* ---- ledger na abertura ---- */
+  function paintLedger(){
+    var html = "";
+    for (var i=0;i<Q.length;i++){
+      html += '<div class="row"><span class="num">0'+(i+1)+'</span>'+
+              '<span class="name">'+Q[i].label+'</span>'+
+              '<span class="fill"></span>'+
+              '<span class="verdict">a apurar</span></div>';
+    }
+    $("ledger-rows").innerHTML = html;
+  }
+  paintLedger();
+
+  /* ---- perguntas ---- */
+  var KEYS = ["A","B","C"];
+  function render(){
+    var q = Q[idx];
+    $("qn").textContent = idx+1;
+    $("qcat").textContent = q.cat;
+    $("qbar").style.width = Math.round(((idx+1)/Q.length)*100)+"%";
+    $("qtext").textContent = q.q;
+    $("qsub").textContent = q.sub;
+    var box = $("opts");
+    box.innerHTML = "";
+    q.opts.forEach(function(o,i){
+      var b = document.createElement("button");
+      b.className = "opt";
+      b.type = "button";
+      b.innerHTML = '<span class="key">'+KEYS[i]+'</span><span>'+o.t+'</span>';
+      b.addEventListener("click", function(){ answer(o.s); });
+      box.appendChild(b);
+    });
+    $("back").hidden = (idx === 0);
+    window.scrollTo({top:0, behavior:"instant"});
+  }
+
+  function answer(s){
+    answers[idx] = s;
+    if (idx < Q.length-1){ idx++; render(); }
+    else { show(); }
+  }
+
+  function sev(s){ return s===2 ? {c:"v-alert",t:"Crítico"} : s===1 ? {c:"v-warn",t:"Atenção"} : {c:"v-ok",t:"Ok"}; }
+
+  function show(){
+    var total = answers.reduce(function(a,b){ return a+b; }, 0);
+
+    var band, text;
+    if (total <= 3){
+      band = "Caixa sob controle";
+      text = "O básico está no lugar. O seu problema, se existe, é de crescimento — não de vazamento. Aqui a conversa muda: é preço, mix e capacidade, não faxina.";
+    } else if (total <= 8){
+      band = "Vazamento identificado";
+      text = "Tem dinheiro saindo por pontos específicos, e são pontos que se estancam sem você precisar vender um real a mais. É o cenário mais comum e o mais rápido de resolver.";
+    } else {
+      band = "Vazamento em vários pontos";
+      text = "Está saindo dinheiro por mais de um buraco ao mesmo tempo, e um alimenta o outro. Não adianta atacar tudo: existe uma ordem, e ela começa pelo item marcado como o pior abaixo.";
+    }
+    $("scoreline").textContent = "Pontuação " + total + " de 14";
+    $("band").textContent = band;
+    $("bandtext").textContent = text;
+
+    /* pior vazamento: maior nota, desempate pela ordem de prioridade */
+    var priority = [0,5,6,3,2,4,1]; // PF/PJ, Margem, Imposto, Estoque, Caixa, Compra, Pró-labore
+    var worst = priority.filter(function(i){ return answers[i] === 2; })[0];
+    if (worst === undefined) worst = priority.filter(function(i){ return answers[i] === 1; })[0];
+
+    var out = "";
+    for (var i=0;i<Q.length;i++){
+      var s = sev(answers[i]);
+      var isWorst = (i === worst);
+      out += '<div class="finding">'+
+               '<span class="tag '+s.c+'">'+(isWorst ? "Pior" : s.t)+'</span>'+
+               '<h3>0'+(i+1)+' · '+Q[i].label+'</h3>'+
+               '<p>'+Q[i].d[answers[i]]+'</p>'+
+             '</div>';
+    }
+    $("findings").innerHTML = out;
+    $("taxflag").hidden = (answers[6] === 0);
+
+    var worstLabel = (worst === undefined) ? "nenhum ponto crítico" : Q[worst].label;
+    var msg = "Bruna, fiz o diagnóstico das 7 perguntas no seu link.\n\n"+
+              "Resultado: "+band+" ("+total+"/14).\n"+
+              "Meu maior vazamento: "+worstLabel+".\n\n"+
+              "Quero saber qual é o primeiro passo.";
+    $("wa").href = "https://wa.me/"+WA+"?text="+encodeURIComponent(msg);
+
+    intro.hidden = true; quiz.hidden = true; result.hidden = false;
+    window.scrollTo({top:0, behavior:"instant"});
+  }
+
+  $("start").addEventListener("click", function(){
+    intro.hidden = true; result.hidden = true; quiz.hidden = false;
+    idx = 0; answers = new Array(Q.length).fill(null);
+    render();
+  });
+  $("back").addEventListener("click", function(){ if (idx>0){ idx--; render(); } });
+  $("again").addEventListener("click", function(){
+    idx = 0; answers = new Array(Q.length).fill(null);
+    result.hidden = true; quiz.hidden = true; intro.hidden = false;
+    window.scrollTo({top:0, behavior:"instant"});
+  });
+})();
+</script>
+</body>
+</html>
