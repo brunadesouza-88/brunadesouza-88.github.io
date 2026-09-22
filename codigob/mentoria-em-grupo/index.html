@@ -1,0 +1,155 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caminho do Dinheiro · mentoria em grupo · Bruna de Souza</title><meta name="description" content="Três meses para o seu caixa parar de sumir. Mentoria em grupo com a Bruna de Souza.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&display=swap">
+<style>
+:root{--tinta:#1C1A17;--creme:#F6F1E8;--papel:#FFFCF6;--ouro:#C49A1A;
+--corpo:rgba(28,26,23,.74);--linha:rgba(28,26,23,.12);
+--corpo-esc:rgba(246,241,232,.72);--linha-esc:rgba(246,241,232,.16)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--creme);color:var(--tinta);font-family:Archivo,-apple-system,Arial,sans-serif;
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.env{max-width:940px;margin:0 auto;padding:0 8%}
+@media(min-width:1100px){.env{padding:0 40px}}
+section{padding:84px 0}
+@media(max-width:600px){section{padding:54px 0}}
+.rot{font-family:Archivo;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--ouro);margin-bottom:16px}
+h1,h2,h3,.num{font-family:'Archivo Black',Archivo,Arial,sans-serif;font-weight:400}
+h1{font-size:clamp(32px,6.2vw,56px);line-height:1.1;letter-spacing:-.03em;margin-bottom:18px}
+h2{font-size:clamp(25px,4.4vw,38px);line-height:1.1;letter-spacing:-.03em;margin-bottom:16px}
+h3{font-size:19px;letter-spacing:-.02em;margin-bottom:8px;line-height:1.2}
+p{font-size:17px;line-height:1.45;color:var(--corpo);margin-bottom:15px;max-width:66ch}
+p.apoio{font-size:clamp(17px,2.2vw,20px);color:var(--tinta);max-width:58ch}
+b,strong{color:var(--tinta);font-weight:600}
+.num{font-size:clamp(40px,7.5vw,64px);line-height:1;letter-spacing:-.035em;color:var(--ouro);
+font-variant-numeric:tabular-nums}
+.num small{font-family:Archivo;font-weight:400;font-size:16px;color:var(--corpo);letter-spacing:0}
+.escuro{background:var(--tinta);color:var(--creme)}
+.escuro p{color:var(--corpo-esc)}.escuro b{color:var(--creme)}
+.escuro h1,.escuro h2,.escuro h3{color:var(--creme)}
+.escuro .cartao{background:rgba(246,241,232,.05);border-color:var(--linha-esc)}
+.escuro ul.l li{color:var(--corpo-esc)}
+.escuro .faq{border-color:var(--linha-esc)}
+.cartao{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:26px 28px}
+.grade{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(285px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(225px,1fr))}
+.destaque{background:var(--papel);border:1px solid var(--linha);border-left:4px solid var(--ouro);
+border-radius:14px;padding:32px 30px}
+.escuro .destaque{background:rgba(246,241,232,.05);border-color:var(--linha-esc);border-left-color:var(--ouro)}
+.btn{display:inline-block;background:var(--tinta);color:var(--creme);font-family:Archivo;font-weight:600;
+border-radius:8px;padding:16px 30px;text-decoration:none;font-size:15px;letter-spacing:.02em;margin-top:8px}
+.escuro .btn{background:var(--creme);color:var(--tinta)}
+.btn.linha{background:transparent;color:var(--tinta);border:1px solid var(--linha);font-weight:400}
+.escuro .btn.linha{color:var(--creme);border-color:var(--linha-esc)}
+ul.l{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+ul.l li{padding-left:20px;position:relative;font-size:16.5px;line-height:1.45;color:var(--corpo)}
+ul.l li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;background:var(--ouro)}
+.heroi{display:grid;grid-template-columns:1.12fr .88fr;gap:42px;align-items:center;padding:70px 0 74px}
+@media(max-width:780px){.heroi{grid-template-columns:1fr;gap:26px;padding:42px 0 48px}}
+.heroi img{width:100%;border-radius:12px;display:block}
+.prova{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:22px;
+border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:28px 0}
+.prova .n{font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:var(--ouro);line-height:1;
+letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.prova span{display:block;font-size:13.5px;color:var(--corpo);margin-top:6px;line-height:1.35}
+.passo{display:flex;gap:16px;margin-bottom:20px}
+.passo .i{font-family:'Archivo Black',Arial,sans-serif;font-size:22px;color:var(--ouro);line-height:1.2;flex:none;width:30px}
+.faq{border-top:1px solid var(--linha);padding:20px 0}
+.rodape{border-top:1px solid var(--linha);padding:32px 0 56px;font-family:Archivo;font-weight:600;
+font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+.fita{background:var(--tinta);color:var(--creme);text-align:center;font-family:Archivo;font-weight:600;
+font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:12px 18px}
+a{color:var(--tinta);text-decoration-color:var(--ouro);text-underline-offset:3px}
+</style></head><body>
+
+<div class="fita">Turma fechada · as vagas abrem por chamada</div>
+<div class="env">
+<div class="heroi">
+  <div>
+    <div class="rot">Caminho do Dinheiro · mentoria em grupo</div>
+    <h1>Três meses para o seu caixa parar de sumir.</h1>
+    <p class="apoio">A mesma ordem que eu uso na consultoria individual, agora em turma, com você executando na sua empresa entre um encontro e outro.</p>
+    <a class="btn" href="https://wa.me/5533991467788?text=Oi%2C%20Bruna.%20Eu%20quero%20entrar%20no%20Caminho%20do%20Dinheiro%2C%20a%20mentoria%20em%20grupo.%20Me%20conta%20como%20funciona." target="_blank" rel="noopener">Quero entrar na próxima turma</a>
+  </div>
+  <img src="../img/foto.jpg" alt="Bruna de Souza">
+</div>
+<div class="prova">
+  <div><div class="n">68</div><span>empresas atendidas desde outubro de 2023</span></div>
+  <div><div class="n">20</div><span>anos de mercado financeiro</span></div>
+  <div><div class="n">4</div><span>frentes corrigidas na ordem certa</span></div>
+</div>
+</div>
+
+<section><div class="env">
+<div class="rot">Para quem é</div>
+<h2>Para o dono de empresa que já entendeu que o problema não está na venda.</h2>
+<p>Você fatura. Você trabalha muito. E no fim do mês não sobra o que deveria sobrar. Você já tentou resolver sozinho, já comprou planilha, e o dinheiro continua sumindo pelo mesmo lugar.</p>
+<ul class="l">
+  <li>Você não sabe dizer, agora, quanto a sua empresa tem em caixa.</li>
+  <li>O seu preço foi montado olhando o concorrente.</li>
+  <li>Você paga o imposto que mandam pagar, sem conferir.</li>
+  <li>O dinheiro da empresa e o seu dinheiro estão na mesma conta.</li>
+</ul>
+<p>Se três dessas quatro são suas, a turma é para você.</p>
+</div></section>
+
+<section class="claro"><div class="env">
+<div class="rot">A Ordem do Caixa</div>
+<h2>A ordem importa mais do que o esforço.</h2>
+<p>Quase todo dono de empresa tenta arrumar as quatro frentes ao mesmo tempo, e por isso não termina nenhuma. O <b>Caminho do Dinheiro</b> segue uma ordem só, e essa ordem é o que faz o resultado aparecer já no primeiro mês.</p>
+<div class="grade g2" style="margin-top:26px">
+  <div class="cartao"><h3>1 · Enxergar</h3><p style="margin:0">Você monta o registro diário e vê, pela primeira vez, o caminho que o dinheiro faz dentro da sua empresa.</p></div>
+  <div class="cartao"><h3>2 · Separar</h3><p style="margin:0">A empresa deixa de pagar a sua conta pessoal. Você define o seu pró-labore e fecha as saídas fora da hora.</p></div>
+  <div class="cartao"><h3>3 · Precificar</h3><p style="margin:0">O preço passa a sair da sua conta: custo, despesa fixa e a margem que a sua empresa precisa para existir.</p></div>
+  <div class="cartao"><h3>4 · Sobrar</h3><p style="margin:0">Com as três de pé, a sobra aparece. E aí a gente decide o que fazer com ela.</p></div>
+</div>
+</div></section>
+
+<section><div class="env">
+<div class="rot">Como acontece</div>
+<h2>Encontro ao vivo, tarefa, e a sua empresa como material de aula.</h2>
+<div style="margin-top:26px">
+  <div class="passo"><div class="i">·</div><div><h3>Encontros ao vivo em grupo</h3><p>Eu abro a tela e a gente trabalha em cima de caso real. Você traz o número da sua empresa e ele entra na aula.</p></div></div>
+  <div class="passo"><div class="i">·</div><div><h3>Tarefa entre um encontro e outro</h3><p>Cada encontro termina com uma coisa para você fazer na sua empresa naquela semana. Sem tarefa feita, o encontro seguinte não rende.</p></div></div>
+  <div class="passo"><div class="i">·</div><div><h3>Canal de dúvida</h3><p>Entre os encontros você pergunta e eu respondo, para você não parar por causa de uma dúvida pequena.</p></div></div>
+  <div class="passo"><div class="i">·</div><div><h3>A planilha e o app de fluxo de caixa</h3><p>As mesmas ferramentas que eu uso na consultoria individual, já montadas, entram com você.</p></div></div>
+</div>
+</div></section>
+
+<section><div class="env">
+<div class="rot">Investimento</div>
+<div class="destaque">
+  <div class="num">R$5.000</div>
+  <p style="margin-top:14px" class="apoio">Pelos três meses inteiros, com os encontros ao vivo, o canal de dúvida e as ferramentas.</p>
+  <p>Para comparação honesta: o mesmo trabalho comigo, um a um, olhando só a sua empresa, é a mentoria individual de R$15.000. Na turma você paga um terço e traz a sua empresa junto.</p>
+  <a class="btn" href="https://wa.me/5533991467788?text=Oi%2C%20Bruna.%20Eu%20quero%20entrar%20no%20Caminho%20do%20Dinheiro%2C%20a%20mentoria%20em%20grupo.%20Me%20conta%20como%20funciona." target="_blank" rel="noopener">Quero entrar na próxima turma</a>
+</div>
+</div></section>
+
+<section class="claro"><div class="env">
+<div class="rot">Quem conduz</div>
+<h2>Bruna de Souza</h2>
+<p>Mais de vinte anos no mercado financeiro. Em outubro de 2023 eu saí da CLT, num momento de muita rejeição, e montei a minha empresa para atender outras empresas. Desde então foram 68.</p>
+<p>Uma cliente minha saiu de R$8 mil para R$70 mil de faturamento em oito meses. O primeiro mês inteiro foi só olhando para trás, para onde o dinheiro tinha ido.</p>
+</div></section>
+
+<section><div class="env">
+<div class="rot">Antes de entrar</div>
+<h2>Perguntas que sempre aparecem</h2>
+<div class="faq"><h3>A minha empresa é muito pequena para isso?</h3><p>Se ela fatura e o dinheiro some, ela tem tamanho. O ralo aparece cedo, e quanto antes você fecha, mais barato sai.</p></div>
+<div class="faq"><h3>Eu não entendo de número. Vou acompanhar?</h3><p>Vai. Eu não ensino contabilidade, eu ensino a enxergar o dinheiro da sua empresa. Se você sabe somar e subtrair, você acompanha.</p></div>
+<div class="faq"><h3>Qual a diferença para a consultoria individual?</h3><p>Na <a href="../consultoria/" style="color:var(--dourado)">consultoria</a> eu entro na sua empresa e mexo na operação com você, todo mês. Na turma eu ensino a ordem e você executa, com a minha correção.</p></div>
+<div class="faq"><h3>Não sei se o meu problema é esse.</h3><p>Faça o <a href="../diagnostico/" style="color:var(--dourado)">diagnóstico de negócio</a>. São quinze perguntas e três minutos, e ele aponta onde está o seu ralo.</p></div>
+</div></section>
+
+<section><div class="env"><div class="destaque">
+<h2>A próxima turma abre em breve.</h2>
+<p class="apoio">Me manda uma mensagem dizendo qual é a sua área e há quanto tempo o dinheiro está sumindo. Eu te aviso quando as vagas abrirem.</p>
+<a class="btn" href="https://wa.me/5533991467788?text=Oi%2C%20Bruna.%20Eu%20quero%20entrar%20no%20Caminho%20do%20Dinheiro%2C%20a%20mentoria%20em%20grupo.%20Me%20conta%20como%20funciona." target="_blank" rel="noopener">Quero entrar na próxima turma</a>
+</div></div></section>
+
+<div class="env"><div class="rodape">Bruna de Souza · Mentora de Negócios · Código B</div></div>
+</body></html>
