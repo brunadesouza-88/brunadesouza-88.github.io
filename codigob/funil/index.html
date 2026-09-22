@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="../favicon.png" type="image/png">
+<title>Sobra no Caixa</title>
+<meta name="description" content="21 dias, 15 minutos por dia, pra saber pra onde vai o dinheiro da sua empresa e sobrar mais no fim do mês.">
+<meta property="og:title" content="Sobra no Caixa">
+<meta property="og:description" content="A Ordem do Caixa em 21 dias. A sequência que mostra pra onde vai o dinheiro da sua empresa.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&display=swap">
+<style></style>
+<style>
+h1,h2,h3,h4{letter-spacing:-.05em}
+body{letter-spacing:-.02em}
+
+::selection{background:#C49A1A;color:#1C1A17}
+.btn-cta:focus-visible,a:focus-visible{outline:2px solid #1C1A17;outline-offset:3px}
+h1,h2{text-wrap:balance}
+
+.texture-grain,.texture-dots,.texture-lines,.texture-radial-dark,.texture-radial-light{background-image:none}
+
+:root{
+  --color-white:#FFFCF6; --color-bg:#F6F1E8; --color-text:#1C1A17;
+  --color-text-secondary:rgba(28,26,23,.74); --color-text-muted:rgba(28,26,23,.74);
+  --color-border:rgba(28,26,23,.12);
+
+  --amarelo:#C49A1A; --veu:rgba(28,26,23,.25);
+  --acento:#C49A1A;
+
+  --espiral:#1C1A17; --espiral-soft:rgba(28,26,23,.12); --espiral-light:#FFFCF6;
+  --espiral-surface:#FFFCF6; --espiral-ink:#1C1A17;
+
+  --cta-verde:#C49A1A; --cta-verde-esc:#C49A1A;
+
+  --font-display:"Archivo Black","Archivo","Arial",sans-serif;
+  --font-ui:"Archivo","Arial",sans-serif;
+
+  --radius:1rem;
+  --shadow-card:0 2px 16px rgba(28,26,23,.06);
+  --shadow-hover:0 12px 40px rgba(28,26,23,.12);
+  --ease:cubic-bezier(.2,.7,.3,1); --dur-card:220ms; --dur-btn:180ms;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--color-bg);color:var(--color-text);font-family:var(--font-ui);
+     -webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+h2{font-family:var(--font-display);font-weight:700;letter-spacing:normal}
+h1,h3{font-family:var(--font-ui);font-weight:700;letter-spacing:normal}
+
+.container{width:100%;max-width:760px;margin-inline:auto;padding-inline:1rem}
+.container-sm{width:100%;max-width:560px;margin-inline:auto;padding-inline:1rem}
+.text-center{text-align:center}
+.text-balance{text-wrap:balance}
+.serif{font-family:var(--font-display)}
+
+@keyframes surge{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.scroll-animate{opacity:0}
+.scroll-animate.is-visible{animation:surge 420ms var(--ease) forwards}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .scroll-animate{opacity:1}}
+
+.section-label{display:inline-flex;align-items:center;padding:6px 12px;border-radius:999px;
+  background:var(--amarelo);color:var(--color-text);font-weight:700;font-size:.7rem;
+  letter-spacing:.12em;text-transform:uppercase;line-height:1;margin-bottom:.5rem}
+.section-label.light{background:var(--amarelo);color:var(--color-text)}
+
+.btn-cta{display:inline-block;background:var(--cta-verde);color:#1C1A17;font-family:var(--font-ui);
+  font-weight:700;font-size:1rem;padding:1rem 2rem;border-radius:9999px;text-align:center;
+  box-shadow:0 6px 18px rgba(28,26,23,.26);
+  transition:background var(--dur-btn) var(--ease),transform var(--dur-btn) var(--ease),
+             box-shadow var(--dur-btn) var(--ease)}
+.btn-cta:hover{background:var(--cta-verde-esc);transform:translateY(-1px);
+  box-shadow:0 10px 24px rgba(28,26,23,.32)}
+.btn-cta:focus-visible{outline:2px solid var(--color-text);outline-offset:3px}
+.btn-cta.full{display:block;width:100%}
+
+.bullet-list{display:flex;flex-direction:column;gap:.5rem}
+.bullet-list li{display:flex;align-items:flex-start;gap:8px;font-size:.875rem;line-height:1.6;
+  color:var(--color-text-secondary)}
+.bullet-list li::before{content:'\2714';flex:none;color:var(--espiral);font-size:.875rem;line-height:1.6}
+.bullet-list.light li{color:var(--color-text-secondary)}
+.check-list{display:flex;flex-direction:column;gap:.75rem}
+.check-item{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;line-height:1.6;
+  color:var(--color-text-secondary)}
+.check-item .icon{flex:0 0 auto;width:20px;height:20px;margin-top:2px;border-radius:50%;
+  background:var(--espiral);color:#fff;font-size:11.2px;line-height:1;
+  display:flex;align-items:center;justify-content:center}
+.check-item.light .icon{background:var(--espiral)}
+
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:2.5rem 1rem;background:var(--color-bg)}
+#hero .hero-copy{max-width:480px;margin:0 auto 1.25rem;text-align:center}
+#hero .hero-copy h1{font-family:var(--font-ui);font-weight:400;color:var(--color-text);
+  font-size:17px;line-height:1.4;letter-spacing:normal;
+  display:inline;background:var(--amarelo);
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  padding:.14em .3em;border-radius:.15em}
+#hero .hero-copy h1 u{text-decoration:none;background:none}
+#hero .hero-copy h1 strong{font-weight:700}
+#hero .hero-copy h1 span{color:var(--espiral-ink)}
+#hero .player-wrap{width:100%;max-width:320px;margin-inline:auto}
+.player-slot{width:100%;padding-top:177.7777%;position:relative;background:#000;
+  border-radius:.75rem;overflow:hidden;display:flex;align-items:center;justify-content:center}.player-aviso{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border:1px dashed rgba(246,241,232,.32);border-radius:14px;text-align:center;padding:20px}.player-aviso span{font-family:"Archivo Black",Archivo,Arial,sans-serif;font-size:19px;color:#F6F1E8;letter-spacing:-.02em}.player-aviso small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#C49A1A}
+
+#cta1{background:var(--color-bg);padding-block:2.5rem;text-align:center}
+.nota{color:var(--color-text-muted);font-size:.75rem;margin-top:.75rem}
+
+#social-proof{background:var(--color-white);padding-block:4rem}
+#social-proof h2{font-size:1.6rem;line-height:1.3;color:var(--color-text)}
+.testimonials-grid{display:grid;gap:1.25rem;grid-template-columns:1fr}
+@media(min-width:560px){.testimonials-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.testimonials-grid{grid-template-columns:repeat(4,1fr)}}
+.testimonial-card{background:var(--color-white);border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 2px 12px rgba(28,26,23,.08);
+  transition:transform var(--dur-card) var(--ease),box-shadow var(--dur-card) var(--ease)}
+.testimonial-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.testimonial-card .img-wrap{position:relative;width:100%;padding-top:100%;overflow:hidden;
+  background:var(--espiral-surface)}
+.testimonial-card .img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.testimonial-card .img-overlay{position:absolute;bottom:0;left:0;right:0;height:96px;
+  background:linear-gradient(to top,rgba(28,26,23,.86),transparent)}
+.testimonial-card .img-info{position:absolute;bottom:.75rem;left:1rem;right:1rem}
+.testimonial-card .img-info .name{color:#fff;font-weight:700;font-size:.875rem;line-height:1.3}
+.testimonial-card .img-info .tag{color:var(--amarelo);font-size:.75rem;margin-top:.2rem}
+.testimonial-card .body{padding:1rem;font-size:.875rem;line-height:1.6;color:var(--color-text-secondary)}
+
+#promise{background:var(--espiral-light);padding-block:4rem}
+#promise h2{font-size:1.6rem;line-height:1.3;margin-bottom:1rem}
+#promise h2 span{color:var(--espiral-ink)}
+#promise .lead{font-size:.95rem;line-height:1.7;color:var(--color-text-secondary);margin-bottom:2rem}
+#promise .objection-box{background:var(--color-white);border-radius:var(--radius);padding:1.5rem;
+  margin-bottom:2rem;box-shadow:var(--shadow-card)}
+#promise .objection-box p{font-size:.875rem;font-weight:700;margin-bottom:1rem}
+#promise .results{font-size:.95rem;font-weight:700;margin-bottom:1.5rem}
+#promise .caption{font-size:.875rem;color:var(--color-text-muted);text-align:center;margin-top:2rem;
+  font-weight:700;text-decoration:underline;text-underline-offset:.18em}
+
+#what-you-get{background:var(--color-white);padding-block:4rem}
+#what-you-get h2{font-size:1.6rem;line-height:1.3;margin-bottom:.75rem}
+#what-you-get .lead{font-size:.95rem;line-height:1.7;color:var(--color-text-secondary);margin-bottom:2rem}
+.modules-grid{display:grid;gap:1.25rem}
+@media(min-width:640px){.modules-grid{grid-template-columns:repeat(2,1fr)}}
+.module-card{background:var(--color-white);border:1px solid var(--espiral-soft);
+  border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-card);
+  transition:transform var(--dur-card) var(--ease),box-shadow var(--dur-card) var(--ease),
+             border-color var(--dur-card) var(--ease)}
+.module-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);
+  border-color:var(--espiral-soft)}
+.module-card h3{font-size:.95rem;font-weight:700;margin-bottom:.75rem}
+.module-card h3 span{color:var(--espiral)}
+.module-card.full-width{grid-column:1/-1}
+.module-card p{font-size:.875rem;line-height:1.6;color:var(--color-text-secondary);margin-bottom:.75rem}
+
+#how-it-works{background:var(--color-bg);padding-block:4rem}
+#how-it-works h2{font-size:1.6rem;line-height:1.3;margin-bottom:2.5rem}
+.timeline{display:flex;flex-direction:column;gap:2rem;position:relative}
+.timeline::before{content:'';position:absolute;left:23px;top:24px;bottom:24px;width:2px;
+  border-radius:999px;display:none;
+  background:linear-gradient(to bottom,var(--espiral-surface),var(--espiral-soft) 30%,var(--espiral))}
+@media(min-width:640px){.timeline::before{display:block}}
+.timeline-item{display:flex;gap:1.5rem}
+.timeline-num{flex:none;position:relative;z-index:1;width:48px;height:48px;border-radius:50%;
+  background:var(--espiral-surface);color:var(--espiral-ink);font-family:var(--font-display);
+  font-weight:700;font-size:1.1rem;display:none;align-items:center;justify-content:center}
+@media(min-width:640px){.timeline-num{display:flex}}
+.timeline-num.dark{background:var(--espiral-ink);color:#fff}
+.timeline-card{flex:1;background:var(--color-white);border-radius:var(--radius);padding:1.5rem;
+  box-shadow:var(--shadow-card)}
+.timeline-card .days{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--espiral-ink);margin-bottom:.4rem}
+.timeline-card h3{font-size:1rem;font-weight:700;margin-bottom:.6rem}
+.timeline-card p{font-size:.875rem;line-height:1.6;color:var(--color-text-secondary);margin-bottom:.75rem}
+.difficult-box{background:var(--espiral-light);border-radius:var(--radius);padding:2rem;margin-top:2rem;
+  border-left:4px solid var(--acento)}
+.difficult-box h3{font-size:1.3rem;margin-bottom:.75rem}
+.difficult-box p{font-size:.875rem;line-height:1.6;color:var(--color-text-secondary);margin-bottom:1rem}
+.after-box{background:var(--color-white);border-radius:var(--radius);padding:2rem;margin-top:1.5rem;
+  box-shadow:var(--shadow-card);border-left:4px solid var(--acento)}
+.after-box h3{font-size:1.4rem;margin-bottom:.75rem}
+.after-box p{font-size:.875rem;line-height:1.6;color:var(--color-text-secondary);margin-bottom:1rem}
+
+#offer{background:var(--color-bg);padding-block:4rem}
+#offer .section-label{display:block;width:fit-content;margin-inline:auto}
+#offer h2{font-size:1.6rem;line-height:1.3;margin-bottom:1.5rem;text-align:center}
+.price-ladder{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;
+  margin-bottom:2rem;color:var(--color-text-muted)}
+.price-ladder .small{font-size:.9rem}
+.price-ladder .old{font-family:var(--font-display);font-size:2.2rem;font-weight:700;
+  color:var(--color-text-muted);text-decoration:line-through}
+.offer-card{background:var(--color-white);border-radius:1.5rem;padding:2.5rem 2rem;
+  box-shadow:0 8px 40px rgba(28,26,23,.10);text-align:center;border-top:4px solid var(--acento)}
+.offer-card .offer-label{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--espiral-ink);margin-bottom:.75rem;line-height:1.6}
+.offer-card .installment{color:var(--color-text-muted);font-size:.875rem;margin-bottom:.25rem}
+.offer-card .price-main{font-family:var(--font-display);font-size:3.5rem;font-weight:700;line-height:1;
+  letter-spacing:-.03em;margin-bottom:.25rem}
+.offer-card .price-or{color:var(--color-text-muted);font-size:.875rem;margin-bottom:.5rem}
+.offer-card .price-cash{font-family:var(--font-display);font-size:2.2rem;font-weight:700;margin-bottom:1.25rem}
+.offer-card .price-note{font-size:.875rem;line-height:1.6;color:var(--color-text-secondary);margin-bottom:1.5rem}
+
+#guarantee{background:var(--color-white);padding-block:4rem}
+.guarantee-flex{display:flex;flex-direction:column;align-items:center;gap:2rem;margin-bottom:2rem}
+@media(min-width:640px){.guarantee-flex{flex-direction:row;align-items:flex-start}}
+.guarantee-badge{flex:none;width:112px;height:112px;border-radius:999px;background:var(--amarelo);
+  color:var(--espiral-ink);font-family:var(--font-display);font-weight:700;font-size:1.1rem;
+  line-height:1.3;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#guarantee h2{font-size:1.6rem;margin-bottom:.75rem}
+#guarantee p{font-size:.875rem;line-height:1.6;color:var(--color-text-secondary);margin-bottom:.75rem}
+.secure-box{background:var(--color-bg);border-radius:var(--radius);padding:1.5rem}
+.secure-box h3{font-size:.95rem;font-weight:700;margin-bottom:.75rem}
+.secure-box p{font-size:.875rem;line-height:1.6;color:var(--color-text-secondary);margin-bottom:.75rem}
+
+#recap{background:var(--color-bg);padding-block:4rem}
+#recap h2{font-size:1.6rem;line-height:1.3;margin-bottom:.5rem;text-align:center}
+#recap .sub{font-size:.95rem;color:var(--color-text-secondary);text-align:center;margin-bottom:1.5rem}
+.recap-box{background:var(--color-white);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-card)}
+.recap-divider{border:none;border-top:1px solid var(--color-border);margin-block:1.25rem}
+.recap-box .bonus-label{font-size:.875rem;color:var(--color-text-muted);margin-bottom:.75rem}
+.recap-bonus-item{display:flex;align-items:flex-start;gap:.75rem;font-size:.9rem;font-weight:700;
+  margin-bottom:.5rem}
+.recap-bonus-item::before{content:'+';font-size:1rem;color:var(--espiral);flex:none}
+.recap-note{text-align:center;font-size:.875rem;color:var(--color-text-secondary);margin-top:1.25rem}
+.recap-note strong{color:var(--color-text)}
+
+#final-cta{background:var(--color-white);padding-block:4rem;text-align:center}
+#final-cta h2{font-size:1.6rem;line-height:1.3;margin-bottom:1rem}
+#final-cta p{font-size:.95rem;line-height:1.7;color:var(--color-text-secondary);margin-bottom:2rem}
+#final-cta .note{color:var(--color-text-muted);font-size:.75rem;margin-top:1rem}
+
+#authority{background:var(--color-bg);padding-block:3rem}
+#authority .label{display:block;width:fit-content;margin:0 auto 1.5rem;padding:6px 12px;
+  border-radius:999px;background:var(--amarelo);color:var(--color-text);font-size:.7rem;
+  font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.authority-card{background:var(--color-white);border-radius:1.5rem;overflow:hidden;
+  box-shadow:0 4px 30px rgba(28,26,23,.10)}
+.authority-inner{display:flex;flex-direction:column}
+@media(min-width:640px){.authority-inner{flex-direction:row}}
+.authority-photo{position:relative;width:100%;flex:none;background:var(--espiral-surface)}
+@media(min-width:640px){.authority-photo{width:300px}}
+.authority-photo img{display:block;width:100%;height:460px;object-fit:cover;object-position:top center}
+@media(min-width:640px){.authority-photo img{height:100%;min-height:420px}}
+.authority-photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,var(--veu) 0%,var(--veu) 42%,rgba(28,26,23,.8) 100%)}
+.authority-nome{position:absolute;z-index:1;left:24px;right:24px;bottom:24px;text-align:left}
+.authority-nome h2{font-size:clamp(60px,19vw,80px);line-height:.92;letter-spacing:-.05em;
+  text-align:left;color:var(--amarelo);margin:0 0 10px}
+.authority-nome h2 span{display:block}
+.authority-nome h2 .n1{font-weight:700}
+.authority-nome h2 .n2{font-weight:300}
+.authority-nome .autora{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  line-height:1;color:var(--amarelo);margin:0 0 6px}
+.authority-nome .crm{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  line-height:1.4;color:var(--amarelo);margin:0}
+.authority-text{background:var(--color-white);padding:1.5rem}
+.authority-text p{font-size:.875rem;line-height:1.7;color:var(--color-text-secondary);margin-bottom:.75rem}
+.authority-text strong{color:var(--color-text);font-weight:700}
+
+footer{background:var(--color-white);border-top:1px solid var(--color-border);
+  padding-block:2rem;text-align:center}
+footer p{color:var(--color-text-muted);font-size:.75rem;line-height:1.6}
+
+#hero .hero-copy h1,#social-proof h2,#promise h2,#what-you-get h2,#how-it-works h2,
+#offer h2,#guarantee h2,#recap h2,#final-cta h2,.authority-text h2,
+.difficult-box h3,.after-box h3{text-align:center}
+#promise .section-label,#social-proof .section-label,#what-you-get .section-label,
+#recap .section-label{display:block;width:fit-content;margin-inline:auto}
+#promise .lead,#what-you-get .lead,#guarantee p{text-align:center}
+#promise .results,#what-you-get .modules-grid,#promise .objection-box{text-align:left}
+</style>
+
+<body>
+<section id="hero"><div class="hero-copy"><h1>A <u>ordem de 21 dias</u> que mostra pra onde vai o dinheiro da sua empresa e faz <strong>sobrar mais</strong> no fim do mês</h1></div>
+<div class="player-wrap"><div class="player-slot"><div class="player-aviso"><span>o seu vídeo entra aqui</span><small>cole aqui o código do seu player</small></div><!-- COLE AQUI O EMBED DO SEU VÍDEO (Panda, Vturb, YouTube) e apague a div player-aviso acima --></div></div></section>
+<div id="cta1" style="text-align:center"><div class="container-sm">
+<a data-cta="1" class="btn-cta">Quero organizar o caixa da minha empresa agora</a><p class="nota">Acesso imediato e vitalício · Garantia de 30 dias</p></div></div>
+<section id="social-proof"><div class="container">
+<div class="text-center" style="margin-bottom:2.5rem"><p class="section-label scroll-animate">Resultados reais</p>
+<h2 class="serif scroll-animate text-balance">Prova de que a Ordem do Caixa funciona</h2></div>
+<div class="testimonials-grid">
+<article class="testimonial-card scroll-animate" style="animation-delay:.0s"><div class="img-wrap">
+<!-- print: preencher depois -->
+<div class="img-overlay"></div><div class="img-info"><p class="name">Uma cliente da Bruna</p><p class="tag">De R$8 mil para R$70 mil em 8 meses</p></div></div><div class="body">Sem mudar de ramo e sem contratar mais gente, ela corrigiu o preço, o custo que tinha subido e o atraso no recebimento. Corrigindo só esses três pontos, o faturamento saltou em 8 meses.</div></article>
+<article class="testimonial-card scroll-animate" style="animation-delay:.15s"><div class="img-wrap">
+<!-- foto: preencher depois -->
+<div class="img-overlay"></div><div class="img-info"><p class="name">68 empresas atendidas</p><p class="tag">Desde outubro de 2023</p></div></div><div class="body">Padaria, clínica, loja, prestadora de serviço. Cada empresa que senta com a Bruna passa pela mesma ordem: entender, organizar e mudar.</div></article>
+<article class="testimonial-card scroll-animate" style="animation-delay:.30s"><div class="img-wrap">
+<!-- foto: preencher depois -->
+<div class="img-overlay"></div><div class="img-info"><p class="name">Mais de 20 anos</p><p class="tag">De mercado financeiro</p></div></div><div class="body">A Bruna passou duas décadas olhando o número de empresa de perto, o número de verdade, antes mesmo de montar a própria empresa para atender outras empresas.</div></article>
+<article class="testimonial-card scroll-animate" style="animation-delay:.45s"><div class="img-wrap">
+<!-- foto: preencher depois -->
+<div class="img-overlay"></div><div class="img-info"><p class="name">Outubro de 2023</p><p class="tag">A saída da CLT</p></div></div><div class="body">Num momento de muita rejeição, a Bruna se encorajou, saiu da CLT e montou uma empresa para atender outras empresas. De lá pra cá, 68 negócios já passaram pela mesma ordem.</div></article>
+</div></div></section>
+<section id="promise"><div class="container">
+<h2 class="scroll-animate text-balance">Pare de trabalhar o mês inteiro sem saber pra onde vai o dinheiro da sua empresa</h2><p class="lead scroll-animate">Aplicando a Ordem do Caixa, a mesma sequência que a Bruna usa há mais de 20 anos: entender os números, organizar o fluxo de caixa e mudar o hábito financeiro que estava comendo o lucro.</p>
+<div class="objection-box scroll-animate"><p>Mesmo que você:</p><ul class="check-list"><li class="check-item light"><span class="icon">✓</span>já tenha contratado outra consultoria e voltado pro mesmo aperto</li><li class="check-item light"><span class="icon">✓</span>trabalhe o dia inteiro e sinta que sobra pouco dinheiro</li><li class="check-item light"><span class="icon">✓</span>não saiba, hoje, pra onde vai o dinheiro da sua empresa</li><li class="check-item light"><span class="icon">✓</span>sinta a empresa desorganizada por dentro</li></ul></div>
+<p class="lead scroll-animate">A Ordem do Caixa foi criada pra empresário que já tem experiência no negócio, mas não consegue crescer porque não consegue organizar o dinheiro da empresa.</p><p class="results scroll-animate">E ela já ajudou 68 empresas a:</p>
+<div class="scroll-animate"><ul class="check-list"><li class="check-item light"><span class="icon">✓</span>saber, todo dia, pra onde vai o dinheiro da empresa</li><li class="check-item light"><span class="icon">✓</span>corrigir o preço que estava abaixo do custo real</li><li class="check-item light"><span class="icon">✓</span>organizar o fluxo de caixa sem depender de planilha complicada</li><li class="check-item light"><span class="icon">✓</span>sair de um faturamento apertado pra um faturamento maior, como a cliente que foi de R$8 mil pra R$70 mil</li><li class="check-item light"><span class="icon">✓</span>ter mais dinheiro sobrando no fim do mês</li></ul></div>
+<p class="caption scroll-animate">Como aconteceu com empresas reais que aplicaram a Ordem do Caixa.</p></div></section>
+<section id="what-you-get"><div class="container">
+<p class="section-label scroll-animate">O que está incluído</p><h2 class="scroll-animate">O que você recebe ao entrar hoje no Sobra no Caixa</h2><p class="lead scroll-animate">Ao entrar hoje, você recebe o Sobra no Caixa completo na sua área de membros, com os 21 dias na ordem certa e uma instrução por dia, pra você aplicar direto no caixa da sua empresa.</p>
+<div class="modules-grid">
+<div class="module-card scroll-animate" style="animation-delay:.0s"><h3>✔ As 3 semanas da Ordem do Caixa</h3><p>Na primeira semana você entende os números reais da sua empresa. Na segunda, organiza o fluxo de caixa dia a dia. Na terceira, aplica a mudança que corrige o furo.</p></div>
+<div class="module-card scroll-animate" style="animation-delay:.1s"><h3>✔ A planilha e o app de fluxo de caixa prontos</h3><p>O mesmo material que a Bruna já usa com as empresas que atende, pra você lançar o que entra e o que sai todo dia, sem programar nada.</p></div>
+<div class="module-card scroll-animate" style="animation-delay:.2s"><h3>✔ Uma instrução por dia, 15 minutos</h3><p>Antes de abrir o primeiro cliente do dia, ou no fim do expediente, você abre a planilha ou o app, lança o caixa e segue a instrução daquele dia.</p><ul class="bullet-list"><li>o que lançar</li><li>onde lançar</li><li>o que mudar naquele dia</li></ul></div>
+<div class="module-card scroll-animate" style="animation-delay:.3s"><h3>✔ O diagnóstico completo da sua empresa</h3><p>Nos primeiros dias você descobre se o preço que cobra cobre o custo real, qual é a margem de cada venda e se a empresa deu lucro ou prejuízo no último mês.</p></div>
+<div class="module-card full-width scroll-animate" style="animation-delay:.4s"><h3>✔ Acesso imediato e vitalício</h3><p>Em segundos está tudo na sua área de membros, e fica seu para sempre. O hábito que você constrói nos 21 dias continua rodando na sua empresa depois que o plano termina, sem mensalidade.</p></div>
+</div></div></section>
+<section id="how-it-works"><div class="container">
+<p class="section-label text-center scroll-animate">Passo a passo</p><h2 class="text-center scroll-animate">Como funciona a Ordem do Caixa</h2><div class="timeline">
+<div class="timeline-item scroll-animate"><div class="timeline-num">1</div><div class="timeline-card">
+<p class="days">Passo 1</p><h3>Entender</h3>
+<p>Você abre a planilha ou o app de fluxo de caixa e responde uma pergunta direta: quanto entrou e quanto saiu da sua empresa na última semana. Não é o número bonito do relatório, é o número de verdade.</p>
+<ul class="bullet-list"><li>quanto entra e quanto sai de verdade</li><li>se o preço cobre o custo real</li><li>a margem real de cada venda</li></ul>
+</div></div>
+<div class="timeline-item scroll-animate"><div class="timeline-num">2</div><div class="timeline-card">
+<p class="days">Passo 2</p><h3>Organizar</h3>
+<p>Você separa, dia a dia, o que é fixo do que é variável, até o furo aparecer na sua frente, o mesmo furo que ficava escondido no meio de lançamentos soltos.</p>
+<ul class="bullet-list"><li>fluxo de caixa lançado todo dia</li><li>entrada separada da saída</li><li>o furo do caixa à mostra</li></ul>
+</div></div>
+<div class="timeline-item scroll-animate"><div class="timeline-num dark">3</div><div class="timeline-card">
+<p class="days">Passo 3</p><h3>Mudar</h3>
+<p>Você corrige o preço que estava errado, corta ou renegocia o que não fazia sentido, e transforma o lançamento diário num hábito que continua depois do dia 21.</p>
+<ul class="bullet-list"><li>preço corrigido</li><li>hábito financeiro no lugar</li><li>mais dinheiro sobrando</li></ul>
+</div></div>
+</div>
+<div class="difficult-box scroll-animate"><h3>Mesmo que você já tenha tentado</h3><p>O Sobra no Caixa foi feito pra quem já tentou:</p><ul class="bullet-list light"><li>contratar outra consultoria</li><li>organizar o financeiro sozinho</li><li>abrir uma planilha e parar de preencher em duas semanas</li></ul><p style="margin-top:1rem">Você tinha experiência no negócio e tinha vontade de organizar, e mesmo assim voltava pro mesmo aperto no fim do mês. Faltava a ordem certa, entender, organizar e mudar, só isso.</p></div>
+<div class="after-box scroll-animate"><h3>Depois dos 21 dias</h3><p>Você fica com acesso à planilha, ao app e aos 21 dias pra sempre, sem mensalidade:</p><ul class="bullet-list"><li>o hábito de lançar o caixa continua</li><li>o preço corrigido continua valendo</li><li>o caixa em ordem vira rotina, não mais urgência</li></ul><p style="margin-top:1rem">Sem precisar contratar um acompanhamento individual de R$15 mil pra manter o caixa organizado.</p></div>
+</div></section>
+<section id="offer"><div class="container-sm text-center">
+<p class="section-label light scroll-animate">Oferta especial de hoje</p><h2 class="scroll-animate">Quanto custaria isso fora daqui?</h2>
+<div class="price-ladder scroll-animate"><p>Uma mentoria individual pro seu negócio, olhando de perto assim, custa hoje:</p><p class="old">R$15.000</p><p class="small" style="margin-top:1rem;color:var(--color-text);font-weight:700">Mas hoje você não vai pagar nada disso.</p></div>
+<div class="offer-card scroll-animate"><p class="offer-label">HOJE, PARA ENTRAR NO SOBRA NO CAIXA, VOCÊ INVESTE APENAS:</p><p class="installment">Em até</p><p class="price-main">12x de R$29,70</p><p class="price-or">ou</p><p class="price-cash">R$297 à vista</p><p class="price-note">R$297 é cerca de 50 vezes menor do que uma mentoria individual pro seu negócio. E pode ser o valor que acha o furo que está comendo o dinheiro da sua empresa todo mês.</p><a data-cta="2" class="btn-cta full">Quero começar agora o Sobra no Caixa</a><p class="nota">Acesso imediato e vitalício</p></div>
+</div></section>
+<section id="guarantee"><div class="container">
+<div class="guarantee-flex"><div class="guarantee-badge"><span>30</span><span style="font-size:12px;font-weight:400">dias</span><span style="font-size:11px;font-weight:400">garantia</span></div><div>
+<h2 class="scroll-animate">Garantia total de 30 dias</h2><p class="scroll-animate">Você tem 30 dias de garantia incondicional. O Sobra no Caixa dura 21 dias. Ou seja:</p><ul class="bullet-list"><li>você pode aplicar os 21 dias</li><li>lançar o caixa todo dia</li><li>e decidir bem depois</li></ul><p class="scroll-animate" style="margin-top:1rem">E se decidir que não valeu a pena: manda uma mensagem dentro do prazo. Sem pergunta, sem justificativa. Dinheiro de volta.</p></div></div>
+<div class="secure-box scroll-animate"><h3>Compra 100% segura</h3><p>O acesso é 100% seguro, feito por uma das maiores plataformas de produtos digitais da América Latina. Sua compra é:</p><ul class="bullet-list"><li>protegida</li><li>criptografada</li><li>com garantia oficial da plataforma</li></ul></div></div></section>
+<section id="recap"><div class="container-sm">
+<h2 class="scroll-animate">Recapitulando</h2><p class="sub scroll-animate">Hoje você recebe:</p>
+<div class="recap-box scroll-animate"><ul class="check-list"><li class="check-item"><span class="icon">✓</span>As 3 semanas da Ordem do Caixa</li><li class="check-item"><span class="icon">✓</span>A planilha e o app de fluxo de caixa prontos</li><li class="check-item"><span class="icon">✓</span>Uma instrução por dia, 15 minutos</li><li class="check-item"><span class="icon">✓</span>O diagnóstico completo da sua empresa</li></ul><hr class="recap-divider"><p class="recap-note">Tudo isso com 30 dias de garantia total.</p></div></div></section>
+<section id="final-cta"><div class="container-sm">
+<h2 class="scroll-animate text-balance">Clique no botão abaixo e comece hoje</h2><p class="scroll-animate">O Sobra no Caixa foi feito pra ser aplicado, dia a dia, dentro da sua empresa. Fechar essa página não faz o dinheiro parar de escapar da sua empresa.</p><a data-cta="3" class="btn-cta">Quero começar agora o Sobra no Caixa</a><p class="note">Acesso imediato e vitalício</p></div></section>
+<section id="authority"><div class="container">
+<p class="label scroll-animate">Quem foi que criou o Sobra no Caixa?</p><div class="authority-card scroll-animate"><div class="authority-inner">
+<div class="authority-photo"><img src="../img/foto.jpg" alt="Bruna de Souza Castro"><div class="authority-nome"><h2><span class="n1">bruna</span><span class="n2">castro</span></h2><p class="autora">mentora</p><p class="crm">Mercado financeiro · Mentora de negócios</p></div></div>
+<div class="authority-text">
+<p>Outubro de 2023. A Bruna tinha acabado de sair da CLT, num momento de muita rejeição, e decidiu montar a própria empresa para atender outras empresas.</p>
+<p>Ela já tinha mais de 20 anos de mercado financeiro, vendo o número de empresa de perto, o número de verdade, não o número bonito de um relatório fechado.</p>
+<p>Nas primeiras vezes que sentou com o dono de um negócio, viu sempre a mesma cena: a empresa faturando, o dono trabalhando o dia inteiro, e o dinheiro sumindo antes de sobrar. E ouviu, repetidas vezes, a mesma frase: eu não sei pra onde vai o dinheiro.</p>
+<p>De lá pra cá já foram 68 empresas atendidas. Uma delas saiu de R$8 mil pra R$70 mil de faturamento em 8 meses, aplicando a mesma ordem que a Bruna usa até hoje: entender, organizar e mudar.</p>
+</div></div></div></div></section>
+<footer><p>© 2026 Sobra no Caixa · por Bruna de Souza Castro</p></footer>
+<script>
+var CHECKOUT = "[INSERIR_LINK_CHECKOUT]";
+
+document.querySelectorAll('[data-cta]').forEach(function(a){
+  var sep = CHECKOUT.indexOf('?') > -1 ? '&' : '?';
+  a.setAttribute('href', CHECKOUT + sep + 'src=pos' + a.getAttribute('data-cta'));
+});
+
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+  });
+},{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.scroll-animate').forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>
