@@ -200,12 +200,16 @@ function montarRelatorio(nome, empresa, r){
      + '<p class="forte">Este relatório mostra onde está o problema. Resolver é outro trabalho, e é o trabalho que eu faço.</p>'
      + '<p>No acompanhamento individual eu entro na sua empresa, olho os números com você e corrijo o ponto que apareceu aqui em primeiro lugar. São vinte anos de mercado financeiro e 68 empresas atendidas desde outubro de 2023, incluindo uma que saiu de R$8 mil para R$70 mil de faturamento em oito meses.</p>'
      + '<p>As vagas são por aplicação, porque eu atendo poucas empresas por vez.</p>'
-     + '<a class="btn" href="'+linkWhats(nome, r)+'" target="_blank" rel="noopener">Quero aplicar para o acompanhamento</a>'
-     + '<p class="nota" style="margin-top:14px">Você fala comigo direto no WhatsApp, e eu já vou com o seu diagnóstico na mão.</p></div>';
+     + '<a class="btn" href="'+linkAplicar(nome, r)+'">Quero aplicar para a mentoria individual</a>'
+     + '<p class="nota" style="margin-top:14px">A aplicação leva dois minutos, e eu já recebo o seu diagnóstico junto.</p></div>';
 
   h += '<p class="rodape">Bruna de Souza · Mentora de Negócios · Código B<br>'
      + '<button class="btn vazio" style="margin-top:12px" onclick="window.print()">salvar este relatório em PDF</button></p>';
   document.getElementById('t-relatorio').innerHTML = h;
+}
+function linkAplicar(nome, r){
+  return '../aplicar/?p=individual&utm_source=diagnostico&nome='+encodeURIComponent(nome)
+    + '&saude='+encodeURIComponent(r.saude)+'&critico='+encodeURIComponent(r.ordem[0].nome.toLowerCase());
 }
 function linkWhats(nome, r){
   const t = 'Oi, Bruna. Eu sou '+nome+' e acabei de fazer o diagnóstico. '
