@@ -1,0 +1,217 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diagnóstico de Negócio · Código B</title>
+<meta name="description" content="Em 15 perguntas, descubra o que impede o lucro da sua empresa.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&display=swap">
+<style>
+:root{--tinta:#1C1A17;--creme:#F6F1E8;--papel:#FFFCF6;--ouro:#C49A1A;
+--corpo:rgba(28,26,23,.74);--linha:rgba(28,26,23,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--creme);color:var(--tinta);font-family:Archivo,-apple-system,Arial,sans-serif;
+line-height:1.5;-webkit-font-smoothing:antialiased}
+.env{max-width:720px;margin:0 auto;padding:40px 8% 90px}
+h1,h2,h3,.nota-geral,.perg,.pct,.num{font-family:'Archivo Black',Archivo,Arial,sans-serif;font-weight:400}
+.marca{font-family:Archivo;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+h1{font-size:clamp(29px,6vw,44px);letter-spacing:-.03em;line-height:1.1;margin:14px 0 14px}
+h2{font-size:clamp(21px,4vw,27px);letter-spacing:-.03em;margin:0 0 12px;line-height:1.15}
+h3{font-size:18px;letter-spacing:-.02em;margin:0 0 8px;line-height:1.2}
+p{margin:0 0 14px;font-size:16.5px;line-height:1.45;color:var(--corpo)}
+p.forte{color:var(--tinta)}
+.tela{display:none}.tela.on{display:block}
+.btn{display:inline-block;background:var(--tinta);color:var(--creme);font-family:Archivo;font-weight:600;
+border:0;border-radius:8px;padding:16px 30px;font-size:15px;letter-spacing:.02em;cursor:pointer}
+.btn.vazio{background:transparent;color:var(--tinta);border:1px solid var(--linha);font-weight:400;padding:12px 22px;font-size:14px}
+.barra{height:3px;background:rgba(28,26,23,.1);border-radius:99px;margin:22px 0 26px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--ouro);width:0;transition:width .3s}
+.passo{font-family:Archivo;font-weight:600;font-size:11px;color:var(--ouro);letter-spacing:.14em;text-transform:uppercase}
+.perg{font-size:clamp(20px,4.2vw,27px);letter-spacing:-.03em;line-height:1.18;margin:10px 0 22px}
+.ops{display:flex;flex-direction:column;gap:10px}
+.op{display:block;width:100%;text-align:left;background:var(--papel);border:1px solid var(--linha);
+color:var(--tinta);border-radius:10px;padding:16px 18px;font-size:16px;cursor:pointer;font-family:Archivo;transition:.12s}
+.op:hover{border-color:var(--tinta)}
+.op.sel{border-color:var(--tinta);background:#fff}
+.campo{display:block;width:100%;background:var(--papel);border:1px solid var(--linha);color:var(--tinta);
+border-radius:10px;padding:15px 16px;font-size:16px;margin-bottom:12px;font-family:Archivo}
+.campo::placeholder{color:rgba(28,26,23,.4)}
+.campo:focus{outline:0;border-color:var(--tinta)}
+.nota{font-size:13px;color:rgba(28,26,23,.5);margin-top:6px}
+.capa{background:var(--papel);border:1px solid var(--linha);border-left:4px solid var(--ouro);
+border-radius:14px;padding:28px 26px;margin-bottom:22px}
+.nota-geral{font-size:clamp(46px,12vw,72px);letter-spacing:-.035em;line-height:1;color:var(--ouro);font-variant-numeric:tabular-nums}
+.nota-geral small{font-family:Archivo;font-weight:400;font-size:22px;color:var(--corpo);letter-spacing:0}
+.selo{display:inline-block;font-family:Archivo;font-weight:600;font-size:11px;letter-spacing:.14em;
+text-transform:uppercase;color:var(--ouro);margin-bottom:12px}
+.eixo{border-top:1px solid var(--linha);padding:22px 0}
+.eixo:first-of-type{border-top:0}
+.eixo .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px}
+.eixo .pct{font-size:21px;letter-spacing:-.035em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.med{height:7px;background:rgba(28,26,23,.1);border-radius:99px;overflow:hidden;margin-bottom:14px}
+.med i{display:block;height:100%;border-radius:99px}
+.tag{display:inline-block;font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:.14em;
+text-transform:uppercase;padding:3px 8px;border-radius:4px;margin-left:8px;vertical-align:middle}
+.t-alto{background:var(--tinta);color:var(--creme)}.t-medio{background:var(--ouro);color:#2a2100}
+.t-baixo{background:rgba(28,26,23,.1);color:var(--tinta)}
+.bloco{background:var(--creme);border:1px solid var(--linha);border-radius:10px;padding:15px 17px;margin-top:12px}
+.bloco .rot{font-family:Archivo;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro);font-weight:600;margin-bottom:6px}
+.bloco p{margin:0;font-size:15.5px}
+.cta{background:var(--tinta);color:var(--creme);border-radius:14px;padding:30px 28px;margin-top:34px}
+.cta h2,.cta p.forte{color:var(--creme)}
+.cta p{color:rgba(246,241,232,.74)}
+.cta .btn{background:var(--creme);color:var(--tinta)}
+.cta .nota{color:rgba(246,241,232,.5)}
+ul.lista{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:9px}
+ul.lista li{padding-left:19px;position:relative;font-size:16px;color:var(--corpo);line-height:1.45}
+ul.lista li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;background:var(--ouro)}
+.rodape{margin-top:40px;font-family:Archivo;font-weight:600;font-size:11px;letter-spacing:.14em;
+text-transform:uppercase;color:var(--ouro)}
+@media print{.cta{background:#fff;color:#111}.cta h2,.cta p{color:#111}}
+</style></head><body><div class="env">
+
+<!-- ABERTURA -->
+<section class="tela on" id="t-inicio">
+  <div class="marca">Bruna de Souza · Mentora de Negócios · Código B</div>
+  <h1>Diagnóstico de negócio</h1>
+  <p class="forte">Descubra, em quinze perguntas, o que está impedindo o lucro da sua empresa.</p>
+  <p>Eu atendi 68 empresas desde outubro de 2023, e o mesmo padrão aparece em quase todas: o dono trabalha muito e o dinheiro some antes de virar lucro. Quase sempre a causa está em um destes quatro lugares.</p>
+  <ul class="lista">
+    <li>O fluxo de caixa, quando ninguém registra o caminho do dinheiro.</li>
+    <li>A precificação, quando o preço nasceu do concorrente e não da sua conta.</li>
+    <li>O imposto, quando você paga o que mandam pagar sem conferir.</li>
+    <li>A mistura entre o caixa da empresa e o seu bolso.</li>
+  </ul>
+  <p>São três minutos. No fim você recebe um relatório com o seu problema principal, o que ele está te custando e o primeiro passo para resolver.</p>
+  <button class="btn" onclick="comecar()">Começar o diagnóstico</button>
+</section>
+
+<!-- PERGUNTAS -->
+<section class="tela" id="t-perguntas">
+  <div class="barra"><i id="prog"></i></div>
+  <div class="passo" id="passo"></div>
+  <div class="perg" id="perg"></div>
+  <div class="ops" id="ops"></div>
+  <p style="margin-top:20px"><button class="btn vazio" id="voltar" onclick="voltar()">voltar</button></p>
+</section>
+
+<!-- CADASTRO -->
+<section class="tela" id="t-cadastro">
+  <div class="marca">Último passo</div>
+  <h1>O seu relatório está pronto</h1>
+  <p>Diga para onde eu envio a sua cópia. Eu mando o relatório completo por e-mail, e você já vê o resultado nesta tela.</p>
+  <input class="campo" id="nome" placeholder="O seu nome" autocomplete="name">
+  <input class="campo" id="email" type="email" placeholder="O seu melhor e-mail" autocomplete="email">
+  <input class="campo" id="fone" placeholder="O seu WhatsApp, com DDD" autocomplete="tel" inputmode="tel">
+  <input class="campo" id="empresa" placeholder="O nome da sua empresa (opcional)">
+  <button class="btn" id="btnver" onclick="verResultado()">Ver o meu diagnóstico</button>
+  <p class="nota">Eu uso os seus dados só para te mandar o relatório e falar com você. Nada de lista de terceiro.</p>
+</section>
+
+<!-- RELATORIO -->
+<section class="tela" id="t-relatorio"></section>
+
+</div>
+<script>
+const D = {"eixos": [{"id": "caixa", "nome": "Fluxo de caixa", "curto": "Fluxo de caixa", "dor": "O dinheiro entra e some antes de virar lucro, porque ninguém registra o caminho dele."}, {"id": "preco", "nome": "Precificação", "curto": "Precificação", "dor": "O preço foi montado no sentimento ou no concorrente, e não na conta da sua empresa."}, {"id": "imposto", "nome": "Imposto e enquadramento", "curto": "Imposto", "dor": "Você paga o que mandam pagar, sem saber se é o valor certo para o seu faturamento de hoje."}, {"id": "mistura", "nome": "Empresa e bolso misturados", "curto": "Empresa e bolso", "dor": "O caixa da empresa e o seu dinheiro pessoal são a mesma coisa, então nenhum dos dois fecha."}], "perguntas": [{"n": 1, "eixo": "caixa", "texto": "Você sabe dizer agora, sem abrir nada, quanto a sua empresa tem em caixa hoje?", "opcoes": [{"texto": "Sei o valor exato", "peso": 0}, {"texto": "Sei mais ou menos", "peso": 1}, {"texto": "Só olhando o extrato", "peso": 2}, {"texto": "Não sei", "peso": 3}]}, {"n": 2, "eixo": "caixa", "texto": "Com que frequência você registra o que entra e o que sai da empresa?", "opcoes": [{"texto": "Todo dia", "peso": 0}, {"texto": "Uma vez por semana", "peso": 1}, {"texto": "Só no fim do mês", "peso": 2}, {"texto": "Eu não registro", "peso": 3}]}, {"n": 3, "eixo": "caixa", "texto": "Você sabe quanto custa manter a sua empresa aberta por um mês, sem vender nada?", "opcoes": [{"texto": "Sei o valor", "peso": 0}, {"texto": "Tenho uma ideia", "peso": 1}, {"texto": "Nunca calculei", "peso": 3}]}, {"n": 4, "eixo": "caixa", "texto": "Quando falta dinheiro para pagar uma conta, em que momento você descobre?", "opcoes": [{"texto": "Com semanas de antecedência", "peso": 0}, {"texto": "Alguns dias antes", "peso": 1}, {"texto": "No dia do vencimento", "peso": 3}]}, {"n": 5, "eixo": "preco", "texto": "Como você chegou no preço do que a sua empresa vende?", "opcoes": [{"texto": "Calculei custo, despesa fixa e margem", "peso": 0}, {"texto": "Calculei o custo e coloquei uma margem", "peso": 1}, {"texto": "Olhei o preço do concorrente", "peso": 2}, {"texto": "Foi no sentimento", "peso": 3}]}, {"n": 6, "eixo": "preco", "texto": "Você sabe qual dos seus produtos ou serviços dá mais lucro?", "opcoes": [{"texto": "Sei, com número na mão", "peso": 0}, {"texto": "Tenho um palpite", "peso": 2}, {"texto": "Não sei", "peso": 3}]}, {"n": 7, "eixo": "preco", "texto": "Quando você dá desconto, você sabe quanta margem foi embora?", "opcoes": [{"texto": "Eu não dou desconto", "peso": 0}, {"texto": "Sei antes de dar", "peso": 0}, {"texto": "Descubro depois", "peso": 2}, {"texto": "Não sei", "peso": 3}]}, {"n": 8, "eixo": "preco", "texto": "Quando o seu custo sobe, em quanto tempo o seu preço sobe?", "opcoes": [{"texto": "No mês seguinte", "peso": 0}, {"texto": "Em alguns meses", "peso": 1}, {"texto": "Só quando aperta", "peso": 2}, {"texto": "O meu preço não muda há mais de um ano", "peso": 3}]}, {"n": 9, "eixo": "imposto", "texto": "Você sabe quantos por cento do seu faturamento vai em imposto?", "opcoes": [{"texto": "Sei o número", "peso": 0}, {"texto": "Tenho uma ideia", "peso": 1}, {"texto": "Não sei", "peso": 3}]}, {"n": 10, "eixo": "imposto", "texto": "Quando alguém conferiu, pela última vez, se o seu enquadramento é o mais barato para o seu faturamento de hoje?", "opcoes": [{"texto": "Neste ano", "peso": 0}, {"texto": "Faz mais de um ano", "peso": 2}, {"texto": "Nunca", "peso": 3}]}, {"n": 11, "eixo": "imposto", "texto": "O seu contador te explica o que você paga, ou só te manda a guia?", "opcoes": [{"texto": "Explica e sugere caminho", "peso": 0}, {"texto": "Explica quando eu pergunto", "peso": 1}, {"texto": "Só manda a guia", "peso": 3}]}, {"n": 12, "eixo": "mistura", "texto": "A conta bancária da empresa é separada da sua conta pessoal?", "opcoes": [{"texto": "Totalmente separada", "peso": 0}, {"texto": "Separada, mas eu misturo às vezes", "peso": 2}, {"texto": "É a mesma conta", "peso": 3}]}, {"n": 13, "eixo": "mistura", "texto": "Você tem pró-labore, um valor fixo que você tira da empresa todo mês?", "opcoes": [{"texto": "Tenho, e é fixo", "peso": 0}, {"texto": "Tenho, mas varia", "peso": 1}, {"texto": "Tiro o que sobra", "peso": 2}, {"texto": "Tiro conforme eu preciso", "peso": 3}]}, {"n": 14, "eixo": "mistura", "texto": "Quando você precisa de dinheiro pessoal, você tira do caixa da empresa?", "opcoes": [{"texto": "Nunca", "peso": 0}, {"texto": "Raramente", "peso": 1}, {"texto": "Com frequência", "peso": 3}]}, {"n": 15, "eixo": "mistura", "texto": "Despesa pessoal já entrou no cartão ou na conta da empresa?", "opcoes": [{"texto": "Nunca", "peso": 0}, {"texto": "Já aconteceu", "peso": 2}, {"texto": "Acontece todo mês", "peso": 3}]}], "maximo": {"caixa": 12, "preco": 12, "imposto": 9, "mistura": 12}, "laudo": {"caixa": {"alto": ["O seu problema número um é o fluxo de caixa.", "O dinheiro da sua empresa entra e some antes de virar lucro, e isso acontece porque não existe um registro diário do que entra e do que sai. Você descobre que faltou dinheiro no dia em que a conta vence, e aí já não dá para negociar nada. Toda decisão que você toma hoje, de preço a contratação, é tomada no escuro.", "Registre, por catorze dias seguidos, tudo que entra e tudo que sai. Só registrar, sem classificar nada ainda. No décimo quinto dia você vai enxergar o caminho que o seu dinheiro faz."], "medio": ["O seu caixa está meio organizado, e meio é o suficiente para você errar.", "Você tem parte do controle, e a parte que falta é justamente a que avisa com antecedência. Empresa que só fecha a conta no fim do mês descobre o problema quando ele já virou dívida.", "Passe o seu registro de mensal para diário. São dez minutos por dia, e é o que separa o susto do aviso."], "baixo": ["O seu fluxo de caixa está sob controle.", "Você registra, você sabe o que tem e você enxerga o que vem. Esse é o alicerce, e ele está de pé.", "Use esse controle para responder uma pergunta que quase ninguém responde: qual mês do ano é o mais apertado da sua empresa? A resposta muda o seu planejamento inteiro."]}, "preco": {"alto": ["O seu problema número um é a precificação.", "O seu preço não nasceu da conta da sua empresa. Ele nasceu do concorrente ou do que pareceu razoável, e por isso você pode estar vendendo muito e ganhando pouco. Empresa com preço errado trabalha mais para faturar mais e vê a sobra diminuir.", "Escolha um único produto ou serviço seu, o que mais vende, e calcule três números: quanto ele custa para você entregar, quanto de despesa fixa ele precisa cobrir, e quanto sobra. Esse número vai te assustar, e é ele que muda tudo."], "medio": ["O seu preço tem base, e tem buraco.", "Você calculou parte da conta, e a parte que ficou de fora costuma ser a despesa fixa ou o desconto. Desconto dado sem conta é margem que vai embora sem você ver.", "Antes do próximo desconto, calcule quanto de margem ele consome. Se você não souber responder em trinta segundos, o desconto está te custando mais do que a venda te dá."], "baixo": ["A sua precificação está bem construída.", "Você sabe o que cobra e por quê. Isso já coloca a sua empresa na frente da maioria.", "Olhe agora para o seu mix: qual produto dá mais lucro e qual só dá trabalho. Vender menos coisa, e a coisa certa, costuma sobrar mais."]}, "imposto": {"alto": ["O seu problema número um é imposto e enquadramento.", "Você paga o que mandam pagar. Sem saber a porcentagem que sai do seu faturamento e sem revisar o enquadramento, a sua empresa pode estar pagando imposto a mais todo mês, e isso não aparece em lugar nenhum, porque a guia chega paga e pronto.", "Peça ao seu contador dois números, por escrito: a porcentagem do faturamento que foi em imposto nos últimos doze meses, e se o seu enquadramento atual é o mais barato para o seu faturamento de hoje. Se ele não responder, esse é o seu próximo problema."], "medio": ["Você tem noção do imposto, e noção não é controle.", "Você sabe mais ou menos quanto paga, mas não acompanha se continua sendo o melhor caminho. Faturamento muda, e enquadramento que era bom há dois anos pode estar caro agora.", "Marque uma conversa com o seu contador só sobre enquadramento. Não sobre a guia do mês, sobre o enquadramento."], "baixo": ["A sua parte fiscal está acompanhada.", "Você sabe quanto paga e revisa o enquadramento. Poucas empresas do seu tamanho fazem isso.", "Vale conferir se o seu regime continua o melhor para o faturamento que você projeta para o ano que vem, e não só para o de hoje."]}, "mistura": {"alto": ["O seu problema número um é misturar a empresa com o seu bolso.", "O caixa da empresa e o seu dinheiro pessoal são a mesma coisa, e por isso nenhum dos dois fecha. Você não sabe se a empresa dá lucro, porque não dá para saber: o que sai para você e o que sai para ela estão no mesmo lugar. Essa é a mistura que mais esconde problema, porque ela faz a empresa parecer saudável quando não está.", "Abra a separação por um número só: defina o seu pró-labore, um valor fixo que sai todo dia dez, e não tire mais nada fora disso por trinta dias. Vai apertar, e o aperto é a informação."], "medio": ["A separação existe, e ela vaza.", "Você separou as contas, e ainda tira dinheiro fora da hora ou passa uma despesa pessoal no cartão da empresa. Cada vazamento desses tira a confiança do seu número.", "Estabeleça uma regra simples: nenhuma retirada fora do pró-labore sem registro. Não precisa parar de tirar, precisa parar de tirar sem anotar."], "baixo": ["A sua empresa e o seu bolso estão separados.", "Você tem pró-labore, conta separada e não mistura despesa. É a base de tudo que vem depois.", "Com a separação de pé, o próximo passo é saber se o seu pró-labore está no tamanho certo: nem apertando você, nem sufocando a empresa."]}}};
+let i = 0, respostas = {};
+
+function tela(id){document.querySelectorAll('.tela').forEach(s=>s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');window.scrollTo(0,0);}
+function comecar(){i=0;tela('t-perguntas');render();}
+function voltar(){if(i>0){i--;render();}else{tela('t-inicio');}}
+function render(){
+  const q = D.perguntas[i];
+  document.getElementById('prog').style.width = ((i)/D.perguntas.length*100)+'%';
+  document.getElementById('passo').textContent = 'Pergunta '+(i+1)+' de '+D.perguntas.length;
+  document.getElementById('perg').textContent = q.texto;
+  const box = document.getElementById('ops'); box.innerHTML='';
+  q.opcoes.forEach((o,k)=>{
+    const b=document.createElement('button'); b.className='op'+(respostas[q.n]&&respostas[q.n].k===k?' sel':'');
+    b.textContent=o.texto;
+    b.onclick=()=>{respostas[q.n]={eixo:q.eixo,peso:o.peso,k:k,texto:o.texto};
+      if(i<D.perguntas.length-1){i++;render();}else{tela('t-cadastro');}};
+    box.appendChild(b);
+  });
+}
+function pontuar(){
+  const soma={}; Object.values(respostas).forEach(r=>{soma[r.eixo]=(soma[r.eixo]||0)+r.peso;});
+  const eixos = D.eixos.map(e=>{
+    const s = soma[e.id]||0, max = D.maximo[e.id];
+    const pct = Math.round(s/max*100);
+    const faixa = pct>=60?'alto':(pct>=30?'medio':'baixo');
+    return {...e, pontos:s, max:max, pct:pct, faixa:faixa};
+  });
+  const total = eixos.reduce((a,b)=>a+b.pontos,0), maxT = eixos.reduce((a,b)=>a+b.max,0);
+  const saude = Math.max(0, 100 - Math.round(total/maxT*100));
+  const ordem = [...eixos].sort((a,b)=>b.pct-a.pct);
+  return {eixos, ordem, saude, total, maxT};
+}
+function cor(f){return f==='alto'?'#C49A1A':(f==='medio'?'#8a6c12':'rgba(28,26,23,.28)');}
+function verResultado(){
+  const nome=document.getElementById('nome').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const fone=document.getElementById('fone').value.trim();
+  const empresa=document.getElementById('empresa').value.trim();
+  if(!nome){alert('Escreva o seu nome, por favor.');return;}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){alert('Escreva um e-mail válido, por favor.');return;}
+  const r = pontuar();
+  enviarLead({nome,email,fone,empresa,resultado:r,respostas:respostas});
+  montarRelatorio(nome, empresa, r);
+  tela('t-relatorio');
+}
+// ONDE O LEAD CAI. Deixe em branco para não enviar para lugar nenhum.
+// Coloque aqui o endereço do seu formulário, do seu CRM ou do seu Zapier.
+const DESTINO_DO_LEAD = '';
+function enviarLead(d){
+  try{
+    if(DESTINO_DO_LEAD) fetch(DESTINO_DO_LEAD,{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({...d, quando:new Date().toISOString()})}).catch(()=>{});
+    localStorage.setItem('diagnostico_bruna', JSON.stringify(d));
+  }catch(e){}
+}
+function montarRelatorio(nome, empresa, r){
+  const p = r.ordem[0], laudo = D.laudo[p.id][p.faixa];
+  const veredito = p.faixa==='baixo'
+    ? 'A sua empresa está organizada nos quatro pontos que eu mais vejo quebrarem lucro.'
+    : laudo[0];
+  let h = '';
+  h += '<div class="marca">Diagnóstico de Negócio · Código B</div>';
+  h += '<h1>'+esc(nome.split(' ')[0])+', aqui está o seu resultado</h1>';
+  if(empresa) h += '<p class="forte">Empresa: '+esc(empresa)+'</p>';
+  h += '<div class="capa"><div class="selo">saúde financeira</div>'
+     + '<div class="nota-geral">'+r.saude+'<small>/100</small></div>'
+     + '<p style="margin-top:10px" class="forte">'+esc(veredito)+'</p></div>';
+
+  h += '<h2>Os quatro pontos, um por um</h2>';
+  r.eixos.forEach(e=>{
+    const l = D.laudo[e.id][e.faixa];
+    const rotulo = e.faixa==='alto'?'crítico':(e.faixa==='medio'?'atenção':'ok');
+    h += '<div class="eixo"><div class="top"><h3>'+esc(e.nome)
+       + '<span class="tag t-'+e.faixa+'">'+rotulo+'</span></h3>'
+       + '<div class="pct" style="color:'+cor(e.faixa)+'">'+e.pct+'%</div></div>'
+       + '<div class="med"><i style="width:'+Math.max(e.pct,3)+'%;background:'+cor(e.faixa)+'"></i></div>'
+       + '<p>'+esc(l[1])+'</p>'
+       + '<div class="bloco"><div class="rot">o seu primeiro passo</div><p>'+esc(l[2])+'</p></div></div>';
+  });
+
+  h += '<h2 style="margin-top:34px">Por onde começar</h2>';
+  h += '<p>Você tem quatro frentes, e mexer nas quatro ao mesmo tempo é a forma mais rápida de não mexer em nenhuma. A ordem abaixo é a que eu uso nas empresas que atendo.</p>';
+  h += '<ul class="lista">' + r.ordem.map((e,k)=>'<li><b>'+(k+1)+'º · '+esc(e.nome)+'</b> · '+e.pct+'% de risco. '+esc(D.laudo[e.id][e.faixa][2])+'</li>').join('') + '</ul>';
+
+  h += '<div class="cta"><h2>O que fazer com isso agora</h2>'
+     + '<p class="forte">Este relatório mostra onde está o problema. Resolver é outro trabalho, e é o trabalho que eu faço.</p>'
+     + '<p>No acompanhamento individual eu entro na sua empresa, olho os números com você e corrijo o ponto que apareceu aqui em primeiro lugar. São vinte anos de mercado financeiro e 68 empresas atendidas desde outubro de 2023, incluindo uma que saiu de R$8 mil para R$70 mil de faturamento em oito meses.</p>'
+     + '<p>As vagas são por aplicação, porque eu atendo poucas empresas por vez.</p>'
+     + '<a class="btn" href="'+linkWhats(nome, r)+'" target="_blank" rel="noopener">Quero aplicar para o acompanhamento</a>'
+     + '<p class="nota" style="margin-top:14px">Você fala comigo direto no WhatsApp, e eu já vou com o seu diagnóstico na mão.</p></div>';
+
+  h += '<p class="rodape">Bruna de Souza · Mentora de Negócios · Código B<br>'
+     + '<button class="btn vazio" style="margin-top:12px" onclick="window.print()">salvar este relatório em PDF</button></p>';
+  document.getElementById('t-relatorio').innerHTML = h;
+}
+function linkWhats(nome, r){
+  const t = 'Oi, Bruna. Eu sou '+nome+' e acabei de fazer o diagnóstico. '
+    + 'A minha saúde financeira deu '+r.saude+' de 100 e o meu ponto mais crítico é '+r.ordem[0].nome.toLowerCase()+'. '
+    + 'Quero aplicar para o acompanhamento.';
+  return 'https://wa.me/5533991467788?text='+encodeURIComponent(t);
+}
+function esc(s){const d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;}
+</script></body></html>
