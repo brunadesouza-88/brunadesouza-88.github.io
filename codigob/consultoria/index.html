@@ -1,0 +1,165 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mentoria de Negócios · Código B</title><meta name="description" content="Eu entro na sua empresa e organizo o dinheiro dela. Acompanhamento mensal para dono de empresa, com a Código B.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&display=swap">
+<style>
+:root{--tinta:#1C1A17;--creme:#F6F1E8;--papel:#FFFCF6;--ouro:#C49A1A;
+--corpo:rgba(28,26,23,.74);--linha:rgba(28,26,23,.12);
+--corpo-esc:rgba(246,241,232,.72);--linha-esc:rgba(246,241,232,.16)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--creme);color:var(--tinta);font-family:Archivo,-apple-system,Arial,sans-serif;
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.env{max-width:940px;margin:0 auto;padding:0 8%}
+@media(min-width:1100px){.env{padding:0 40px}}
+section{padding:84px 0}
+@media(max-width:600px){section{padding:54px 0}}
+.rot{font-family:Archivo;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--ouro);margin-bottom:16px}
+h1,h2,h3,.num{font-family:'Archivo Black',Archivo,Arial,sans-serif;font-weight:400}
+h1{font-size:clamp(32px,6.2vw,56px);line-height:1.1;letter-spacing:-.03em;margin-bottom:18px}
+h2{font-size:clamp(25px,4.4vw,38px);line-height:1.1;letter-spacing:-.03em;margin-bottom:16px}
+h3{font-size:19px;letter-spacing:-.02em;margin-bottom:8px;line-height:1.2}
+p{font-size:17px;line-height:1.45;color:var(--corpo);margin-bottom:15px;max-width:66ch}
+p.apoio{font-size:clamp(17px,2.2vw,20px);color:var(--tinta);max-width:58ch}
+b,strong{color:var(--tinta);font-weight:600}
+.num{font-size:clamp(40px,7.5vw,64px);line-height:1;letter-spacing:-.035em;color:var(--ouro);
+font-variant-numeric:tabular-nums}
+.num small{font-family:Archivo;font-weight:400;font-size:16px;color:var(--corpo);letter-spacing:0}
+.escuro{background:var(--tinta);color:var(--creme)}
+.escuro p{color:var(--corpo-esc)}.escuro b{color:var(--creme)}
+.escuro h1,.escuro h2,.escuro h3{color:var(--creme)}
+.escuro .cartao{background:rgba(246,241,232,.05);border-color:var(--linha-esc)}
+.escuro ul.l li{color:var(--corpo-esc)}
+.escuro .faq{border-color:var(--linha-esc)}
+.cartao{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:26px 28px}
+.grade{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(285px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(225px,1fr))}
+.destaque{background:var(--papel);border:1px solid var(--linha);border-left:4px solid var(--ouro);
+border-radius:14px;padding:32px 30px}
+.escuro .destaque{background:rgba(246,241,232,.05);border-color:var(--linha-esc);border-left-color:var(--ouro)}
+.btn{display:inline-block;background:var(--tinta);color:var(--creme);font-family:Archivo;font-weight:600;
+border-radius:8px;padding:16px 30px;text-decoration:none;font-size:15px;letter-spacing:.02em;margin-top:8px}
+.escuro .btn{background:var(--creme);color:var(--tinta)}
+.btn.linha{background:transparent;color:var(--tinta);border:1px solid var(--linha);font-weight:400}
+.escuro .btn.linha{color:var(--creme);border-color:var(--linha-esc)}
+ul.l{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+ul.l li{padding-left:20px;position:relative;font-size:16.5px;line-height:1.45;color:var(--corpo)}
+ul.l li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;background:var(--ouro)}
+.heroi{display:grid;grid-template-columns:1.12fr .88fr;gap:42px;align-items:center;padding:70px 0 74px}
+@media(max-width:780px){.heroi{grid-template-columns:1fr;gap:26px;padding:42px 0 48px}}
+.heroi img{width:100%;border-radius:12px;display:block}
+.prova{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:22px;
+border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:28px 0}
+.prova .n{font-family:'Archivo Black',Arial,sans-serif;font-size:34px;color:var(--ouro);line-height:1;
+letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.prova span{display:block;font-size:13.5px;color:var(--corpo);margin-top:6px;line-height:1.35}
+.passo{display:flex;gap:16px;margin-bottom:20px}
+.passo .i{font-family:'Archivo Black',Arial,sans-serif;font-size:22px;color:var(--ouro);line-height:1.2;flex:none;width:30px}
+.faq{border-top:1px solid var(--linha);padding:20px 0}
+.rodape{border-top:1px solid var(--linha);padding:32px 0 56px;font-family:Archivo;font-weight:600;
+font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+.fita{background:var(--tinta);color:var(--creme);text-align:center;font-family:Archivo;font-weight:600;
+font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:12px 18px}
+a{color:var(--tinta);text-decoration-color:var(--ouro);text-underline-offset:3px}
+</style></head><body>
+
+<div class="fita">Atendimento por aplicação · poucas empresas por vez</div>
+<div class="env">
+<div class="heroi">
+  <div>
+    <div class="rot">Mentoria de Negócios · acompanhamento mensal</div>
+    <h1>Eu entro na sua empresa e organizo o dinheiro dela.</h1>
+    <p class="apoio">Para o dono de empresa que fatura, trabalha muito e não sabe dizer para onde o dinheiro está indo.</p>
+    <a class="btn" href="https://wa.me/5533991467788?text=Oi%2C%20Bruna.%20Eu%20vi%20a%20p%C3%A1gina%20da%20consultoria%20e%20quero%20aplicar.%20A%20minha%20empresa%20%C3%A9%20da%20%C3%A1rea%20de%20" target="_blank" rel="noopener">Quero aplicar para a consultoria</a>
+  </div>
+  <img src="../img/foto.jpg" alt="Bruna de Souza">
+</div>
+<div class="prova">
+  <div><div class="n">20</div><span>anos de mercado financeiro</span></div>
+  <div><div class="n">68</div><span>empresas atendidas desde outubro de 2023</span></div>
+  <div><div class="n">R$70 mil</div><span>o faturamento de uma cliente que começou em R$8 mil, em 8 meses</span></div>
+</div>
+</div>
+
+<section><div class="env">
+<div class="rot">O problema</div>
+<h2>O dinheiro entra e some antes de virar lucro.</h2>
+<p>Você olha o faturamento do mês e ele é bom. Olha a conta e não sobrou. Isso acontece porque existe um <b>Ralo do Caixa</b> na sua empresa, e ele quase sempre está em um destes quatro lugares.</p>
+<div class="grade g2" style="margin-top:26px">
+  <div class="cartao"><h3>O fluxo de caixa</h3><p style="margin:0">Ninguém registra o caminho do dinheiro, e o aviso de que vai faltar chega no dia do vencimento.</p></div>
+  <div class="cartao"><h3>A precificação</h3><p style="margin:0">O preço nasceu do concorrente ou do sentimento, e não da conta da sua empresa.</p></div>
+  <div class="cartao"><h3>O imposto</h3><p style="margin:0">Você paga o que mandam pagar. Ninguém confere se o enquadramento ainda é o mais barato para o seu faturamento de hoje.</p></div>
+  <div class="cartao"><h3>A mistura</h3><p style="margin:0">O caixa da empresa e o seu bolso são a mesma coisa, então nenhum dos dois fecha.</p></div>
+</div>
+</div></section>
+
+<section class="claro"><div class="env">
+<div class="rot">O que eu faço</div>
+<h2>Eu não entrego relatório. Eu mexo na sua operação.</h2>
+<p>Todo mês eu entro nos números da sua empresa com você, corrijo o que está furando e deixo o processo funcionando. É trabalho de mão, e não de apresentação.</p>
+<ul class="l">
+  <li><b>Fluxo de caixa.</b> Monto o registro diário e te mostro o caminho que o seu dinheiro faz.</li>
+  <li><b>Precificação e margem.</b> Calculo o preço a partir do custo, da despesa fixa e da margem que a sua empresa precisa.</li>
+  <li><b>Imposto e enquadramento.</b> Confiro se você está no regime mais barato para o faturamento de hoje.</li>
+  <li><b>Separação entre você e a empresa.</b> Defino o pró-labore e fecho as portas por onde o dinheiro sai fora da hora.</li>
+  <li><b>Documentos internos.</b> Organizo o que precisa estar regularizado para a empresa não tomar susto.</li>
+</ul>
+</div></section>
+
+<section><div class="env">
+<div class="rot">Como funciona</div>
+<h2>Mensal, com hora marcada e tarefa combinada.</h2>
+<div style="margin-top:26px">
+  <div class="passo"><div class="i">1</div><div><h3>Diagnóstico</h3><p>Eu olho os números que você já tem e digo, em uma frase, onde está o Ralo do Caixa da sua empresa.</p></div></div>
+  <div class="passo"><div class="i">2</div><div><h3>Correção</h3><p>A gente mexe no ponto mais caro primeiro. Não nos quatro ao mesmo tempo, porque assim não sai nenhum.</p></div></div>
+  <div class="passo"><div class="i">3</div><div><h3>Rotina</h3><p>Eu deixo o processo montado e te ensino a rodar sozinho, para o problema não voltar no mês seguinte.</p></div></div>
+  <div class="passo"><div class="i">4</div><div><h3>Acompanhamento</h3><p>Todo mês a gente senta em cima do número novo e ajusta o que mudou.</p></div></div>
+</div>
+</div></section>
+
+<section><div class="env">
+<div class="rot">Investimento</div>
+<h2>Dois escopos, e você escolhe pelo tamanho do problema.</h2>
+<div class="grade g2" style="margin-top:26px">
+  <div class="destaque">
+    <div class="rot">Acompanhamento completo</div>
+    <div class="num">R$6.000<small> por mês</small></div>
+    <p style="margin-top:14px">As quatro frentes juntas: caixa, preço, imposto e a separação entre você e a empresa. Encontros no mês, com tarefa combinada e acompanhamento entre um e outro. É para quem quer a empresa inteira em ordem.</p>
+    <a class="btn" href="https://wa.me/5533991467788?text=Oi%2C%20Bruna.%20Eu%20vi%20a%20p%C3%A1gina%20da%20consultoria%20e%20quero%20aplicar.%20A%20minha%20empresa%20%C3%A9%20da%20%C3%A1rea%20de%20" target="_blank" rel="noopener">Quero aplicar</a>
+  </div>
+  <div class="cartao">
+    <div class="rot">Escopo pontual</div>
+    <div class="num">R$3.000<small> por mês</small></div>
+    <p style="margin-top:14px">Uma frente só, a que está doendo agora. Regularizar os documentos internos, montar o fluxo de caixa ou corrigir a precificação. É para quem já sabe onde está o problema e quer resolver aquele.</p>
+    <a class="btn linha" href="https://wa.me/5533991467788?text=Oi%2C%20Bruna.%20Eu%20vi%20a%20p%C3%A1gina%20da%20consultoria%20e%20quero%20aplicar.%20A%20minha%20empresa%20%C3%A9%20da%20%C3%A1rea%20de%20" target="_blank" rel="noopener">Falar comigo</a>
+  </div>
+</div>
+<p style="margin-top:22px">Se você não sabe qual dos dois é o seu caso, <a href="../diagnostico/" style="color:var(--dourado)">faça o diagnóstico de negócio</a>. São quinze perguntas e três minutos, e ele te diz onde está o seu problema principal.</p>
+</div></section>
+
+<section class="claro"><div class="env">
+<div class="rot">Quem sou eu</div>
+<h2>Vinte anos olhando a conta de empresa por dentro.</h2>
+<p>Eu passei mais de vinte anos no mercado financeiro. Em outubro de 2023 eu saí da CLT, num momento de muita rejeição, me encorajei e montei a minha empresa para atender outras empresas.</p>
+<p>Desde então foram 68 empresas. Em quase todas elas o dono trabalhava muito e o dinheiro sumia antes de virar lucro. Uma cliente minha saiu de R$8 mil para R$70 mil de faturamento em oito meses, e o primeiro mês inteiro foi só olhando para trás, para onde o dinheiro tinha ido.</p>
+</div></section>
+
+<section><div class="env">
+<div class="rot">Perguntas que sempre aparecem</div>
+<h2>Antes de você aplicar</h2>
+<div class="faq"><h3>A minha empresa é pequena. Serve para mim?</h3><p>Serve. A maioria das empresas que eu atendo tem o dono como única pessoa cuidando do dinheiro. É exatamente aí que o ralo aparece.</p></div>
+<div class="faq"><h3>Eu já tenho contador. Você substitui?</h3><p>Não. O contador cuida da obrigação com o governo. Eu cuido do dinheiro dentro da empresa, e converso com o seu contador quando precisa.</p></div>
+<div class="faq"><h3>Eu já contratei consultoria e não resolveu.</h3><p>Eu ouço isso em quase toda primeira conversa. A diferença aqui é que eu mexo na operação com você, e não entrego um relatório para você executar sozinho.</p></div>
+<div class="faq"><h3>Por que é por aplicação?</h3><p>Porque eu atendo poucas empresas por vez. Eu preciso olhar o número de cada uma, e isso não escala.</p></div>
+</div></section>
+
+<section><div class="env"><div class="destaque">
+<h2>Vamos olhar a sua empresa.</h2>
+<p class="apoio">Me conta em uma mensagem qual é a sua área e o que está te incomodando no dinheiro hoje. Eu respondo dizendo se eu sou a pessoa certa para o seu caso.</p>
+<a class="btn" href="https://wa.me/5533991467788?text=Oi%2C%20Bruna.%20Eu%20vi%20a%20p%C3%A1gina%20da%20consultoria%20e%20quero%20aplicar.%20A%20minha%20empresa%20%C3%A9%20da%20%C3%A1rea%20de%20" target="_blank" rel="noopener">Quero aplicar para a consultoria</a>
+</div></div></section>
+
+<div class="env"><div class="rodape">Bruna de Souza · Mentora de Negócios · Código B</div></div>
+</body></html>
