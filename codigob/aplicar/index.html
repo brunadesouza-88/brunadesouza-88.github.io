@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aplicação · Código B</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&display=swap">
+<style>
+:root{--tinta:#1C1A17;--creme:#F6F1E8;--papel:#FFFCF6;--ouro:#C49A1A;
+--corpo:rgba(28,26,23,.72);--linha:rgba(28,26,23,.14)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--creme);color:var(--tinta);font-family:Archivo,-apple-system,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.env{max-width:620px;margin:0 auto;padding:44px 20px 60px}
+.rot{font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+h1{font-family:'Archivo Black',Archivo,Arial,sans-serif;font-weight:400;font-size:clamp(28px,6vw,40px);
+line-height:1.1;letter-spacing:-.03em;margin:12px 0 14px}
+p.apoio{font-size:17px;line-height:1.45;color:var(--corpo);margin-bottom:28px}
+form{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:26px 22px}
+.campo{margin-bottom:20px}
+label,legend{display:block;font-weight:600;font-size:15px;margin-bottom:8px;line-height:1.35}
+.dica{font-weight:400;font-size:13px;color:var(--corpo);display:block;margin-top:2px}
+input[type=text],input[type=tel],input[type=email],textarea,select{width:100%;font:inherit;font-size:16px;color:var(--tinta);
+background:#fff;border:1px solid var(--linha);border-radius:8px;padding:13px 14px}
+textarea{min-height:96px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--tinta);outline-offset:1px}
+fieldset{border:0}
+.opcoes{display:flex;flex-direction:column;gap:8px}
+.opcoes label{font-weight:400;display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--linha);
+border-radius:8px;padding:12px 14px;margin:0;cursor:pointer}
+.opcoes input{margin-top:3px;accent-color:var(--tinta)}
+.lgpd{font-size:13px;color:var(--corpo);display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:6px 0 18px}
+button{width:100%;background:var(--tinta);color:var(--creme);font:inherit;font-weight:600;font-size:16px;
+letter-spacing:.02em;border:0;border-radius:8px;padding:17px;cursor:pointer}
+.erro{color:var(--tinta);font-size:14px;margin-top:12px;display:none;font-weight:600}
+.ok{display:none;text-align:left}
+.ok h2{font-family:'Archivo Black',Archivo,Arial,sans-serif;font-weight:400;font-size:28px;letter-spacing:-.03em;margin-bottom:12px}
+.ok p{font-size:16px;line-height:1.45;color:var(--corpo);margin-bottom:14px}
+.ok a{display:inline-block;background:var(--tinta);color:var(--creme);text-decoration:none;font-weight:600;border-radius:8px;padding:15px 24px}
+footer{margin-top:28px;font-size:12px;color:var(--corpo);text-align:center}
+</style>
+</head>
+<body>
+<main class="env">
+  <div class="rot" id="rot">Aplicação · Mentoria individual</div>
+  <h1 id="tit">Aplicar para a mentoria individual</h1>
+  <p class="apoio" id="apoio">Eu atendo poucas empresas por vez. Estas perguntas me mostram se eu consigo ajudar a sua empresa agora. Leva dois minutos.</p>
+
+  <form id="f" novalidate>
+    <div class="campo"><label for="nome">Seu nome</label><input id="nome" name="nome" type="text" autocomplete="name" required></div>
+    <div class="campo"><label for="whats">Seu WhatsApp, com DDD</label><input id="whats" name="whats" type="tel" autocomplete="tel" inputmode="tel" placeholder="(11) 90000-0000" required></div>
+    <div class="campo"><label for="email">Seu e-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+    <div class="campo"><label for="empresa">Nome da empresa e o que ela vende</label><input id="empresa" name="empresa" type="text" required></div>
+    <div class="campo"><label for="fat">Faturamento médio por mês</label>
+      <select id="fat" name="fat" required>
+        <option value="">Escolha uma faixa</option>
+        <option>Até R$30 mil</option><option>De R$30 mil a R$100 mil</option>
+        <option>De R$100 mil a R$300 mil</option><option>De R$300 mil a R$1 milhão</option><option>Acima de R$1 milhão</option>
+      </select></div>
+    <div class="campo"><fieldset><legend>O que mais aperta hoje?</legend><div class="opcoes">
+      <label><input type="radio" name="dor" value="O dinheiro some e eu não sei para onde vai" required> O dinheiro some e eu não sei para onde vai</label>
+      <label><input type="radio" name="dor" value="Eu vendo bem e sobra pouco"> Eu vendo bem e sobra pouco</label>
+      <label><input type="radio" name="dor" value="O dinheiro da empresa e o meu estão misturados"> O dinheiro da empresa e o meu estão misturados</label>
+      <label><input type="radio" name="dor" value="Eu pago imposto sem entender quanto nem por quê"> Eu pago imposto sem entender quanto nem por quê</label>
+      <label><input type="radio" name="dor" value="Compra, estoque ou preço sem controle"> Compra, estoque ou preço sem controle</label>
+    </div></fieldset></div>
+    <div class="campo"><fieldset><legend>Você já contratou consultoria para organizar o financeiro?</legend><div class="opcoes">
+      <label><input type="radio" name="antes" value="Sim, e não resolveu" required> Sim, e não resolveu</label>
+      <label><input type="radio" name="antes" value="Sim, e resolveu em parte"> Sim, e resolveu em parte</label>
+      <label><input type="radio" name="antes" value="Não, nunca"> Não, nunca</label>
+    </div></fieldset></div>
+    <div class="campo"><fieldset><legend id="leg-inv">Se fizer sentido para os dois, você tem como investir na mentoria nos próximos 30 dias?</legend><div class="opcoes">
+      <label><input type="radio" name="inv" value="Sim" required> Sim</label>
+      <label><input type="radio" name="inv" value="Sim, se eu entender bem como funciona"> Sim, se eu entender bem como funciona</label>
+      <label><input type="radio" name="inv" value="Ainda não"> Ainda não</label>
+    </div></fieldset></div>
+    <div class="campo"><label for="obj">Em duas frases: o que você quer que esteja diferente na sua empresa daqui a três meses?</label>
+      <textarea id="obj" name="obj" required></textarea></div>
+    <label class="lgpd"><input type="checkbox" id="lgpd" required> Eu autorizo a Código B a usar estes dados para responder à minha aplicação. Eles não são repassados a ninguém.</label>
+    <button type="submit">Enviar aplicação</button>
+    <div class="erro" id="erro">Faltou responder alguma pergunta. Confira os campos acima.</div>
+  </form>
+
+  <div class="ok" id="ok">
+    <h2>Aplicação recebida.</h2>
+    <p>Para eu já responder com o seu caso na mão, envie a mensagem que abriu no seu WhatsApp. Se ela não abriu, toque no botão abaixo.</p>
+    <a id="wa" href="#" target="_blank" rel="noopener">Abrir o WhatsApp</a>
+  </div>
+  <footer>Bruna de Souza · Mentora de Negócios · Código B</footer>
+</main>
+<script>
+// Para onde a aplicação vai. Enquanto DESTINO estiver vazio, ela chega pelo WhatsApp.
+// Quando houver um endereço (Google Apps Script, Zapier, e-mail marketing), coloque aqui e ela também é gravada lá.
+const DESTINO = '';
+const WHATS = '5533991467788';
+const q = new URLSearchParams(location.search);
+const tipo = q.get('p') === 'grupo' ? 'grupo' : 'individual';
+const nomeProduto = tipo === 'grupo' ? 'Caminho do Dinheiro (mentoria em grupo)' : 'Mentoria individual';
+if (tipo === 'grupo') {
+  document.getElementById('rot').textContent = 'Aplicação · Caminho do Dinheiro';
+  document.getElementById('tit').textContent = 'Aplicar para o Caminho do Dinheiro';
+  document.getElementById('apoio').textContent = 'A turma é pequena e as vagas são por aplicação. Estas perguntas me mostram se a turma é o lugar certo para a sua empresa agora. Leva dois minutos.';
+  document.getElementById('leg-inv').textContent = 'Se fizer sentido para os dois, você tem como investir na turma nos próximos 30 dias?';
+  document.title = 'Aplicação · Caminho do Dinheiro · Código B';
+}
+if (q.get('nome')) document.getElementById('nome').value = q.get('nome');
+const diag = q.get('saude') ? ('Diagnóstico: saúde ' + q.get('saude') + '/100, ponto mais crítico: ' + (q.get('critico') || '-')) : '';
+
+document.getElementById('f').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const f = e.target;
+  if (!f.checkValidity()) { document.getElementById('erro').style.display = 'block'; f.reportValidity(); return; }
+  const v = n => (f.elements[n] && f.elements[n].value || '').trim();
+  const d = { produto: nomeProduto, nome: v('nome'), whatsapp: v('whats'), email: v('email'), empresa: v('empresa'),
+    faturamento: v('fat'), dor: v('dor'), consultoria_antes: v('antes'), investir: v('inv'), objetivo: v('obj'),
+    diagnostico: diag, origem: q.get('utm_source') || document.referrer || 'direto', quando: new Date().toISOString() };
+  try { if (DESTINO) fetch(DESTINO, { method: 'POST', mode: 'no-cors', headers: { 'content-type': 'text/plain' }, body: JSON.stringify(d) }); } catch (x) {}
+  const t = 'Oi, Bruna. Acabei de aplicar para: ' + d.produto + '.\n\n'
+    + 'Nome: ' + d.nome + '\nWhatsApp: ' + d.whatsapp + '\nE-mail: ' + d.email + '\nEmpresa: ' + d.empresa
+    + '\nFaturamento: ' + d.faturamento + '\nO que mais aperta: ' + d.dor + '\nJá contratou consultoria: ' + d.consultoria_antes
+    + '\nPode investir em 30 dias: ' + d.investir + '\nObjetivo em 3 meses: ' + d.objetivo + (diag ? '\n' + diag : '');
+  const link = 'https://wa.me/' + WHATS + '?text=' + encodeURIComponent(t);
+  document.getElementById('wa').href = link;
+  f.style.display = 'none'; document.getElementById('ok').style.display = 'block';
+  window.scrollTo(0, 0);
+  window.open(link, '_blank');
+});
+</script>
+</body>
+</html>
