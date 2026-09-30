@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de lucro · Código B</title>
+<meta name="description" content="Em três minutos você descobre quanto sobrou na sua empresa no mês passado e por onde o dinheiro está escapando.">
+<meta property="og:title" content="Calculadora de lucro · Código B">
+<meta property="og:description" content="Quatro números e você sabe quanto sobrou no fim do mês.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&display=swap">
+<style>
+:root{--tinta:#1C1A17;--creme:#F6F1E8;--papel:#FFFCF6;--ouro:#C49A1A;
+--corpo:rgba(28,26,23,.72);--linha:rgba(28,26,23,.14);--corpo-esc:rgba(246,241,232,.72)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--creme);color:var(--tinta);font-family:Archivo,-apple-system,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+.env{max-width:680px;margin:0 auto;padding:44px 20px 64px}
+.rot{font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+h1{font-family:'Archivo Black',Archivo,Arial,sans-serif;font-weight:400;font-size:clamp(30px,6.4vw,46px);
+line-height:1.08;letter-spacing:-.03em;margin:12px 0 14px}
+h2{font-family:'Archivo Black',Archivo,Arial,sans-serif;font-weight:400;font-size:24px;letter-spacing:-.03em;margin-bottom:10px}
+p{font-size:17px;line-height:1.45;color:var(--corpo);margin-bottom:14px}
+form,.cartao{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:24px 22px;margin-top:22px}
+.campo{margin-bottom:18px}
+label{display:block;font-weight:600;font-size:15px;margin-bottom:6px}
+.dica{display:block;font-weight:400;font-size:13px;color:var(--corpo);margin-bottom:8px}
+.moeda{display:flex;align-items:center;background:#fff;border:1px solid var(--linha);border-radius:8px;padding:0 14px}
+.moeda span{font-weight:600;color:var(--corpo);font-size:16px}
+.moeda input{flex:1;font:inherit;font-size:17px;border:0;outline:0;padding:13px 8px;background:transparent;color:var(--tinta)}
+.moeda:focus-within{outline:2px solid var(--tinta);outline-offset:1px}
+button{width:100%;background:var(--tinta);color:var(--creme);font:inherit;font-weight:600;font-size:16px;
+border:0;border-radius:8px;padding:17px;cursor:pointer;margin-top:4px}
+button.linha{background:transparent;color:var(--tinta);border:1px solid var(--linha);font-weight:400;margin-top:10px}
+#saida{display:none}
+.num{font-family:'Archivo Black',Archivo,Arial,sans-serif;font-weight:400;font-size:clamp(38px,9vw,60px);
+line-height:1;letter-spacing:-.035em;font-variant-numeric:tabular-nums;color:var(--ouro);margin:6px 0 4px}
+.escuro{background:var(--tinta);color:var(--creme);border-color:var(--tinta)}
+.escuro p{color:var(--corpo-esc)}
+.escuro h2{color:var(--creme)}
+.linhas{list-style:none;margin:18px 0 6px;border-top:1px solid var(--linha)}
+.linhas li{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--linha);font-size:16px}
+.linhas li b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.veredito{border-left:4px solid var(--ouro);padding-left:16px;margin:18px 0}
+.veredito b{font-family:'Archivo Black',Archivo,Arial,sans-serif;font-weight:400;font-size:19px;display:block;margin-bottom:6px;letter-spacing:-.02em}
+a.btn{display:inline-block;background:var(--creme);color:var(--tinta);text-decoration:none;font-weight:600;
+border-radius:8px;padding:16px 26px;margin-top:8px}
+footer{margin-top:30px;text-align:center;font-size:12px;color:var(--corpo)}
+footer a{color:var(--corpo)}
+</style>
+</head>
+<body>
+<main class="env">
+  <div class="rot">Código B · grátis</div>
+  <h1>Calculadora de lucro</h1>
+  <p>Quatro números do mês passado e você descobre <b>quanto sobrou de verdade</b> na sua empresa, e por onde o dinheiro está escapando. Leva três minutos, e nada aqui é enviado para ninguém: a conta acontece no seu celular.</p>
+
+  <form id="f" novalidate>
+    <div class="campo">
+      <label for="e">1. Quanto entrou na conta da empresa</label>
+      <span class="dica">Só o que caiu na conta no mês passado. Venda prometida ainda não é dinheiro.</span>
+      <div class="moeda"><span>R$</span><input id="e" inputmode="decimal" placeholder="0,00"></div>
+    </div>
+    <div class="campo">
+      <label for="v">2. Quanto você gastou para entregar</label>
+      <span class="dica">Mercadoria, insumo, matéria-prima, embalagem, comissão e taxa da maquininha.</span>
+      <div class="moeda"><span>R$</span><input id="v" inputmode="decimal" placeholder="0,00"></div>
+    </div>
+    <div class="campo">
+      <label for="fx">3. Quanto custa manter a empresa aberta</label>
+      <span class="dica">Aluguel, luz, internet, salários, sistema, contador e tudo que sai todo mês, com venda ou sem venda.</span>
+      <div class="moeda"><span>R$</span><input id="fx" inputmode="decimal" placeholder="0,00"></div>
+    </div>
+    <div class="campo">
+      <label for="p">4. Quanto você tirou para você</label>
+      <span class="dica">Pró-labore e qualquer retirada sua, inclusive a que você fez no aperto.</span>
+      <div class="moeda"><span>R$</span><input id="p" inputmode="decimal" placeholder="0,00"></div>
+    </div>
+    <button type="submit">Ver quanto sobrou</button>
+    <button type="button" class="linha" id="limpar">Limpar</button>
+  </form>
+
+  <section id="saida" aria-live="polite"></section>
+
+  <footer>
+    Bruna de Souza · Mentora de Negócios · Código B<br>
+    <a href="https://www.instagram.com/brunadesouzabs/">@brunadesouzabs</a>
+  </footer>
+</main>
+<script>
+const $ = i => document.getElementById(i);
+const n = v => { const x = parseFloat(String(v).replace(/\./g,'').replace(',','.').replace(/[^0-9.\-]/g,'')); return isNaN(x) ? 0 : x; };
+const r$ = x => x.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+const pc = x => (Math.round(x*10)/10).toLocaleString('pt-BR') + '%';
+
+$('limpar').addEventListener('click', () => { ['e','v','fx','p'].forEach(i=>$(i).value=''); $('saida').style.display='none'; });
+
+$('f').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const E = n($('e').value), V = n($('v').value), F = n($('fx').value), P = n($('p').value);
+  if (E <= 0) { alert('Coloque quanto entrou na conta da empresa no mês passado.'); $('e').focus(); return; }
+  const bruto = E - V;                 // sobra depois de entregar
+  const sobra = bruto - F - P;         // o que sobrou de verdade
+  const margem = E ? (sobra / E) * 100 : 0;
+  const margemBruta = E ? (bruto / E) * 100 : 0;
+  const pesoFixo = E ? (F / E) * 100 : 0;
+  const pesoPro = E ? (P / E) * 100 : 0;
+  const diasFolga = F + P > 0 ? Math.floor(Math.max(sobra,0) / ((F + P) / 30)) : 0;
+
+  let titulo, texto;
+  if (sobra < 0) {
+    titulo = 'A sua empresa fechou o mês no vermelho.';
+    texto = 'Tudo que entrou não cobriu o que saiu. Enquanto isso se repete, o dinheiro sai do seu bolso para manter a empresa de pé.';
+  } else if (margem < 5) {
+    titulo = 'Sobrou pouco, e qualquer tropeço come essa sobra.';
+    texto = 'Um cliente que atrasa ou uma compra fora da hora já apaga o que sobrou. A margem está no limite.';
+  } else if (margem < 15) {
+    titulo = 'Sobrou, e ainda tem folga para ganhar.';
+    texto = 'A empresa se paga. O próximo passo é achar onde o dinheiro escapa antes de virar sobra.';
+  } else {
+    titulo = 'A sua empresa sobra bem.';
+    texto = 'Agora o trabalho é manter o número visível todo mês, para a sobra virar rotina e não sorte.';
+  }
+
+  let ralo = 'O maior peso do seu mês está no custo de manter a empresa aberta.';
+  const maior = Math.max(V, F, P);
+  if (maior === V) ralo = 'O maior peso está no custo de entregar: mercadoria, insumo, comissão e taxa.';
+  else if (maior === P) ralo = 'O maior peso está no que você tira para você, sem valor e sem data fixa.';
+
+  $('saida').innerHTML =
+    '<div class="cartao escuro"><div class="rot">o que sobrou no mês</div>' +
+      '<div class="num">' + r$(sobra) + '</div>' +
+      '<p>Isso é ' + pc(margem) + ' de tudo que entrou.</p></div>' +
+    '<div class="cartao"><h2>A sua conta, linha por linha</h2>' +
+      '<ul class="linhas">' +
+        '<li><span>Entrou na conta</span><b>' + r$(E) + '</b></li>' +
+        '<li><span>Saiu para entregar</span><b>− ' + r$(V) + '</b></li>' +
+        '<li><span>Sobrou depois de entregar</span><b>' + r$(bruto) + ' · ' + pc(margemBruta) + '</b></li>' +
+        '<li><span>Custo de ficar aberta</span><b>− ' + r$(F) + ' · ' + pc(pesoFixo) + '</b></li>' +
+        '<li><span>Você tirou para você</span><b>− ' + r$(P) + ' · ' + pc(pesoPro) + '</b></li>' +
+        '<li><span><b>Sobrou de verdade</b></span><b>' + r$(sobra) + '</b></li>' +
+      '</ul>' +
+      '<div class="veredito"><b>' + titulo + '</b>' + texto + '</div>' +
+      '<p>' + ralo + '</p>' +
+      (diasFolga > 0
+        ? '<p>Com essa sobra, a sua empresa aguenta cerca de <b>' + diasFolga + (diasFolga === 1 ? ' dia' : ' dias') + '</b> de contas sem vender nada.</p>'
+        : '<p>Hoje a sua empresa não tem nenhum dia de folga: sem venda, falta dinheiro no mesmo mês.</p>') +
+    '</div>' +
+    '<div class="cartao escuro"><div class="rot">o próximo passo</div>' +
+      '<h2>Agora você sabe o número. Falta a ordem.</h2>' +
+      '<p>No Sobra no Caixa você faz 15 minutos por dia, durante 21 dias, e coloca o caixa da empresa na sequência certa: entender, organizar e mudar. São 68 empresas atendidas desde outubro de 2023 com esse mesmo caminho.</p>' +
+      '<a class="btn" href="../funil/?utm_source=calculadora">Conhecer o Sobra no Caixa</a></div>' +
+    '<div class="cartao"><h2>Guarde este resultado</h2>' +
+      '<p>Refaça esta conta todo mês, sempre no mesmo dia. É assim que a sobra deixa de ser surpresa.</p>' +
+      '<button type="button" onclick="window.print()">Salvar em PDF</button></div>';
+  $('saida').style.display = 'block';
+  $('saida').scrollIntoView({behavior:'smooth', block:'start'});
+});
+</script>
+</body>
+</html>
